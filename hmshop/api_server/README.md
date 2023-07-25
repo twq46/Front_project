@@ -23,3 +23,6 @@ https://blog.csdn.net/qq_20503733/article/details/105239905
 
 后端运行命令
 node ./app.js
+
+//接口访问本地服务器地址
+http://127.0.0.1:8888/api/private/v1/
