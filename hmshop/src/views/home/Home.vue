@@ -10,7 +10,7 @@ export default {
   methods: {
     loginOut() {
       //清空session值，并且回到登录界面
-      window.sessionStorage.clear();
+      window.sessionStorage.clear()
       this.$router.push('/login')
     }
   }
