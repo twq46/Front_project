@@ -8,9 +8,8 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
-
 module.exports = {
+
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
@@ -26,6 +25,10 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       '@': resolve('src'),
+      'assets':resolve('src/assets'),
+      'components':resolve('src/compnents'),
+      'views':resolve('src/views'),
+      'network':resolve('src/network')
     }
   },
   module: {
@@ -64,7 +67,7 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
-    ]
+    ],
   },
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
@@ -77,5 +80,6 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  },
+
 }
