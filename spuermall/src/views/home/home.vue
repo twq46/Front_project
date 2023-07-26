@@ -155,7 +155,7 @@
       //获取offsetTop值要在监听轮播图加载完成之后，否则值的获取就不正确
       swiperImageLoad(){
         //tabControl位置的监听
-        //所有的组件都有一个属性$el:用于获取组件中的元素
+        //所有组件都有一个属性$el:用于获取组件中的元素
         this.taboffsetTop = this.$refs.tabcontrol.$el.offsetTop
         // console.log(this.taboffsetTop);
       },
