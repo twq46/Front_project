@@ -4,6 +4,8 @@ import Router from 'vue-router'
 // import Login from "@/views/login/Login";
 const home = ()=> import("views/home/Home")
 const login = ()=> import('views/login/Login')
+
+const welcome = () => import('views/home/main/children/welcome')
 Vue.use(Router)
 
 const router = new Router({
@@ -19,6 +21,13 @@ const router = new Router({
     {
       path:'/home',
       component:home,
+      redirect:'/welcome',
+      children:[
+        {
+          path:'/welcome',
+          component:welcome,
+        }
+      ]
     },
   ],
   //这里可以让路径不再以哈希的方式显示，而是正常的显示路径
