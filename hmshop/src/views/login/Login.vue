@@ -79,7 +79,7 @@ export default {
     },
     LoginFormData(){
       LoginForm(this.loginForm).then(res=>{
-        console.log(res);
+        // console.log(res);
         this.msg = res.meta.msg//拿到返回的提示信息
         if(res.meta.status !== 200){//登录失败
           this.$message({

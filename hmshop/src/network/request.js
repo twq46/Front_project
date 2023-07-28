@@ -7,6 +7,9 @@ export function request(config){
   })
   //2.axios的拦截器
   instance.interceptors.request.use(config =>{
+    //为请求头对象，添加验证的Authorization字段
+    //后面接口的请求，都必须是在登录之后的情况下才能请求
+    config.headers.Authorization = window.sessionStorage.getItem('token')//拿到登录之后服务器返回的token的值
     return config
   },error => {
     console.log(error);
