@@ -287,7 +287,7 @@ export default {
         }
         //关闭弹窗
         this.editUserVisible = false
-        //提示用户信息修改成功
+        //提示用户信息修改成
         this.$message.success('用户信息修改成功')
         //再次请求用户信息
         this.getUserListData()
