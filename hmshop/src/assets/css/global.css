@@ -3,3 +3,18 @@ html,body,#app{
   margin:0;
   padding: 0;
 }
+.el-breadcrumb{
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+/*原本的element-ui组件样式等级比较高，
+自己定义的样式要想覆盖，加个!important提高等级*/
+.el-card{
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15) !important;
+}
+.el-row{
+  margin-bottom: 15px;
+}
+.el-pagination{
+  margin-top: 15px;
+}
