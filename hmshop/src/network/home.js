@@ -31,7 +31,7 @@ export function addUserInfo(query){
   })
 }
 
-//编辑用户数据
+//根据用户id获取要修改用户原来的数据
 export function editUserInfo(id){
   return request({
     url:`/users/${id}`,
@@ -56,5 +56,24 @@ export function deleteUserInfo(id){
   return request({
     url:`/users/${id}`,
     method:'delete'
+  })
+}
+
+//用户列表界面分配角色，获取所有的角色列表
+export function getRloesListInfo(){
+  return request({
+    url:'/roles',
+    method:'get'
+  })
+}
+
+//分配用户角色
+export function confirmAllotRoleInfo(userId,rid){
+  return request({
+    url:`/users/${userId}/role`,
+    method:'put',
+    data:{
+      rid:rid,
+    }
   })
 }

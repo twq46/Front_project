@@ -78,7 +78,6 @@ export default {
   methods:{
     getMenusList(){
       getMenusList().then(res => {
-        console.log(res);
         this.menusList = res.data;
       })
     },

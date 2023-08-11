@@ -2,6 +2,7 @@ html,body,#app{
   height: 100%;
   margin:0;
   padding: 0;
+  min-width: 1366px;
 }
 .el-breadcrumb{
   margin-bottom: 15px;
@@ -14,6 +15,9 @@ html,body,#app{
 }
 .el-row{
   margin-bottom: 15px;
+  /*在这一列中居中对齐*/
+  display: flex;
+  align-items: center;
 }
 .el-pagination{
   margin-top: 15px;
