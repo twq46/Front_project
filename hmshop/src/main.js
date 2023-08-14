@@ -13,6 +13,10 @@ Vue.use(ElementUI)
 import 'assets/fonts/iconfont.css'
 Vue.config.productionTip = false
 
+//导入树形插件
+import TreeTable from 'vue-table-with-tree-grid'
+Vue.component('tree-table',TreeTable)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
