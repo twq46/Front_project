@@ -13,6 +13,9 @@ Vue.use(ElementUI)
 import 'assets/fonts/iconfont.css'
 Vue.config.productionTip = false
 
+//利用中央总线的方式传值
+Vue.prototype.$bus = new Vue()
+
 //导入树形插件
 import TreeTable from 'vue-table-with-tree-grid'
 Vue.component('tree-table',TreeTable)
