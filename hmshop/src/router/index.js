@@ -10,11 +10,12 @@ const welcome = ()=> import('views/home/main/children/welcome')
 const users = ()=> import('views/home/aside/children/users/User')
 const roles = ()=> import('views/home/aside/children/right/Roles')
 const rights = ()=> import('views/home/aside/children/right/Right')
-const goods = ()=> import('views/home/aside/children/goods/GoodsList')
+const goods = ()=> import('views/home/aside/children/goods/goodlist/GoodsList')
 const params = ()=> import('views/home/aside/children/goods/categoryparams/CategoryParamas')
 const categories = ()=> import('views/home/aside/children/goods/GoodsCategory')
 const orders = ()=> import('views/home/aside/children/order/OrderList')
 const reports = ()=> import('views/home/aside/children/data/DataReport')
+const addGoods = ()=> import('views/home/aside/children/goods/goodlist/children/addGoods')
 Vue.use(Router)
 
 const router = new Router({
@@ -50,7 +51,11 @@ const router = new Router({
         },
         {
           path:'/goods',
-          component:goods
+          component:goods,
+        },
+        {
+          path:'/goods/add',
+          component:addGoods,
         },
         {
           path:'/params',
