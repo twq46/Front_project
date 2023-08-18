@@ -77,3 +77,11 @@ export function confirmAllotRoleInfo(userId,rid){
     }
   })
 }
+
+//数据统计-基于时间统计的折线图
+export function getReportsInfo(){
+  return request({
+    url:'/reports/type/1',
+    method:'get'
+  })
+}
