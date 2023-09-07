@@ -1,17 +1,92 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
-		}
-	],
+            "path" : "pages/home/home",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/expert/expert",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/volunteer/volunteer",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/vip/vip",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/mine",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+  "tabBar": {
+      "list": [
+        {
+          "pagePath": "pages/home/home",
+          "text": "首页",
+          "iconPath": "static/images/home.png",
+          "selectedIconPath": "static/images/home_active.png"
+        },
+        {
+          "pagePath": "pages/expert/expert",
+          "text": "找专家",
+          "iconPath": "static/images/expert.png",
+          "selectedIconPath": "static/images/expert_active.png"
+        },
+        {
+          "pagePath": "pages/volunteer/volunteer",
+          "text": "填志愿",
+          "iconPath": "static/images/volunteer.png",
+          "selectedIconPath": "static/images/volunteer_active.png"
+        },
+        {
+          "pagePath": "pages/vip/vip",
+          "text": "VIP",
+          "iconPath": "static/images/vip.png",
+          "selectedIconPath": "static/images/vip_active.png"
+        },
+        {
+          "pagePath": "pages/mine/mine",
+          "text": "我的",
+          "iconPath": "static/images/mine.png",
+          "selectedIconPath": "static/images/mine_active.png"
+        }
+      ],
+      "selectedColor": "#ff7854",
+      "color": "#d3d3d3"
+    }
 }

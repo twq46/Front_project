@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/expert/expert",
+    "pages/volunteer/volunteer",
+    "pages/vip/vip",
+    "pages/mine/mine"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/home_active.png"
+      },
+      {
+        "pagePath": "pages/expert/expert",
+        "text": "找专家",
+        "iconPath": "static/images/expert.png",
+        "selectedIconPath": "static/images/expert_active.png"
+      },
+      {
+        "pagePath": "pages/volunteer/volunteer",
+        "text": "填志愿",
+        "iconPath": "static/images/volunteer.png",
+        "selectedIconPath": "static/images/volunteer_active.png"
+      },
+      {
+        "pagePath": "pages/vip/vip",
+        "text": "VIP",
+        "iconPath": "static/images/vip.png",
+        "selectedIconPath": "static/images/vip_active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "static/images/mine.png",
+        "selectedIconPath": "static/images/mine_active.png"
+      }
+    ],
+    "selectedColor": "#ff7854",
+    "color": "#d3d3d3"
+  },
+  "usingComponents": {}
+}
