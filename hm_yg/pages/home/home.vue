@@ -1,5 +1,9 @@
 <template>
   <view>
+    <view class="search-box">
+      <my-search @gotoSearch="gotoSearch" ></my-search>
+    </view>
+    
      <!-- 轮播图区域 -->
     <swiper :indicator-dots="true" :autoplay="true" 
     :interval="3000" :duration="1000" :circular="true">
@@ -42,7 +46,7 @@
 </template>
 
 <script>
-  // import {getSwiperListInfo} from '../../network/home.js'
+  import {getSwiperListInfo} from '../../network/home.js'
   export default {
     data() {
       return {
@@ -63,6 +67,13 @@
       this.getFloorList()
     },
     methods:{
+      // getSwiperList(){
+      //   getSwiperListInfo().then(res=>{
+      //     if(res.meta.status !== 200) return uni.$http.$showMsg()
+      //       this.swiperList = res.message
+      //       uni.$showMsg('666请求成功')
+      //   })
+      // },
       async getSwiperList(){
         const {data:res} = await uni.$http.get('/api/public/v1/home/swiperdata')
         //请求失败
@@ -102,7 +113,13 @@
         this.floorList = res.message
         console.log(res)
       },
-    }
+      gotoSearch(){
+        uni.navigateTo({
+          url:'/subpkg/search/search'
+        })
+      },
+    },
+    
   }
 </script>
 
@@ -140,5 +157,9 @@ swiper {
   display: flex;
   padding-left: 10rpx;
 }
-
+.search-box{
+  position: sticky;
+  top:0;
+  z-index: 2;
+}
 </style>

@@ -1,31 +1,37 @@
 <template>
-  <view class="scroll-view-content">
-    <!-- 左侧滑动区域 -->
-    <scroll-view class="scroll-view-left" scroll-y="true" :style="{height:windowHeight + 'px'}">
-      <block v-for="(item,i) in cateList" :key="i">
-        <view class="left-scroll-view-item" :class="{active:activeIndex === i}" @click="blockClick(i)">{{item.cat_name}}</view>
-      </block>
-    </scroll-view>
-    <!-- 右侧滑动区域 -->
-    <scroll-view class="scroll-view-right" scroll-y="true" :style="{height: windowHeight + 'px'}" :scroll-top="scrollTop">
-      <view class="cate-lv2" v-for="(item,i2) in cateLevel2" :key="i2">
-       <!-- 二级分类的标题 -->
-        <view class="cate-lv2-title">
-          /{{item.cat_name}}/
-        </view>
-        <!-- 当前二级分类下的三级分类列表 -->
-        <view class="cate-lv3-list">
-          <view class="cate-lv3-item" v-for="(item3,i3) in item.children" :key="i3" @click="gotoGoodlist(item3)">
-            <!-- 三级分类的图片 -->
-            <image :src="item3.cat_icon" mode="widthFix"></image>
-            <!-- 三级分类的文本 -->
-            <text>{{item3.cat_name}}</text>
+  <view>
+    <!-- 使用自定义的组件 -->
+    <my-search @gotoSearch="gotoSearch"></my-search>
+    <view class="scroll-view-content">
+      <!-- 左侧滑动区域 -->
+      <scroll-view class="scroll-view-left" scroll-y="true" :style="{height:windowHeight + 'px'}">
+        <block v-for="(item,i) in cateList" :key="i">
+          <view class="left-scroll-view-item" :class="{active:activeIndex === i}" @click="blockClick(i)">{{item.cat_name}}</view>
+        </block>
+      </scroll-view>
+      <!-- 右侧滑动区域 -->
+      <scroll-view class="scroll-view-right" scroll-y="true" :style="{height: windowHeight + 'px'}" :scroll-top="scrollTop">
+        <view class="cate-lv2" v-for="(item,i2) in cateLevel2" :key="i2">
+         <!-- 二级分类的标题 -->
+          <view class="cate-lv2-title">
+            /{{item.cat_name}}/
+          </view>
+          <!-- 当前二级分类下的三级分类列表 -->
+          <view class="cate-lv3-list">
+            <view class="cate-lv3-item" v-for="(item3,i3) in item.children" :key="i3" @click="gotoGoodlist(item3)">
+              <!-- 三级分类的图片 -->
+              <image :src="item3.cat_icon" mode="widthFix"></image>
+              <!-- 三级分类的文本 -->
+              <text>{{item3.cat_name}}</text>
+            </view>
           </view>
         </view>
-      </view>
-      
-    </scroll-view>
+        
+      </scroll-view>
+    </view>
+    
   </view>
+ 
 </template>
 
 <script>
@@ -42,8 +48,8 @@
     onLoad(){
       //获取当前窗口的信息
       const sysInfo = uni.getSystemInfoSync()
-      //当前可用窗口的高度
-      this.windowHeight = sysInfo.windowHeight
+      //当前可用窗口的高度，减去的50为搜索框的高度
+      this.windowHeight = sysInfo.windowHeight - 50
       this.getCateList()
     },
     methods:{
@@ -65,6 +71,11 @@
       gotoGoodlist(item){
         uni.navigateTo({
           url:'/subpkg/goods_list/goods_list?cid=' + item.cat_id
+        })
+      },
+      gotoSearch(){
+        uni.navigateTo({
+          url:'/subpkg/search/search'
         })
       }
     }

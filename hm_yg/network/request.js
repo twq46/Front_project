@@ -1,32 +1,38 @@
 import axios from "axios"
 //导入NProgress包对应的JS和CSS
+//baseURL:'https://api-hmugo-web.itheima.net',
 // import NProgress from 'nprogress'
 // import 'nprogress/nprogress.css'
+//写法三和写法二相同：
 export function request(config){
+  //1.创建axios的实例
   const instance = axios.create({
-    //1.创建axios实例
     baseURL:'https://api-hmugo-web.itheima.net',
     timeout:5000,
   })
   //2.axios的拦截器
+  //2.1请求拦截
   instance.interceptors.request.use(config =>{
-    //在request拦截器中展示进度条
-    // NProgress.start()
-    //为请求头对象，添加验证的Authorization字段
-    //后面接口的请求，都必须是在登录之后的情况下才能请求
-    // config.headers.Authorization = window.sessionStorage.getItem('token')//拿到登录之后服务器返回的token的
-    return config
+
+    //请求拦截的作用
+        //1.比如config中的一些信息不符合服务器的要求,
+        //需要对config中的内容进行一定的变化之后在返回给服务器
+
+        //2.比如每次发送网络请求时，都希望在界面中显示一个请求的图标(加载条)
+
+        //3.某些网络请求（比如登录（token））,必须要携带一些特殊的信息
+
+    return config//这里一定要返回，否则在instance内部发送真正请求的时候，就没有config
   },error => {
     console.log(error);
   })
-  //3.响应拦截
+  //2.2响应拦截
   instance.interceptors.response.use(res =>{
-    //在response拦截器中隐藏进度条
-    // NProgress.done()
+
     return res.data
   },error => {
     console.log(error);
   })
-  //4.发送真正的网络请求
-  return instance(config)
+  //3.发送真正的网络请求
+  return  instance(config)
 }

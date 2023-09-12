@@ -3,14 +3,16 @@
     "pages/home/home",
     "pages/cate/cate",
     "pages/cart/cart",
-    "pages/my/my"
+    "pages/my/my",
+    "network/network"
   ],
   "subPackages": [
     {
       "root": "subpkg",
       "pages": [
         "goods_detail/goods_detail",
-        "goods_list/goods_list"
+        "goods_list/goods_list",
+        "search/search"
       ]
     }
   ],
