@@ -22,7 +22,24 @@
   "libVersion": "3.0.2",
   "appid": "wx7e1720133bb32a43",
   "projectname": "hm_yg",
-  "condition": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": []
+    }
+  },
   "editorSetting": {
     "tabIndent": "auto",
     "tabSize": 2
