@@ -44,6 +44,7 @@
     },
     methods:{
       inputHandler(e){
+        //搜索框的防抖
         clearTimeout(this.timer)
         this.timer = setTimeout(()=>{
           // console.log(e)
