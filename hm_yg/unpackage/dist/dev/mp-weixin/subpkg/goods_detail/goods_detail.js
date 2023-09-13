@@ -170,50 +170,34 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 41));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 43));
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
+var _vuex = __webpack_require__(/*! vuex */ 205);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var _default = {
+  computed: _objectSpread({}, (0, _vuex.mapGetters)('m_cart', ['total'])),
+  watch: {
+    // total(newVal){
+    //   const findResult = this.options.find(x => x.text === '购物车')
+    //   if(findResult){
+    //     findResult.info = newVal
+    //   }
+    // }
+    // 定义 total 侦听器，指向一个配置对象 
+    total: {
+      // handler 属性用来定义侦听器的 function 处理函数
+      handler: function handler(newVal) {
+        var findResult = this.options.find(function (x) {
+          return x.text === '购物车';
+        });
+        if (findResult) {
+          findResult.info = newVal;
+        }
+      },
+      // immediate 属性用来声明此侦听器，是否在页面初次加载完毕后立即调用
+      immediate: true
+    }
+  },
   data: function data() {
     return {
       goods_info: {},
@@ -224,7 +208,7 @@ var _default = {
       }, {
         icon: 'cart',
         text: '购物车',
-        info: 2
+        info: 0
       }],
       // 右侧按钮组的配置对象
       buttonGroup: [{
@@ -242,7 +226,7 @@ var _default = {
     var goods_id = option.goods_id;
     this.getGoodsDetail(goods_id);
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, (0, _vuex.mapMutations)('m_cart', ['addToCart'])), {}, {
     getGoodsDetail: function getGoodsDetail(goods_id) {
       var _this = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -294,8 +278,24 @@ var _default = {
           url: '/pages/cart/cart'
         });
       }
+    },
+    //当点击了加入购物车或者立即购买按钮之后
+    buttonClick: function buttonClick(e) {
+      if (e.content.text === '加入购物车') {
+        //组织商品的信息对象
+        var goods = {
+          goods_id: this.goods_info.goods_id,
+          goods_name: this.goods_info.goods_name,
+          goods_price: this.goods_info.goods_price,
+          goods_count: 1,
+          goods_small_logo: this.goods_info.goods_small_logo,
+          goods_state: true
+        };
+        //调用addToCart方法
+        this.addToCart(goods);
+      }
     }
-  }
+  })
 };
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))

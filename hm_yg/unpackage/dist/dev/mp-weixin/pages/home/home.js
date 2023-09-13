@@ -168,6 +168,7 @@ exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 41));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 43));
 var _home = __webpack_require__(/*! ../../network/home.js */ 44);
+var _tabbarBadge = _interopRequireDefault(__webpack_require__(/*! @/mixins/tabbar-badge.js */ 208));
 //
 //
 //
@@ -216,6 +217,7 @@ var _home = __webpack_require__(/*! ../../network/home.js */ 44);
 //
 //
 var _default = {
+  mixins: [_tabbarBadge.default],
   data: function data() {
     return {
       //轮播图的数据
@@ -300,7 +302,7 @@ var _default = {
       }))();
     },
     cateClick: function cateClick(item) {
-      console.log(item);
+      // console.log(item)
       if (item.name === '分类') {
         //跳转到tabbar页面
         uni.switchTab({
@@ -334,8 +336,8 @@ var _default = {
                 return _context3.abrupt("return", uni.$showMsg());
               case 7:
                 _this3.floorList = res.message;
-                console.log(res);
-              case 9:
+                // console.log(res)
+              case 8:
               case "end":
                 return _context3.stop();
             }

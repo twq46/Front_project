@@ -47,7 +47,9 @@
 
 <script>
   import {getSwiperListInfo} from '../../network/home.js'
+  import badgeMix from '@/mixins/tabbar-badge.js'
   export default {
+    mixins:[badgeMix],
     data() {
       return {
         //轮播图的数据
@@ -92,7 +94,7 @@
         this.navList = res.message
       },
       cateClick(item){
-        console.log(item)
+        // console.log(item)
         if(item.name === '分类'){
           //跳转到tabbar页面
           uni.switchTab({
@@ -111,7 +113,7 @@
         })
         if(res.meta.status !== 200) return uni.$showMsg()
         this.floorList = res.message
-        console.log(res)
+        // console.log(res)
       },
       gotoSearch(){
         uni.navigateTo({
