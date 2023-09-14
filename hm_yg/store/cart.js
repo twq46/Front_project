@@ -29,6 +29,33 @@ export default {
       // 将购物车中的数据持久化存储到本地
       saveToStorage(state) {
          uni.setStorageSync('cart', JSON.stringify(state.cart))
+      },
+      //更新购物车商品选中的状态
+      updateGoodsState(state,goods){
+        const findGoods = state.cart.find(x => x.goods_id === goods.goods_id)
+        //如果找到了商品
+        if(findGoods){
+          findGoods.goods_state = goods.goods_state
+          this.commit('m_cart/saveToStorage')
+        }
+      },
+      //更新购物车商品的数量
+      updateGoodsNum(state,goods){
+        const findNum = state.cart.find(x => x.goods_id === goods.goods_id)
+        if(findNum){
+          findNum.goods_count = goods.goods_count
+          this.commit('m_cart/saveToStorage')
+        }
+      },
+      //删除购物车中的商品
+      deleteGoods(state,goods){
+        state.cart = state.cart.filter(x => x.goods_id !== goods.goods_id)
+        this.commit('m_cart/saveToStorage')
+      },
+      //点击全选按钮之后
+      checkAllGoods(state,tf){
+        state.cart.forEach(x => x.goods_state = tf)
+        this.commit('m_cart/saveToStorage')
       }
     },
     // 模块的 getters 属性
@@ -39,6 +66,26 @@ export default {
         // 循环统计商品的数量，累加到变量 c 中
         state.cart.forEach(goods => c += goods.goods_count)
         return c
+     },
+     // 统计购物车中已选中商品的数量
+     checkTotal(state){
+       let c = 0
+       state.cart.forEach(goods =>{
+         if(goods.goods_state){
+           c += goods.goods_count
+         }
+       })
+       return c
+     },
+     //统计购物车已选中商品总价格
+     checkTotalPrice(state){
+       let total = 0 
+       state.cart.forEach(goods =>{
+         if(goods.goods_state){
+           total += goods.goods_count * goods.goods_price
+         }
+       })
+       return total.toFixed(2)
      }
     },
 }

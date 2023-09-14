@@ -33,7 +33,7 @@
       // console.log(options)
       this.queryObj.query = options.query || ''
       this.queryObj.cid = options.cid || ''
-      console.log(this.queryObj)
+      // console.log(this.queryObj)
       this.getGoodsList()
     },
     onReachBottom(){
@@ -72,9 +72,9 @@
        this.isLoading = false
       },
       //点击商品列表跳转到商品详情界面
-      gotoGoodsDetail(){
+      gotoGoodsDetail(item){
         uni.navigateTo({
-          url:"/subpkg/goods_detail/goods_detail"
+          url:"/subpkg/goods_detail/goods_detail?goods_id=" + item.goods_id
         })
       }
     }
