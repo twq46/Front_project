@@ -9774,7 +9774,7 @@ exports.default = void 0;
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 25));
 var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 36));
 var _cart = _interopRequireDefault(__webpack_require__(/*! ./cart.js */ 37));
-var _user = _interopRequireDefault(__webpack_require__(/*! ./user.js */ 246));
+var _user = _interopRequireDefault(__webpack_require__(/*! ./user.js */ 38));
 // 1. 导入 Vue 和 Vuex
 
 // 2. 将 Vuex 安装为 Vue 的插件
@@ -11172,13 +11172,78 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 38 */,
+/* 38 */
+/*!************************************************************************!*\
+  !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/store/user.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  namespaced: true,
+  state: function state() {
+    return {
+      //收货地址
+      address: JSON.parse(uni.getStorageSync('address') || '{}'),
+      token: uni.getStorageSync('token') || '',
+      //用户信息对象
+      userinfo: JSON.parse(uni.getStorageSync('userinfo') || '{}'),
+      //重定向的 object 对象 { openType, from }
+      redirectInfo: null
+    };
+  },
+  mutations: {
+    //更新收货地址
+    updateAddress: function updateAddress(state, address) {
+      state.address = address;
+      this.commit('m_user/saveStorge');
+    },
+    saveStorge: function saveStorge(state) {
+      uni.setStorageSync('address', JSON.stringify(state.address));
+    },
+    saveUserinfoStorge: function saveUserinfoStorge(state) {
+      uni.setStorageSync('userinfo', JSON.stringify(state.userinfo));
+    },
+    updateUserinfo: function updateUserinfo(state, userinfo) {
+      state.userinfo = userinfo;
+      this.commit('m_user/saveUserinfoStorge');
+    },
+    updateToken: function updateToken(state, token) {
+      state.token = token;
+      this.commit('m_user/saveTokenStorge');
+    },
+    saveTokenStorge: function saveTokenStorge(state) {
+      uni.setStorageSync('token', state.token);
+    },
+    updateRedirectInfo: function updateRedirectInfo(state, info) {
+      state.redirectInfo = info;
+    }
+  },
+  getters: {
+    addstr: function addstr(state) {
+      if (!state.address.provinceName) return '';
+      return state.address.provinceName + state.address.cityName + state.address.countyName + state.address.detailInfo;
+    }
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
 /* 39 */,
 /* 40 */,
 /* 41 */,
 /* 42 */,
 /* 43 */,
-/* 44 */
+/* 44 */,
+/* 45 */
 /*!************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
   \************************************************************************************************/
@@ -11187,11 +11252,11 @@ exports.default = _default;
 
 // TODO(Babel 8): Remove this file.
 
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 45)();
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 46)();
 module.exports = runtime;
 
 /***/ }),
-/* 45 */
+/* 46 */
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
   \*******************************************************************/
@@ -11512,7 +11577,7 @@ function _regeneratorRuntime() {
 module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 46 */
+/* 47 */
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
   \*****************************************************************/
@@ -11552,7 +11617,7 @@ function _asyncToGenerator(fn) {
 module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 47 */
+/* 48 */
 /*!**************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/network/home.js ***!
   \**************************************************************************/
@@ -11566,7 +11631,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getSwiperListInfo = getSwiperListInfo;
-var _request = __webpack_require__(/*! ./request.js */ 48);
+var _request = __webpack_require__(/*! ./request.js */ 49);
 function getSwiperListInfo() {
   return (0, _request.request)({
     url: '/api/public/v1/home/swiperdata',
@@ -11575,7 +11640,7 @@ function getSwiperListInfo() {
 }
 
 /***/ }),
-/* 48 */
+/* 49 */
 /*!*****************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/network/request.js ***!
   \*****************************************************************************/
@@ -11590,7 +11655,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.request = request;
-var _axios = _interopRequireDefault(__webpack_require__(/*! axios */ 49));
+var _axios = _interopRequireDefault(__webpack_require__(/*! axios */ 50));
 //导入NProgress包对应的JS和CSS
 //baseURL:'https://api-hmugo-web.itheima.net',
 // import NProgress from 'nprogress'
@@ -11628,7 +11693,7 @@ function request(config) {
 }
 
 /***/ }),
-/* 49 */
+/* 50 */
 /*!**************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/index.js ***!
   \**************************************************************************************/
@@ -11650,7 +11715,7 @@ Object.defineProperty(exports, "default", {
   }
 });
 exports.toFormData = exports.spread = exports.mergeConfig = exports.isCancel = exports.isAxiosError = exports.getAdapter = exports.formToJSON = void 0;
-var _axios = _interopRequireDefault(__webpack_require__(/*! ./lib/axios.js */ 50));
+var _axios = _interopRequireDefault(__webpack_require__(/*! ./lib/axios.js */ 51));
 // This module is intended to unwrap Axios default export as named.
 // Keep top-level export same with static properties
 // so that it can keep same with es module or cjs
@@ -11688,7 +11753,7 @@ exports.AxiosError = AxiosError;
 exports.Axios = Axios;
 
 /***/ }),
-/* 50 */
+/* 51 */
 /*!******************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/axios.js ***!
   \******************************************************************************************/
@@ -11703,23 +11768,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./utils.js */ 51));
-var _bind = _interopRequireDefault(__webpack_require__(/*! ./helpers/bind.js */ 52));
-var _Axios = _interopRequireDefault(__webpack_require__(/*! ./core/Axios.js */ 53));
-var _mergeConfig = _interopRequireDefault(__webpack_require__(/*! ./core/mergeConfig.js */ 89));
-var _index = _interopRequireDefault(__webpack_require__(/*! ./defaults/index.js */ 66));
-var _formDataToJSON = _interopRequireDefault(__webpack_require__(/*! ./helpers/formDataToJSON.js */ 74));
-var _CanceledError = _interopRequireDefault(__webpack_require__(/*! ./cancel/CanceledError.js */ 78));
-var _CancelToken = _interopRequireDefault(__webpack_require__(/*! ./cancel/CancelToken.js */ 92));
-var _isCancel = _interopRequireDefault(__webpack_require__(/*! ./cancel/isCancel.js */ 77));
-var _data = __webpack_require__(/*! ./env/data.js */ 91);
-var _toFormData = _interopRequireDefault(__webpack_require__(/*! ./helpers/toFormData.js */ 56));
-var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ./core/AxiosError.js */ 61));
-var _spread = _interopRequireDefault(__webpack_require__(/*! ./helpers/spread.js */ 93));
-var _isAxiosError = _interopRequireDefault(__webpack_require__(/*! ./helpers/isAxiosError.js */ 94));
-var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ./core/AxiosHeaders.js */ 75));
-var _adapters = _interopRequireDefault(__webpack_require__(/*! ./adapters/adapters.js */ 79));
-var _HttpStatusCode = _interopRequireDefault(__webpack_require__(/*! ./helpers/HttpStatusCode.js */ 95));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./utils.js */ 52));
+var _bind = _interopRequireDefault(__webpack_require__(/*! ./helpers/bind.js */ 53));
+var _Axios = _interopRequireDefault(__webpack_require__(/*! ./core/Axios.js */ 54));
+var _mergeConfig = _interopRequireDefault(__webpack_require__(/*! ./core/mergeConfig.js */ 90));
+var _index = _interopRequireDefault(__webpack_require__(/*! ./defaults/index.js */ 67));
+var _formDataToJSON = _interopRequireDefault(__webpack_require__(/*! ./helpers/formDataToJSON.js */ 75));
+var _CanceledError = _interopRequireDefault(__webpack_require__(/*! ./cancel/CanceledError.js */ 79));
+var _CancelToken = _interopRequireDefault(__webpack_require__(/*! ./cancel/CancelToken.js */ 93));
+var _isCancel = _interopRequireDefault(__webpack_require__(/*! ./cancel/isCancel.js */ 78));
+var _data = __webpack_require__(/*! ./env/data.js */ 92);
+var _toFormData = _interopRequireDefault(__webpack_require__(/*! ./helpers/toFormData.js */ 57));
+var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ./core/AxiosError.js */ 62));
+var _spread = _interopRequireDefault(__webpack_require__(/*! ./helpers/spread.js */ 94));
+var _isAxiosError = _interopRequireDefault(__webpack_require__(/*! ./helpers/isAxiosError.js */ 95));
+var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ./core/AxiosHeaders.js */ 76));
+var _adapters = _interopRequireDefault(__webpack_require__(/*! ./adapters/adapters.js */ 80));
+var _HttpStatusCode = _interopRequireDefault(__webpack_require__(/*! ./helpers/HttpStatusCode.js */ 96));
 /**
  * Create an instance of Axios
  *
@@ -11791,7 +11856,7 @@ var _default = axios;
 exports.default = _default;
 
 /***/ }),
-/* 51 */
+/* 52 */
 /*!******************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/utils.js ***!
   \******************************************************************************************/
@@ -11807,7 +11872,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-var _bind = _interopRequireDefault(__webpack_require__(/*! ./helpers/bind.js */ 52));
+var _bind = _interopRequireDefault(__webpack_require__(/*! ./helpers/bind.js */ 53));
 // utils is a library of generic helper functions non-specific to axios
 
 var toString = Object.prototype.toString;
@@ -12504,7 +12569,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../../../Applications/HBuilderX-Alpha.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/webpack/buildin/global.js */ 3)))
 
 /***/ }),
-/* 52 */
+/* 53 */
 /*!*************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/bind.js ***!
   \*************************************************************************************************/
@@ -12525,7 +12590,7 @@ function bind(fn, thisArg) {
 }
 
 /***/ }),
-/* 53 */
+/* 54 */
 /*!***********************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/core/Axios.js ***!
   \***********************************************************************************************/
@@ -12542,14 +12607,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 51));
-var _buildURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/buildURL.js */ 54));
-var _InterceptorManager = _interopRequireDefault(__webpack_require__(/*! ./InterceptorManager.js */ 63));
-var _dispatchRequest = _interopRequireDefault(__webpack_require__(/*! ./dispatchRequest.js */ 64));
-var _mergeConfig = _interopRequireDefault(__webpack_require__(/*! ./mergeConfig.js */ 89));
-var _buildFullPath = _interopRequireDefault(__webpack_require__(/*! ./buildFullPath.js */ 83));
-var _validator = _interopRequireDefault(__webpack_require__(/*! ../helpers/validator.js */ 90));
-var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ./AxiosHeaders.js */ 75));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 52));
+var _buildURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/buildURL.js */ 55));
+var _InterceptorManager = _interopRequireDefault(__webpack_require__(/*! ./InterceptorManager.js */ 64));
+var _dispatchRequest = _interopRequireDefault(__webpack_require__(/*! ./dispatchRequest.js */ 65));
+var _mergeConfig = _interopRequireDefault(__webpack_require__(/*! ./mergeConfig.js */ 90));
+var _buildFullPath = _interopRequireDefault(__webpack_require__(/*! ./buildFullPath.js */ 84));
+var _validator = _interopRequireDefault(__webpack_require__(/*! ../helpers/validator.js */ 91));
+var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ./AxiosHeaders.js */ 76));
 var validators = _validator.default.validators;
 
 /**
@@ -12718,7 +12783,7 @@ var _default = Axios;
 exports.default = _default;
 
 /***/ }),
-/* 54 */
+/* 55 */
 /*!*****************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/buildURL.js ***!
   \*****************************************************************************************************/
@@ -12733,8 +12798,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = buildURL;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 51));
-var _AxiosURLSearchParams = _interopRequireDefault(__webpack_require__(/*! ../helpers/AxiosURLSearchParams.js */ 55));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 52));
+var _AxiosURLSearchParams = _interopRequireDefault(__webpack_require__(/*! ../helpers/AxiosURLSearchParams.js */ 56));
 /**
  * It replaces all instances of the characters `:`, `$`, `,`, `+`, `[`, and `]` with their
  * URI encoded counterparts
@@ -12780,7 +12845,7 @@ function buildURL(url, params, options) {
 }
 
 /***/ }),
-/* 55 */
+/* 56 */
 /*!*****************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/AxiosURLSearchParams.js ***!
   \*****************************************************************************************************************/
@@ -12795,7 +12860,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _toFormData = _interopRequireDefault(__webpack_require__(/*! ./toFormData.js */ 56));
+var _toFormData = _interopRequireDefault(__webpack_require__(/*! ./toFormData.js */ 57));
 /**
  * It encodes a string by replacing all characters that are not in the unreserved set with
  * their percent-encoded equivalents
@@ -12847,7 +12912,7 @@ var _default = AxiosURLSearchParams;
 exports.default = _default;
 
 /***/ }),
-/* 56 */
+/* 57 */
 /*!*******************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/toFormData.js ***!
   \*******************************************************************************************************/
@@ -12863,9 +12928,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 51));
-var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 61));
-var _FormData = _interopRequireDefault(__webpack_require__(/*! ../platform/node/classes/FormData.js */ 62));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 52));
+var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 62));
+var _FormData = _interopRequireDefault(__webpack_require__(/*! ../platform/node/classes/FormData.js */ 63));
 // temporary hotfix to avoid circular references until AxiosURLSearchParams is refactored
 
 /**
@@ -13049,10 +13114,10 @@ function toFormData(obj, formData, options) {
 }
 var _default = toFormData;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../../../../Applications/HBuilderX-Alpha.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 57).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../../../../Applications/HBuilderX-Alpha.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 58).Buffer))
 
 /***/ }),
-/* 57 */
+/* 58 */
 /*!**************************************!*\
   !*** ./node_modules/buffer/index.js ***!
   \**************************************/
@@ -13070,9 +13135,9 @@ exports.default = _default;
 
 
 
-var base64 = __webpack_require__(/*! base64-js */ 58)
-var ieee754 = __webpack_require__(/*! ieee754 */ 59)
-var isArray = __webpack_require__(/*! isarray */ 60)
+var base64 = __webpack_require__(/*! base64-js */ 59)
+var ieee754 = __webpack_require__(/*! ieee754 */ 60)
+var isArray = __webpack_require__(/*! isarray */ 61)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -14853,7 +14918,7 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ 3)))
 
 /***/ }),
-/* 58 */
+/* 59 */
 /*!*****************************************!*\
   !*** ./node_modules/base64-js/index.js ***!
   \*****************************************/
@@ -15014,7 +15079,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /*!***************************************!*\
   !*** ./node_modules/ieee754/index.js ***!
   \***************************************/
@@ -15109,7 +15174,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /*!***************************************!*\
   !*** ./node_modules/isarray/index.js ***!
   \***************************************/
@@ -15124,7 +15189,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /*!****************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/core/AxiosError.js ***!
   \****************************************************************************************************/
@@ -15139,7 +15204,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 51));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 52));
 /**
  * Create an Error with the specified message, config, error code, request and response.
  *
@@ -15218,7 +15283,7 @@ var _default = AxiosError;
 exports.default = _default;
 
 /***/ }),
-/* 62 */
+/* 63 */
 /*!*************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/null.js ***!
   \*************************************************************************************************/
@@ -15237,7 +15302,7 @@ var _default = null;
 exports.default = _default;
 
 /***/ }),
-/* 63 */
+/* 64 */
 /*!************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/core/InterceptorManager.js ***!
   \************************************************************************************************************/
@@ -15254,7 +15319,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 51));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 52));
 var InterceptorManager = /*#__PURE__*/function () {
   function InterceptorManager() {
     (0, _classCallCheck2.default)(this, InterceptorManager);
@@ -15335,7 +15400,7 @@ var _default = InterceptorManager;
 exports.default = _default;
 
 /***/ }),
-/* 64 */
+/* 65 */
 /*!*********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/core/dispatchRequest.js ***!
   \*********************************************************************************************************/
@@ -15350,12 +15415,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = dispatchRequest;
-var _transformData = _interopRequireDefault(__webpack_require__(/*! ./transformData.js */ 65));
-var _isCancel = _interopRequireDefault(__webpack_require__(/*! ../cancel/isCancel.js */ 77));
-var _index = _interopRequireDefault(__webpack_require__(/*! ../defaults/index.js */ 66));
-var _CanceledError = _interopRequireDefault(__webpack_require__(/*! ../cancel/CanceledError.js */ 78));
-var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosHeaders.js */ 75));
-var _adapters = _interopRequireDefault(__webpack_require__(/*! ../adapters/adapters.js */ 79));
+var _transformData = _interopRequireDefault(__webpack_require__(/*! ./transformData.js */ 66));
+var _isCancel = _interopRequireDefault(__webpack_require__(/*! ../cancel/isCancel.js */ 78));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../defaults/index.js */ 67));
+var _CanceledError = _interopRequireDefault(__webpack_require__(/*! ../cancel/CanceledError.js */ 79));
+var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosHeaders.js */ 76));
+var _adapters = _interopRequireDefault(__webpack_require__(/*! ../adapters/adapters.js */ 80));
 /**
  * Throws a `CanceledError` if cancellation has been requested.
  *
@@ -15411,7 +15476,7 @@ function dispatchRequest(config) {
 }
 
 /***/ }),
-/* 65 */
+/* 66 */
 /*!*******************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/core/transformData.js ***!
   \*******************************************************************************************************/
@@ -15426,9 +15491,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = transformData;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 51));
-var _index = _interopRequireDefault(__webpack_require__(/*! ../defaults/index.js */ 66));
-var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosHeaders.js */ 75));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 52));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../defaults/index.js */ 67));
+var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosHeaders.js */ 76));
 /**
  * Transform the data for a request or a response
  *
@@ -15450,7 +15515,7 @@ function transformData(fns, response) {
 }
 
 /***/ }),
-/* 66 */
+/* 67 */
 /*!***************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/defaults/index.js ***!
   \***************************************************************************************************/
@@ -15465,13 +15530,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 51));
-var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 61));
-var _transitional = _interopRequireDefault(__webpack_require__(/*! ./transitional.js */ 67));
-var _toFormData = _interopRequireDefault(__webpack_require__(/*! ../helpers/toFormData.js */ 56));
-var _toURLEncodedForm = _interopRequireDefault(__webpack_require__(/*! ../helpers/toURLEncodedForm.js */ 68));
-var _index = _interopRequireDefault(__webpack_require__(/*! ../platform/index.js */ 69));
-var _formDataToJSON = _interopRequireDefault(__webpack_require__(/*! ../helpers/formDataToJSON.js */ 74));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 52));
+var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 62));
+var _transitional = _interopRequireDefault(__webpack_require__(/*! ./transitional.js */ 68));
+var _toFormData = _interopRequireDefault(__webpack_require__(/*! ../helpers/toFormData.js */ 57));
+var _toURLEncodedForm = _interopRequireDefault(__webpack_require__(/*! ../helpers/toURLEncodedForm.js */ 69));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../platform/index.js */ 70));
+var _formDataToJSON = _interopRequireDefault(__webpack_require__(/*! ../helpers/formDataToJSON.js */ 75));
 /**
  * It takes a string, tries to parse it, and if it fails, it returns the stringified version
  * of the input
@@ -15590,7 +15655,7 @@ var _default = defaults;
 exports.default = _default;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /*!**********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/defaults/transitional.js ***!
   \**********************************************************************************************************/
@@ -15612,7 +15677,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 68 */
+/* 69 */
 /*!*************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/toURLEncodedForm.js ***!
   \*************************************************************************************************************/
@@ -15627,9 +15692,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = toURLEncodedForm;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 51));
-var _toFormData = _interopRequireDefault(__webpack_require__(/*! ./toFormData.js */ 56));
-var _index = _interopRequireDefault(__webpack_require__(/*! ../platform/index.js */ 69));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 52));
+var _toFormData = _interopRequireDefault(__webpack_require__(/*! ./toFormData.js */ 57));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../platform/index.js */ 70));
 function toURLEncodedForm(data, options) {
   return (0, _toFormData.default)(data, new _index.default.classes.URLSearchParams(), Object.assign({
     visitor: function visitor(value, key, path, helpers) {
@@ -15643,7 +15708,7 @@ function toURLEncodedForm(data, options) {
 }
 
 /***/ }),
-/* 69 */
+/* 70 */
 /*!***************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/platform/index.js ***!
   \***************************************************************************************************/
@@ -15663,10 +15728,10 @@ Object.defineProperty(exports, "default", {
     return _index.default;
   }
 });
-var _index = _interopRequireDefault(__webpack_require__(/*! ./node/index.js */ 70));
+var _index = _interopRequireDefault(__webpack_require__(/*! ./node/index.js */ 71));
 
 /***/ }),
-/* 70 */
+/* 71 */
 /*!***********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/platform/browser/index.js ***!
   \***********************************************************************************************************/
@@ -15681,9 +15746,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _URLSearchParams = _interopRequireDefault(__webpack_require__(/*! ./classes/URLSearchParams.js */ 71));
-var _FormData = _interopRequireDefault(__webpack_require__(/*! ./classes/FormData.js */ 72));
-var _Blob = _interopRequireDefault(__webpack_require__(/*! ./classes/Blob.js */ 73));
+var _URLSearchParams = _interopRequireDefault(__webpack_require__(/*! ./classes/URLSearchParams.js */ 72));
+var _FormData = _interopRequireDefault(__webpack_require__(/*! ./classes/FormData.js */ 73));
+var _Blob = _interopRequireDefault(__webpack_require__(/*! ./classes/Blob.js */ 74));
 /**
  * Determine if we're running in a standard browser environment
  *
@@ -15737,7 +15802,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 71 */
+/* 72 */
 /*!*****************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/platform/browser/classes/URLSearchParams.js ***!
   \*****************************************************************************************************************************/
@@ -15752,12 +15817,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _AxiosURLSearchParams = _interopRequireDefault(__webpack_require__(/*! ../../../helpers/AxiosURLSearchParams.js */ 55));
+var _AxiosURLSearchParams = _interopRequireDefault(__webpack_require__(/*! ../../../helpers/AxiosURLSearchParams.js */ 56));
 var _default = typeof URLSearchParams !== 'undefined' ? URLSearchParams : _AxiosURLSearchParams.default;
 exports.default = _default;
 
 /***/ }),
-/* 72 */
+/* 73 */
 /*!**********************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/platform/browser/classes/FormData.js ***!
   \**********************************************************************************************************************/
@@ -15775,7 +15840,7 @@ var _default = typeof FormData !== 'undefined' ? FormData : null;
 exports.default = _default;
 
 /***/ }),
-/* 73 */
+/* 74 */
 /*!******************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/platform/browser/classes/Blob.js ***!
   \******************************************************************************************************************/
@@ -15793,7 +15858,7 @@ var _default = typeof Blob !== 'undefined' ? Blob : null;
 exports.default = _default;
 
 /***/ }),
-/* 74 */
+/* 75 */
 /*!***********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/formDataToJSON.js ***!
   \***********************************************************************************************************/
@@ -15808,7 +15873,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 51));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 52));
 /**
  * It takes a string like `foo[x][y][z]` and returns an array like `['foo', 'x', 'y', 'z']
  *
@@ -15889,7 +15954,7 @@ var _default = formDataToJSON;
 exports.default = _default;
 
 /***/ }),
-/* 75 */
+/* 76 */
 /*!******************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/core/AxiosHeaders.js ***!
   \******************************************************************************************************/
@@ -15907,8 +15972,8 @@ exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 51));
-var _parseHeaders = _interopRequireDefault(__webpack_require__(/*! ../helpers/parseHeaders.js */ 76));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 52));
+var _parseHeaders = _interopRequireDefault(__webpack_require__(/*! ../helpers/parseHeaders.js */ 77));
 var $internals = Symbol('internals');
 function normalizeHeader(header) {
   return header && String(header).trim().toLowerCase();
@@ -16183,7 +16248,7 @@ var _default = AxiosHeaders;
 exports.default = _default;
 
 /***/ }),
-/* 76 */
+/* 77 */
 /*!*********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/parseHeaders.js ***!
   \*********************************************************************************************************/
@@ -16198,7 +16263,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 51));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 52));
 // RawAxiosHeaders whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
 var ignoreDuplicateOf = _utils.default.toObjectSet(['age', 'authorization', 'content-length', 'content-type', 'etag', 'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since', 'last-modified', 'location', 'max-forwards', 'proxy-authorization', 'referer', 'retry-after', 'user-agent']);
@@ -16244,7 +16309,7 @@ var _default = function _default(rawHeaders) {
 exports.default = _default;
 
 /***/ }),
-/* 77 */
+/* 78 */
 /*!****************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/cancel/isCancel.js ***!
   \****************************************************************************************************/
@@ -16263,7 +16328,7 @@ function isCancel(value) {
 }
 
 /***/ }),
-/* 78 */
+/* 79 */
 /*!*********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/cancel/CanceledError.js ***!
   \*********************************************************************************************************/
@@ -16278,8 +16343,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 61));
-var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 51));
+var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 62));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 52));
 /**
  * A `CanceledError` is an object that is thrown when an operation is canceled.
  *
@@ -16301,7 +16366,7 @@ var _default = CanceledError;
 exports.default = _default;
 
 /***/ }),
-/* 79 */
+/* 80 */
 /*!******************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/adapters/adapters.js ***!
   \******************************************************************************************************/
@@ -16316,10 +16381,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 51));
-var _http = _interopRequireDefault(__webpack_require__(/*! ./http.js */ 62));
-var _xhr = _interopRequireDefault(__webpack_require__(/*! ./xhr.js */ 80));
-var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 61));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 52));
+var _http = _interopRequireDefault(__webpack_require__(/*! ./http.js */ 63));
+var _xhr = _interopRequireDefault(__webpack_require__(/*! ./xhr.js */ 81));
+var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 62));
 var knownAdapters = {
   http: _http.default,
   xhr: _xhr.default
@@ -16367,7 +16432,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 80 */
+/* 81 */
 /*!*************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/adapters/xhr.js ***!
   \*************************************************************************************************/
@@ -16382,19 +16447,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 51));
-var _settle = _interopRequireDefault(__webpack_require__(/*! ./../core/settle.js */ 81));
-var _cookies = _interopRequireDefault(__webpack_require__(/*! ./../helpers/cookies.js */ 82));
-var _buildURL = _interopRequireDefault(__webpack_require__(/*! ./../helpers/buildURL.js */ 54));
-var _buildFullPath = _interopRequireDefault(__webpack_require__(/*! ../core/buildFullPath.js */ 83));
-var _isURLSameOrigin = _interopRequireDefault(__webpack_require__(/*! ./../helpers/isURLSameOrigin.js */ 86));
-var _transitional = _interopRequireDefault(__webpack_require__(/*! ../defaults/transitional.js */ 67));
-var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 61));
-var _CanceledError = _interopRequireDefault(__webpack_require__(/*! ../cancel/CanceledError.js */ 78));
-var _parseProtocol = _interopRequireDefault(__webpack_require__(/*! ../helpers/parseProtocol.js */ 87));
-var _index = _interopRequireDefault(__webpack_require__(/*! ../platform/index.js */ 69));
-var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosHeaders.js */ 75));
-var _speedometer2 = _interopRequireDefault(__webpack_require__(/*! ../helpers/speedometer.js */ 88));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 52));
+var _settle = _interopRequireDefault(__webpack_require__(/*! ./../core/settle.js */ 82));
+var _cookies = _interopRequireDefault(__webpack_require__(/*! ./../helpers/cookies.js */ 83));
+var _buildURL = _interopRequireDefault(__webpack_require__(/*! ./../helpers/buildURL.js */ 55));
+var _buildFullPath = _interopRequireDefault(__webpack_require__(/*! ../core/buildFullPath.js */ 84));
+var _isURLSameOrigin = _interopRequireDefault(__webpack_require__(/*! ./../helpers/isURLSameOrigin.js */ 87));
+var _transitional = _interopRequireDefault(__webpack_require__(/*! ../defaults/transitional.js */ 68));
+var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 62));
+var _CanceledError = _interopRequireDefault(__webpack_require__(/*! ../cancel/CanceledError.js */ 79));
+var _parseProtocol = _interopRequireDefault(__webpack_require__(/*! ../helpers/parseProtocol.js */ 88));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../platform/index.js */ 70));
+var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosHeaders.js */ 76));
+var _speedometer2 = _interopRequireDefault(__webpack_require__(/*! ../helpers/speedometer.js */ 89));
 function progressEventReducer(listener, isDownloadStream) {
   var bytesNotified = 0;
   var _speedometer = (0, _speedometer2.default)(50, 250);
@@ -16606,7 +16671,7 @@ var _default = isXHRAdapterSupported && function (config) {
 exports.default = _default;
 
 /***/ }),
-/* 81 */
+/* 82 */
 /*!************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/core/settle.js ***!
   \************************************************************************************************/
@@ -16621,7 +16686,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = settle;
-var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ./AxiosError.js */ 61));
+var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ./AxiosError.js */ 62));
 /**
  * Resolve or reject a Promise based on response status.
  *
@@ -16641,7 +16706,7 @@ function settle(resolve, reject, response) {
 }
 
 /***/ }),
-/* 82 */
+/* 83 */
 /*!****************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/cookies.js ***!
   \****************************************************************************************************/
@@ -16656,8 +16721,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 51));
-var _index = _interopRequireDefault(__webpack_require__(/*! ../platform/index.js */ 69));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 52));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../platform/index.js */ 70));
 var _default = _index.default.isStandardBrowserEnv ?
 // Standard browser envs support document.cookie
 function standardBrowserEnv() {
@@ -16701,7 +16766,7 @@ function nonStandardBrowserEnv() {
 exports.default = _default;
 
 /***/ }),
-/* 83 */
+/* 84 */
 /*!*******************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/core/buildFullPath.js ***!
   \*******************************************************************************************************/
@@ -16716,8 +16781,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = buildFullPath;
-var _isAbsoluteURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/isAbsoluteURL.js */ 84));
-var _combineURLs = _interopRequireDefault(__webpack_require__(/*! ../helpers/combineURLs.js */ 85));
+var _isAbsoluteURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/isAbsoluteURL.js */ 85));
+var _combineURLs = _interopRequireDefault(__webpack_require__(/*! ../helpers/combineURLs.js */ 86));
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
  * only when the requestedURL is not already an absolute URL.
@@ -16736,7 +16801,7 @@ function buildFullPath(baseURL, requestedURL) {
 }
 
 /***/ }),
-/* 84 */
+/* 85 */
 /*!**********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
   \**********************************************************************************************************/
@@ -16765,7 +16830,7 @@ function isAbsoluteURL(url) {
 }
 
 /***/ }),
-/* 85 */
+/* 86 */
 /*!********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/combineURLs.js ***!
   \********************************************************************************************************/
@@ -16792,7 +16857,7 @@ function combineURLs(baseURL, relativeURL) {
 }
 
 /***/ }),
-/* 86 */
+/* 87 */
 /*!************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
   \************************************************************************************************************/
@@ -16807,8 +16872,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 51));
-var _index = _interopRequireDefault(__webpack_require__(/*! ../platform/index.js */ 69));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 52));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../platform/index.js */ 70));
 var _default = _index.default.isStandardBrowserEnv ?
 // Standard browser envs have full support of the APIs needed to test
 // whether the request URL is of the same origin as current location.
@@ -16866,7 +16931,7 @@ function nonStandardBrowserEnv() {
 exports.default = _default;
 
 /***/ }),
-/* 87 */
+/* 88 */
 /*!**********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/parseProtocol.js ***!
   \**********************************************************************************************************/
@@ -16886,7 +16951,7 @@ function parseProtocol(url) {
 }
 
 /***/ }),
-/* 88 */
+/* 89 */
 /*!********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/speedometer.js ***!
   \********************************************************************************************************/
@@ -16943,7 +17008,7 @@ var _default = speedometer;
 exports.default = _default;
 
 /***/ }),
-/* 89 */
+/* 90 */
 /*!*****************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/core/mergeConfig.js ***!
   \*****************************************************************************************************/
@@ -16958,8 +17023,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = mergeConfig;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 51));
-var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ./AxiosHeaders.js */ 75));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils.js */ 52));
+var _AxiosHeaders = _interopRequireDefault(__webpack_require__(/*! ./AxiosHeaders.js */ 76));
 var headersToObject = function headersToObject(thing) {
   return thing instanceof _AxiosHeaders.default ? thing.toJSON() : thing;
 };
@@ -17064,7 +17129,7 @@ function mergeConfig(config1, config2) {
 }
 
 /***/ }),
-/* 90 */
+/* 91 */
 /*!******************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/validator.js ***!
   \******************************************************************************************************/
@@ -17080,8 +17145,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-var _data = __webpack_require__(/*! ../env/data.js */ 91);
-var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 61));
+var _data = __webpack_require__(/*! ../env/data.js */ 92);
+var _AxiosError = _interopRequireDefault(__webpack_require__(/*! ../core/AxiosError.js */ 62));
 var validators = {};
 
 // eslint-disable-next-line func-names
@@ -17159,7 +17224,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 91 */
+/* 92 */
 /*!*********************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/env/data.js ***!
   \*********************************************************************************************/
@@ -17177,7 +17242,7 @@ var VERSION = "1.5.0";
 exports.VERSION = VERSION;
 
 /***/ }),
-/* 92 */
+/* 93 */
 /*!*******************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/cancel/CancelToken.js ***!
   \*******************************************************************************************************/
@@ -17194,7 +17259,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _CanceledError = _interopRequireDefault(__webpack_require__(/*! ./CanceledError.js */ 78));
+var _CanceledError = _interopRequireDefault(__webpack_require__(/*! ./CanceledError.js */ 79));
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
  *
@@ -17313,7 +17378,7 @@ var _default = CancelToken;
 exports.default = _default;
 
 /***/ }),
-/* 93 */
+/* 94 */
 /*!***************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/spread.js ***!
   \***************************************************************************************************/
@@ -17355,7 +17420,7 @@ function spread(callback) {
 }
 
 /***/ }),
-/* 94 */
+/* 95 */
 /*!*********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/isAxiosError.js ***!
   \*********************************************************************************************************/
@@ -17370,7 +17435,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = isAxiosError;
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 51));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./../utils.js */ 52));
 /**
  * Determines whether the payload is an error thrown by Axios
  *
@@ -17383,7 +17448,7 @@ function isAxiosError(payload) {
 }
 
 /***/ }),
-/* 95 */
+/* 96 */
 /*!***********************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/node_modules/axios/lib/helpers/HttpStatusCode.js ***!
   \***********************************************************************************************************/
@@ -17474,7 +17539,7 @@ var _default = HttpStatusCode;
 exports.default = _default;
 
 /***/ }),
-/* 96 */
+/* 97 */
 /*!*********************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/mixins/tabbar-badge.js ***!
   \*********************************************************************************/
@@ -17518,7 +17583,6 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 97 */,
 /* 98 */,
 /* 99 */,
 /* 100 */,
@@ -17589,7 +17653,10 @@ exports.default = _default;
 /* 165 */,
 /* 166 */,
 /* 167 */,
-/* 168 */
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */
 /*!**************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \**************************************************************************************************************/
@@ -18610,9 +18677,6 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 169 */,
-/* 170 */,
-/* 171 */,
 /* 172 */,
 /* 173 */,
 /* 174 */,
@@ -18622,7 +18686,10 @@ exports.default = _default;
 /* 178 */,
 /* 179 */,
 /* 180 */,
-/* 181 */
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */
 /*!*********************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-swipe-action/components/uni-swipe-action-item/mpwxs.js ***!
   \*********************************************************************************************************************************/
@@ -18700,7 +18767,7 @@ var _default = mpMixins;
 exports.default = _default;
 
 /***/ }),
-/* 182 */
+/* 185 */
 /*!************************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-swipe-action/components/uni-swipe-action-item/bindingx.js ***!
   \************************************************************************************************************************************/
@@ -18719,7 +18786,7 @@ var _default = bindIngXMixins;
 exports.default = _default;
 
 /***/ }),
-/* 183 */
+/* 186 */
 /*!***********************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-swipe-action/components/uni-swipe-action-item/mpother.js ***!
   \***********************************************************************************************************************************/
@@ -18738,9 +18805,6 @@ var _default = otherMixins;
 exports.default = _default;
 
 /***/ }),
-/* 184 */,
-/* 185 */,
-/* 186 */,
 /* 187 */,
 /* 188 */,
 /* 189 */,
@@ -18754,7 +18818,31 @@ exports.default = _default;
 /* 197 */,
 /* 198 */,
 /* 199 */,
-/* 200 */
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */
 /*!***************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/index.js ***!
   \***************************************************************************************************************************/
@@ -18769,9 +18857,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 201));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 202));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 203));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 225));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 226));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 227));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -18780,7 +18868,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 201 */
+/* 225 */
 /*!**************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/en.json ***!
   \**************************************************************************************************************************/
@@ -18790,7 +18878,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"shop\",\"uni-goods-nav.options.cart\":\"cart\",\"uni-goods-nav.buttonGroup.addToCart\":\"add to cart\",\"uni-goods-nav.buttonGroup.buyNow\":\"buy now\"}");
 
 /***/ }),
-/* 202 */
+/* 226 */
 /*!*******************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hans.json ***!
   \*******************************************************************************************************************************/
@@ -18800,7 +18888,7 @@ module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"shop\",\"uni-good
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店铺\",\"uni-goods-nav.options.cart\":\"购物车\",\"uni-goods-nav.buttonGroup.addToCart\":\"加入购物车\",\"uni-goods-nav.buttonGroup.buyNow\":\"立即购买\"}");
 
 /***/ }),
-/* 203 */
+/* 227 */
 /*!*******************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hant.json ***!
   \*******************************************************************************************************************************/
@@ -18810,14 +18898,14 @@ module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店铺\",\"uni-go
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店鋪\",\"uni-goods-nav.options.cart\":\"購物車\",\"uni-goods-nav.buttonGroup.addToCart\":\"加入購物車\",\"uni-goods-nav.buttonGroup.buyNow\":\"立即購買\"}");
 
 /***/ }),
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */
 /*!*****************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-search-bar/components/uni-search-bar/i18n/index.js ***!
   \*****************************************************************************************************************************/
@@ -18832,9 +18920,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 212));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 213));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 214));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 236));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 237));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 238));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -18843,7 +18931,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 212 */
+/* 236 */
 /*!****************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-search-bar/components/uni-search-bar/i18n/en.json ***!
   \****************************************************************************************************************************/
@@ -18853,7 +18941,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"Search enter content\"}");
 
 /***/ }),
-/* 213 */
+/* 237 */
 /*!*********************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hans.json ***!
   \*********************************************************************************************************************************/
@@ -18863,7 +18951,7 @@ module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-
 module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"取消\",\"uni-search-bar.placeholder\":\"请输入搜索内容\"}");
 
 /***/ }),
-/* 214 */
+/* 238 */
 /*!*********************************************************************************************************************************!*\
   !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hant.json ***!
   \*********************************************************************************************************************************/
@@ -18871,80 +18959,6 @@ module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"取消\",\"uni-search-
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"取消\",\"uni-search-bar.placeholder\":\"請輸入搜索內容\"}");
-
-/***/ }),
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */,
-/* 245 */,
-/* 246 */
-/*!************************************************************************!*\
-  !*** /Users/twq/前端/微信开发/小程序/黑马优购小程序/Front_project/hm_yg/store/user.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  namespaced: true,
-  state: function state() {
-    return {
-      //收货地址
-      address: JSON.parse(uni.getStorageSync('address') || '{}')
-    };
-  },
-  mutations: {
-    //更新收货地址
-    updateAddress: function updateAddress(state, address) {
-      state.address = address;
-      this.commit('m_user/saveStorge');
-    },
-    saveStorge: function saveStorge(state) {
-      uni.setStorageSync('address', JSON.stringify(state.address));
-    }
-  },
-  getters: {
-    addstr: function addstr(state) {
-      if (!state.address.provinceName) return '';
-      return state.address.provinceName + state.address.cityName + state.address.countyName + state.address.detailInfo;
-    }
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ })
 ]]);

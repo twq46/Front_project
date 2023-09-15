@@ -20,7 +20,7 @@
     "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
-  "libVersion": "3.0.2",
+  "libVersion": "",
   "appid": "wx7e1720133bb32a43",
   "projectname": "hm_yg",
   "condition": {

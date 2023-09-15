@@ -11,6 +11,14 @@ $http.beforeRequest = function(options){
     title:"数据加载中",
     
   })
+  // console.log(store)
+  // console.log(options)
+  //判断当前请求是否为有权限的接口
+  if(options.url.indexOf('/my/')!== -1){
+    options.header = {
+      Authorization:store.state.m_user.token
+    }
+  }
 }
 //响应拦截器
 $http.afterRequest = function(){
