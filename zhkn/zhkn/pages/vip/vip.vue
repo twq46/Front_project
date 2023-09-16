@@ -1,6 +1,6 @@
 <template>
   <view>
-    
+    vip界面
   </view>
 </template>
 

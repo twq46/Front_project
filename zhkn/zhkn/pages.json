@@ -45,6 +45,7 @@
             }
             
         }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -53,6 +54,71 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"uniIdRouter": {},
+  "subPackages": [
+    {
+      "root": "subpkg",
+      "pages": [
+        {
+          
+        }
+          ,{
+                    "path" : "my-login/my-login",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "intellingent_filling/intellingent_filling",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "college_list/college_list",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "onReachBottomDistance": 150,
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "major_list/major_list",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "oneVone/oneVone",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "test_rate/test_rate",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
+    }
+  ],
   "tabBar": {
       "list": [
         {

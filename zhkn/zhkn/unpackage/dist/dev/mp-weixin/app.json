@@ -6,7 +6,19 @@
     "pages/vip/vip",
     "pages/mine/mine"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "subpkg",
+      "pages": [
+        "my-login/my-login",
+        "intellingent_filling/intellingent_filling",
+        "college_list/college_list",
+        "major_list/major_list",
+        "oneVone/oneVone",
+        "test_rate/test_rate"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

@@ -1,6 +1,6 @@
 <template>
   <view>
-    
+    填志愿
   </view>
 </template>
 
