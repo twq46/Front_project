@@ -1,10 +1,14 @@
 <template>
-  home
+  <div class="test">
+    home
+  </div>
 </template>
 
 <script setup>
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.test{
+  color:$priceColor;
+}
 </style>
