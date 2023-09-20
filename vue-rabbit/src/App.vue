@@ -12,7 +12,8 @@ onMounted(()=>{
 </script>
 
 <template>
-  <el-button type="primary">Primary</el-button>
+  <!--  一级路由的出口组件-->
+  <router-view></router-view>
 </template>
 
 
