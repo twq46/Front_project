@@ -1,21 +1,23 @@
 <template>
   <ul class="app-header-nav">
-    <li class="home" v-for="(item,i) in categoryList" :key="i">{{item.name}}</li>
+    <li>
+      <router-link to="/" class="home">首页</router-link>
+    </li>
+    <li v-for="(item,i) in categoryStore.categoryList" :key="i">
+      <router-link to="/" class="home">{{item.name}}</router-link>
+    </li>
   </ul>
 </template>
 
 <script setup>
-import {getCategory} from "@/apis/layout";
 import {onMounted,ref} from 'vue'
+import {useCategoryStore} from "@/stores/category";
+
+//使用pinia里的数据
+const categoryStore = useCategoryStore()
 onMounted(()=>{
-  getCategoryData()
+  categoryStore.getCategoryData()
 })
-const categoryList = ref([])
-const getCategoryData = ()=>{
-  getCategory().then(res =>{
-    categoryList.value = res.result
-  })
-}
 </script>
 
 <style scoped lang="scss">
