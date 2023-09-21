@@ -4,9 +4,8 @@
       <h1 class="logo">
         <RouterLink to="/">小兔鲜</RouterLink>
       </h1>
-      <ul class="app-header-nav">
-        <li class="home" v-for="(item,i) in categoryList" :key="i">{{item.name}}</li>
-      </ul>
+      <!-- 头部导航区域-->
+      <HeaderNav></HeaderNav>
       <div class="search">
         <i class="iconfont icon-search"></i>
         <input type="text" placeholder="搜一搜" />
@@ -16,18 +15,7 @@
 </template>
 
 <script setup>
-import {getCategory} from "@/apis/layout";
-import {onMounted,ref} from 'vue'
-onMounted(()=>{
-  getCategoryData()
-})
-const categoryList = ref([])
-const getCategoryData = ()=>{
-  getCategory().then(res =>{
-    categoryList.value = res.result
-    console.log(categoryList.value);
-  })
-}
+import HeaderNav from '@/views/Layout/components/headerNav.vue'
 
 </script>
 
@@ -38,16 +26,7 @@ const getCategoryData = ()=>{
   .container {
     display: flex;
     align-items: center;
-    .app-header-nav{
-      width: 65%;
-      display: flex;
-      justify-content: space-around;
-      .home:hover{
-        color: #1dc779;
-        cursor: pointer;
-        border-bottom: 1px solid #1dc779;
-      }
-    }
+
   }
 
   .logo {
