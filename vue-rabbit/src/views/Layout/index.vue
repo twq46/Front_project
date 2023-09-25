@@ -3,6 +3,12 @@ import LayoutNav from './components/layoutNav.vue';
 import LayoutHeader from './components/layoutHeader.vue';
 import LayoutFooter from './components/layoutFooter.vue';
 import LayoutFixed from './components/layoutFixed.vue'
+import {useCategoryStore} from "@/stores/category";
+import {onMounted} from 'vue'
+const categoryStore = useCategoryStore()
+onMounted(()=>{
+  categoryStore.getCategoryData()
+})
 </script>
 
 <template>
