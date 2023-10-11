@@ -9,6 +9,76 @@
       "list": [
         {
           "name": "",
+          "pathName": "pages/vip/vip",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpkg/editScore/editScore",
+          "query": "userInfo:{           province:'河北',           score:600,           type:'理科',           rank:59981         }",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/volunteer/volunteer",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/expert/expert",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpkg/oneVone/oneVone",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpkg/major-detail/major-detail",
+          "query": "secondSubject=草坪科学与工程",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpkg/major-categorylist/major-categorylist",
+          "query": "major=[\"草坪科学与工程\",\"草业科学\"]",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpkg/major_list/major_list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpkg/intellingent_filling/intellingent_filling",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpkg/college_detail/college_detail",
+          "query": "schoolName=清华大学",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "subpkg/college_list/college_list",
           "query": "",
           "launchMode": "default",

@@ -1,5 +1,5 @@
 <template>
-  <view class="college-item">
+  <view class="college-item" >
     <view class="item-image">
       <image :src="college.logo" mode=""></image>
     </view>
@@ -37,6 +37,9 @@
       return {
         
       };
+    },
+    methods:{
+      
     }
   }
 </script>

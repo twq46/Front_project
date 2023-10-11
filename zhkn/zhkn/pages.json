@@ -102,7 +102,7 @@
                     "path" : "oneVone/oneVone",
                     "style" :                                                                                    
                 {
-                    "navigationBarTitleText": "",
+                    "navigationBarTitleText": "一分一段表查询",
                     "enablePullDownRefresh": false
                 }
                 
@@ -112,6 +112,42 @@
                     "style" :                                                                                    
                 {
                     "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "college_detail/college_detail",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "major-detail/major-detail",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "major-categorylist/major-categorylist",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "editScore/editScore",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "我的成绩",
                     "enablePullDownRefresh": false
                 }
                 

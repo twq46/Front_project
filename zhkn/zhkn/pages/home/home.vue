@@ -39,7 +39,8 @@
         <view>
           <button class="zntb" @click="gotozntb">智能填报</button>
         </view>
-    </view>
+    
+      </view>
       <!-- 挑大学，选专业... -->
       <view class="nav-list">
         <navigator class="nav-item"  v-for="(item,i) in navList" :key="i" :url="item.url">
@@ -112,11 +113,11 @@
             "image_src":"../../static/images/one_to_one.png",
             "url":'/subpkg/oneVone/oneVone'
           },
-          {
-            "name":"测录取率",
-            "image_src":"../../static/images/testlq.png",
-            "url":'/subpkg/test_rate/test_rate'
-          },
+          // {
+          //   "name":"测录取率",
+          //   "image_src":"../../static/images/testlq.png",
+          //   "url":'/subpkg/test_rate/test_rate'
+          // },
         ],
         teacherList:[],
         query:{
@@ -136,10 +137,11 @@
         const res = await uni.$http.get('/testExpert/listExpert',this.query)
         this.teacherList = res.data.data
       },
-      gotoLogin(){
-        uni.navigateTo({
-          url:'/subpkg/my-login/my-login'
-        })
+      async gotoLogin(){
+        const res = await uni.$http.post('https://api.weixin.qq.com/wxa/business/getuserphonenumber?access_token=ACCESS_TOKEN')
+        // uni.navigateTo({
+        //   url:'/subpkg/my-login/my-login'
+        // })
       },
       gotozntb(){
         uni.navigateTo({
@@ -155,7 +157,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .Fcontent{
   height: 450rpx;
   color: white;

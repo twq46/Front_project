@@ -80,9 +80,9 @@
     </view>
     <!-- 大学列表展示 -->
     <view class="scroll-college">
-       <view class="college-item" v-for="(item,i) in collegeListT" :key="i">
+       <navigator class="college-item" v-for="(item,i) in collegeListT" :key="i" :url="'/subpkg/college_detail/college_detail?schoolName=' + item.schoolname">
           <my-college-item :college="item"></my-college-item>
-        </view>
+        </navigator>
     </view>
   </view>
 </template>
@@ -100,6 +100,8 @@
           {name:'类型'},
         ],
         filterConten:['澳门','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港'],
+        provinceList:[],
+        cologeLevel:['本科','高职(专科)'],
         queryObj:{
           page:1,
           infScore:10,
@@ -111,23 +113,38 @@
     onReady() {
       this.getCollegeList()
     },
+    onLoad() {
+      this.getProvinceData()
+    },
     methods:{
       activeFilterTitle(index){
         this.activeindex = index
         this.filterActive = !this.filterActive
       },
+      //获取大学列表
       getCollegeList(){
         uni.request({
           url:`https://www.zytb.top/NEMT/gk/schoolApp/findSchool2?page=${this.queryObj.page}&infScore${this.queryObj.infScore}`,
           method:'POST',
           data:{},
           success: (res)=>{
-            console.log(res)
             this.collegeListT = [...this.collegeListT,...res.data.data.list]
             this.total = res.data.data.total
           }
         })
       },
+      //获取省份数据
+      getProvinceData(){
+        uni.request({
+          url:'https://www.zytb.top/NEMT/gk/school/findAllProvince',
+          method:'GET',
+          success: (res) => {
+            console.log(res)
+            this.provinceList = res.data.data
+          }
+        })
+      },
+      //获取
     },
     //触底的事件
     onReachBottom() {
@@ -201,7 +218,7 @@
   }
   .filter-box{
     background-color: #f7f7f7;
-    height: 70px;
+    height: 50px;
     display: flex;
     justify-content: space-around;
     position: relative;

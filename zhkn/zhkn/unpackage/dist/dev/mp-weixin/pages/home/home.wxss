@@ -24,42 +24,42 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.Fcontent {
+.Fcontent.data-v-92bb8f34 {
   height: 450rpx;
   color: white;
   background-color: #ee8167;
 }
-.Fcontent .Cbox {
+.Fcontent .Cbox.data-v-92bb8f34 {
   position: relative;
   left: 140px;
   top: 56px;
 }
-.Fcontent .CtextSize {
+.Fcontent .CtextSize.data-v-92bb8f34 {
   text-align: center;
   width: 90px;
   font-size: 15px;
 }
-.Fcontent .Cnumber {
+.Fcontent .Cnumber.data-v-92bb8f34 {
   font-size: 38px;
 }
-.cwbox {
+.cwbox.data-v-92bb8f34 {
   display: flex;
   justify-content: space-around;
   position: relative;
   left: -6px;
   top: 75px;
 }
-.cwbox .flexT {
+.cwbox .flexT.data-v-92bb8f34 {
   display: flex;
   flex-direction: column;
 }
-.cwbox .centerN {
+.cwbox .centerN.data-v-92bb8f34 {
   text-align: center;
 }
-.dtBox {
+.dtBox.data-v-92bb8f34 {
   box-shadow: 0px 5px 15px #ddd;
 }
-.dtBox .dztBox {
+.dtBox .dztBox.data-v-92bb8f34 {
   display: flex;
   justify-content: space-between;
   padding: 15px;
@@ -73,7 +73,7 @@
   top: -21px;
   height: 48px;
 }
-.dtBox .dztBox .zntb {
+.dtBox .dztBox .zntb.data-v-92bb8f34 {
   font-size: 14px;
   width: 90px;
   color: white;
@@ -82,49 +82,49 @@
   position: relative;
   top: -8px;
 }
-.dtBox .nav-list {
+.dtBox .nav-list.data-v-92bb8f34 {
   display: flex;
   justify-content: space-around;
   margin-bottom: 10px;
 }
-.dtBox .nav-list .nav-img {
+.dtBox .nav-list .nav-img.data-v-92bb8f34 {
   width: 55px;
   height: 140rpx;
 }
-.bkziBox {
+.bkziBox.data-v-92bb8f34 {
   background-color: #fcf0ee;
   box-sizing: border-box;
 }
-.bkziBox .bkziheader {
+.bkziBox .bkziheader.data-v-92bb8f34 {
   display: flex;
   justify-content: space-between;
   padding: 10px;
 }
-.bkziBox .bkziheader .bkzi1v1 text {
+.bkziBox .bkziheader .bkzi1v1 text.data-v-92bb8f34 {
   display: inline-block;
   color: #df613d;
   font-size: 16px;
   font-weight: 800;
 }
-.bkziBox .bkziheader .bkzi1v1 image, .bkziBox .bkziheader text {
+.bkziBox .bkziheader .bkzi1v1 image.data-v-92bb8f34, .bkziBox .bkziheader text.data-v-92bb8f34 {
   vertical-align: middle;
 }
-.bkziBox .bkziheader .bkziimg {
+.bkziBox .bkziheader .bkziimg.data-v-92bb8f34 {
   width: 21px;
   height: 23px;
 }
-.bkziBox .bkziheader .bkzxmore {
+.bkziBox .bkziheader .bkzxmore.data-v-92bb8f34 {
   color: #ef8969;
 }
-.bkziBox .teacherBox {
+.bkziBox .teacherBox.data-v-92bb8f34 {
   display: flex;
   box-sizing: border-box;
   height: 165px;
 }
-.bkziBox .teacherBox .scrollviewT {
+.bkziBox .teacherBox .scrollviewT.data-v-92bb8f34 {
   white-space: nowrap;
 }
-.bkziBox .teacherBox .classBox {
+.bkziBox .teacherBox .classBox.data-v-92bb8f34 {
   width: 120px;
   height: 146px;
   background-color: white;
@@ -133,62 +133,62 @@
   box-shadow: 2px 5px 15px #ddd;
   display: inline-block;
 }
-.bkziBox .teacherBox .classBox .classlist {
+.bkziBox .teacherBox .classBox .classlist.data-v-92bb8f34 {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding: 15px;
 }
-.bkziBox .teacherBox .classBox .classlist .teacherview {
+.bkziBox .teacherBox .classBox .classlist .teacherview.data-v-92bb8f34 {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
-.bkziBox .teacherBox .classBox .classlist .teacherImg {
+.bkziBox .teacherBox .classBox .classlist .teacherImg.data-v-92bb8f34 {
   width: 69px;
   height: 64px;
   position: relative;
   top: 0px;
   left: 7px;
 }
-.bkziBox .teacherBox .classBox .classlist .zitianbao {
+.bkziBox .teacherBox .classBox .classlist .zitianbao.data-v-92bb8f34 {
   width: 84px;
   height: 33px;
 }
-.bkziBox .kbBox {
+.bkziBox .kbBox.data-v-92bb8f34 {
   background-color: white;
   height: 50px;
   margin: 10px;
   border-radius: 10px;
   box-shadow: 1px 4px 15px #ddd;
 }
-.bkziBox .kbBox .kuaibaoBox {
+.bkziBox .kbBox .kuaibaoBox.data-v-92bb8f34 {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   justify-content: space-around;
 }
-.bkziBox .kbBox .kuaibaoBox .hotimg {
+.bkziBox .kbBox .kuaibaoBox .hotimg.data-v-92bb8f34 {
   width: 20px;
   height: 20px;
 }
-.bkziBox .kbBox .kuaibaoBox .hottextView image, .bkziBox .kbBox .kuaibaoBox text {
+.bkziBox .kbBox .kuaibaoBox .hottextView image.data-v-92bb8f34, .bkziBox .kbBox .kuaibaoBox text.data-v-92bb8f34 {
   vertical-align: middle;
 }
-.bkziBox .kbBox .kuaibaoBox .hottextView text {
+.bkziBox .kbBox .kuaibaoBox .hottextView text.data-v-92bb8f34 {
   font-weight: 800;
   font-size: 18px;
 }
-.bkziBox .kbBox .kuaibaoBox .Gmessage {
+.bkziBox .kbBox .kuaibaoBox .Gmessage.data-v-92bb8f34 {
   font-size: 14px;
 }
-.bkziBox .kbBox .kuaibaoBox .right {
+.bkziBox .kbBox .kuaibaoBox .right.data-v-92bb8f34 {
   color: #e0e0e0;
 }
-uni-button {
+uni-button.data-v-92bb8f34 {
   margin-left: 0;
   margin-right: 0;
 }

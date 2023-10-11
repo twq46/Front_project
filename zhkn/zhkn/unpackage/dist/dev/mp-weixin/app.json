@@ -15,7 +15,11 @@
         "college_list/college_list",
         "major_list/major_list",
         "oneVone/oneVone",
-        "test_rate/test_rate"
+        "test_rate/test_rate",
+        "college_detail/college_detail",
+        "major-detail/major-detail",
+        "major-categorylist/major-categorylist",
+        "editScore/editScore"
       ]
     }
   ],
