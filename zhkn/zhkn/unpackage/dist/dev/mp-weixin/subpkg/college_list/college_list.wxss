@@ -24,26 +24,26 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.stick-box {
+.stick-box.data-v-115c5f8c {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 1;
   background-color: #fff;
 }
-.college_list-box {
+.college_list-box.data-v-115c5f8c {
   position: relative;
 }
-.college_list-box .my-search-box {
+.college_list-box .my-search-box.data-v-115c5f8c {
   height: 200px;
   background-color: #ef8467;
   display: flex;
   align-items: center;
 }
-.college_list-box .my-search-box .search {
+.college_list-box .my-search-box .search.data-v-115c5f8c {
   width: 100%;
 }
-.college_list-box .college_major {
+.college_list-box .college_major.data-v-115c5f8c {
   display: flex;
   justify-content: center;
   position: relative;
@@ -52,7 +52,7 @@
   box-shadow: 1px 5px 10px #f7f7f7;
   height: 100px;
 }
-.college_list-box .college_major .canCollege-box {
+.college_list-box .college_major .canCollege-box.data-v-115c5f8c {
   display: flex;
   width: 90%;
   background-color: #fff;
@@ -61,29 +61,29 @@
   justify-content: space-between;
   padding: 0 10px;
 }
-.college_list-box .college_major .canCollege-box .canCollege {
+.college_list-box .college_major .canCollege-box .canCollege.data-v-115c5f8c {
   display: flex;
   align-items: center;
 }
-.college_list-box .college_major .canCollege-box .canCollege .cancollege-img {
+.college_list-box .college_major .canCollege-box .canCollege .cancollege-img.data-v-115c5f8c {
   margin-right: 10px;
 }
-.college_list-box .college_major .canCollege-box .canCollege .cancollege-img image {
+.college_list-box .college_major .canCollege-box .canCollege .cancollege-img image.data-v-115c5f8c {
   width: 30px;
   height: 30px;
 }
-.college_list-box .college_major .canCollege-box .canCollege .cancollege-text {
+.college_list-box .college_major .canCollege-box .canCollege .cancollege-text.data-v-115c5f8c {
   display: flex;
   flex-direction: column;
 }
-.college_list-box .college_major .canCollege-box .canCollege .cancollege-text .cancollege-text-top {
+.college_list-box .college_major .canCollege-box .canCollege .cancollege-text .cancollege-text-top.data-v-115c5f8c {
   font-size: 20px;
   text-align: center;
 }
-.college_list-box .college_major .canCollege-box .canCollege .cancollege-text .cancollege-text-bottom {
+.college_list-box .college_major .canCollege-box .canCollege .cancollege-text .cancollege-text-bottom.data-v-115c5f8c {
   color: #999999;
 }
-.college_list-box .filter-box {
+.college_list-box .filter-box.data-v-115c5f8c {
   background-color: #f7f7f7;
   height: 50px;
   display: flex;
@@ -91,48 +91,57 @@
   position: relative;
   top: -48px;
 }
-.college_list-box .filter-box .filter-text {
+.college_list-box .filter-box .filter-text.data-v-115c5f8c {
   display: flex;
   align-items: center;
 }
-.college_list-box .filter-box .filter-text text {
+.college_list-box .filter-box .filter-text text.data-v-115c5f8c {
   display: block;
   color: #666666;
   margin-right: 5px;
 }
-.college_list-box .filter-box .filter-text .active {
+.college_list-box .filter-box .filter-text .active.data-v-115c5f8c {
   color: #ef845e;
 }
-.college_list-box .filter-expand {
+.college_list-box .filter-expand.data-v-115c5f8c {
   position: absolute;
-  top: 326px;
+  top: 300px;
   z-index: 2;
+  width: 100%;
   background-color: #fff;
 }
-.college_list-box .filter-expand .filter-list {
+.college_list-box .filter-expand .filter-list.data-v-115c5f8c {
   display: flex;
   flex-wrap: wrap;
 }
-.college_list-box .filter-expand .filter-list .filter-item {
-  width: 21%;
-  height: 36px;
+.college_list-box .filter-expand .filter-list .filter-item.data-v-115c5f8c {
+  padding: 5px 20px;
+  height: 33px;
   border: 1px solid #edeeef;
   margin: 10px 5px;
   text-align: center;
   line-height: 36px;
   border-radius: 3px;
 }
-.college_list-box .btn-reset-confirm {
+.college_list-box .filter-expand .filter-list .filteritemActive.data-v-115c5f8c {
+  background: #fcf0ec;
+  border-color: #ef845e;
+}
+.college_list-box .filter-expand .filter-list .banxueleixing .type.data-v-115c5f8c {
+  padding: 10px;
+  font-weight: bold;
+}
+.college_list-box .btn-reset-confirm.data-v-115c5f8c {
   display: flex;
 }
-.college_list-box .btn-reset-confirm button {
+.college_list-box .btn-reset-confirm button.data-v-115c5f8c {
   width: 45%;
 }
-.college_list-box .btn-reset-confirm .confirm-btn {
+.college_list-box .btn-reset-confirm .confirm-btn.data-v-115c5f8c {
   color: #fff;
   background-color: #ef845e;
 }
-.college_list-box .collegeName-title {
+.college_list-box .collegeName-title.data-v-115c5f8c {
   display: flex;
   position: relative;
   top: -50px;
@@ -141,7 +150,7 @@
   font-weight: bold;
   justify-content: space-between;
 }
-.scroll-college {
+.scroll-college.data-v-115c5f8c {
   position: relative;
   top: -50px;
   z-index: 0;

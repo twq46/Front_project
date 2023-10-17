@@ -19,7 +19,13 @@
         "college_detail/college_detail",
         "major-detail/major-detail",
         "major-categorylist/major-categorylist",
-        "editScore/editScore"
+        "editScore/editScore",
+        "my-collect/my-collect",
+        "my-order/my-order",
+        "help-center/help-center",
+        "about-my/about-my",
+        "my-message/my-message",
+        "teacher-detail/teacher-detail"
       ]
     }
   ],

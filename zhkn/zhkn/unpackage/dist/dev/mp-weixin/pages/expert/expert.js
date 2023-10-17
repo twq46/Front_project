@@ -101,7 +101,7 @@ var components
 try {
   components = {
     myExpertItem: function () {
-      return __webpack_require__.e(/*! import() | components/my-expert-item/my-expert-item */ "components/my-expert-item/my-expert-item").then(__webpack_require__.bind(null, /*! @/components/my-expert-item/my-expert-item.vue */ 157))
+      return __webpack_require__.e(/*! import() | components/my-expert-item/my-expert-item */ "components/my-expert-item/my-expert-item").then(__webpack_require__.bind(null, /*! @/components/my-expert-item/my-expert-item.vue */ 205))
     },
   }
 } catch (e) {
@@ -223,6 +223,13 @@ var _default = {
           }
         }, _callee);
       }))();
+    },
+    //跳转到教师详情界面
+    gotoTeacherDetail: function gotoTeacherDetail(teacherInfo) {
+      var teacherObject = JSON.stringify(teacherInfo);
+      uni.navigateTo({
+        url: '/subpkg/teacher-detail/teacher-detail?teacherInfo=' + teacherObject
+      });
     }
   }
 };

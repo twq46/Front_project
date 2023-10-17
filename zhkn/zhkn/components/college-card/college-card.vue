@@ -193,7 +193,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .college-box{
     .college-info{
       display: flex;

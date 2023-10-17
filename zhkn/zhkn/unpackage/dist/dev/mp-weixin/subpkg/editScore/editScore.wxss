@@ -45,6 +45,21 @@
   padding-bottom: 15px;
   margin-bottom: 15px;
 }
+.scorecard .detail-info .info-item .right-info.data-v-4e8ee60c {
+  display: flex;
+}
+.scorecard .detail-info .info-item .right-info .subjectlist.data-v-4e8ee60c {
+  display: flex;
+}
+.scorecard .detail-info .info-item .right-info input.data-v-4e8ee60c {
+  text-align: right;
+}
+.scorecard .detail-info .rankScope.data-v-4e8ee60c {
+  text-align: right;
+  color: red;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
 .scorecard .tip.data-v-4e8ee60c {
   color: #7e7e7e;
   font-size: 13px;
@@ -63,5 +78,22 @@
   line-height: 40px;
   border-radius: 30px;
   background-color: #ee8358;
+}
+.list.data-v-4e8ee60c {
+  display: flex;
+  flex-wrap: wrap;
+}
+.list .province-item.data-v-4e8ee60c {
+  width: 15%;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  margin: 5px;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+}
+.list .activeProvince.data-v-4e8ee60c {
+  background-color: #dc704f;
+  color: white;
 }
 

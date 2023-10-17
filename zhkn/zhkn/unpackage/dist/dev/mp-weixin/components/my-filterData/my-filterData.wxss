@@ -24,15 +24,15 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.filter-data {
+.filter-data.data-v-1d37db8c {
   position: relative;
 }
-.filter-data .filter-box {
+.filter-data .filter-box.data-v-1d37db8c {
   display: flex;
   justify-content: space-around;
   padding-top: 5px;
 }
-.filter-data .filter-box .filter-text {
+.filter-data .filter-box .filter-text.data-v-1d37db8c {
   width: 20%;
   height: 25px;
   border-radius: 5px;
@@ -42,20 +42,21 @@
   font-size: 14px;
   padding: 3px;
 }
-.filter-data .filter-box .active {
+.filter-data .filter-box .active.data-v-1d37db8c {
   color: #ef845e;
 }
-.filter-data .filter-expand {
+.filter-data .filter-expand.data-v-1d37db8c {
   position: absolute;
   z-index: 2;
   background-color: #fff;
+  width: 100%;
 }
-.filter-data .filter-expand .filter-list {
+.filter-data .filter-expand .filter-list.data-v-1d37db8c {
   display: flex;
   flex-wrap: wrap;
 }
-.filter-data .filter-expand .filter-list .filter-item {
-  width: 21%;
+.filter-data .filter-expand .filter-list .filter-item.data-v-1d37db8c {
+  padding: 5px 20px;
   height: 36px;
   border: 1px solid #edeeef;
   margin: 10px 5px;
@@ -63,13 +64,17 @@
   line-height: 36px;
   border-radius: 3px;
 }
-.filter-data .btn-reset-confirm {
+.filter-data .filter-expand .filter-list .filteritemActive.data-v-1d37db8c {
+  background: #fcf0ec;
+  border-color: #ef845e;
+}
+.filter-data .btn-reset-confirm.data-v-1d37db8c {
   display: flex;
 }
-.filter-data .btn-reset-confirm button {
+.filter-data .btn-reset-confirm button.data-v-1d37db8c {
   width: 45%;
 }
-.filter-data .btn-reset-confirm .confirm-btn {
+.filter-data .btn-reset-confirm .confirm-btn.data-v-1d37db8c {
   color: #fff;
   background-color: #ef845e;
 }

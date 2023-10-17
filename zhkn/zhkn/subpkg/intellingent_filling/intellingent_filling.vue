@@ -65,7 +65,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .stick-box{
   position: sticky;
   top: 0px;

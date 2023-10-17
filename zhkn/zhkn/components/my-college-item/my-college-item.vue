@@ -44,7 +44,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .college-item{
   display: flex;
   padding: 15px;

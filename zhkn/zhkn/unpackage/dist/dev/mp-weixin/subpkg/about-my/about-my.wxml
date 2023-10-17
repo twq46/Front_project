@@ -1,0 +1,1 @@
+<view class="my-box data-v-75898a7a"><view class="aboutmy data-v-75898a7a"><rich-text nodes="{{aboutmy}}" class="data-v-75898a7a"></rich-text></view><view data-event-opts="{{[['tap',[['loginOutClick',['$event']]]]]}}" class="loginout data-v-75898a7a" bindtap="__e">退出登录</view></view>

@@ -7,7 +7,7 @@
       <view class="expert-title">
         推荐专家
       </view>
-      <view class="list" v-for="(item, i) in teacherList" :key="i">
+      <view class="list" v-for="(item, i) in teacherList" :key="i" @click="gotoTeacherDetail(item)">
         <my-expert-item :expert-detail="item"></my-expert-item>
       </view>
     </view>
@@ -38,6 +38,13 @@
       async getTeacherList(){
         const res = await uni.$http.get('/testExpert/listExpert',this.query)
         this.teacherList = res.data.data
+      },
+      //跳转到教师详情界面
+      gotoTeacherDetail(teacherInfo){
+        let teacherObject = JSON.stringify(teacherInfo)
+        uni.navigateTo({
+          url:'/subpkg/teacher-detail/teacher-detail?teacherInfo='+teacherObject
+        })
       },
     }
   }

@@ -5,7 +5,8 @@
     </view>
     
     <view class="dztBox">
-      <view @click="editScoreHandle">{{userInfo.province}} {{userInfo.score}}分 {{userInfo.type}} {{userInfo.rank}}名 <uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
+      <view v-if="userinfo.score" @click="editScoreHandle">{{userInfo.province}} {{userInfo.score}}分 {{userInfo.type}} {{userInfo.rank}}名 <uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
+      <view v-else @click="editScoreHandle">成绩：添加成绩信息<uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
     </view>
     
     <!-- 模拟填报和一键分析志愿表 -->
@@ -58,6 +59,7 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
   export default {
     data() {
       return {
@@ -69,6 +71,9 @@
         }
       };
     },
+    computed:{
+      ...mapState('m_user',['userinfo'])
+    },
     methods:{
       editScoreHandle(){
         let currentinfo = JSON.stringify(this.userInfo)
@@ -76,6 +81,7 @@
           url:'/subpkg/editScore/editScore?userinfo=' + currentinfo
         })
       },
+      
       gotozntian(){
         uni.navigateTo({
           url:'/subpkg/intellingent_filling/intellingent_filling'
@@ -85,7 +91,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .imageTop{
   image{
     width: 100%;

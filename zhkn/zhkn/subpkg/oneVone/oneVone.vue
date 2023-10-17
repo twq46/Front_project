@@ -213,7 +213,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .filter-box{
   padding: 3px;
   margin-top: 5px;

@@ -238,7 +238,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .college-box{
   background-color: #ee8367;
   height: 140px;

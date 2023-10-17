@@ -24,14 +24,14 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.stick-box {
+.stick-box.data-v-46588ada {
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
   z-index: 2;
   background-color: #fff;
 }
-.content {
+.content.data-v-46588ada {
   background-color: #f8f8f8;
 }
 

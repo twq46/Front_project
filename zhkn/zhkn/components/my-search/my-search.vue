@@ -26,7 +26,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .my-search-container{
   height: 50px;
   display: flex;

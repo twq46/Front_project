@@ -65,7 +65,7 @@
        <text class="originnumber linethrough">¥{{payValue.payoriginprice}}</text>
        <text class="originnumber">限时优惠</text>
      </view>
-     <view class="paybutton">
+     <view class="paybutton" @click="payCurrent">
        立即支付
      </view>
    </view>
@@ -114,6 +114,13 @@
       
     },
     methods:{
+      // 点击立即支付
+      payCurrent(){
+        console.log('zhifu')
+        uni.requestPayment({
+          
+        })
+      },
       scroll: function(e){
         const screenHeight = uni.getSystemInfoSync().screenHeight;
         const scrollTop = e.detail.scrollTop;

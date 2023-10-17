@@ -6,7 +6,7 @@
         <view class="my-search-box">
           <view class="search">
             <!-- 基本用法 -->
-            <uni-search-bar placeholder="搜索院校" :cancelButton="true" @confirm="search" @input="input" radius="100" ></uni-search-bar>
+            <uni-search-bar placeholder="搜索院校" :cancelButton="true" @confirm="search" @input="inputColllegeName" radius="100"></uni-search-bar>
           </view>
         </view>
         <!-- 能上的大学，适合的专业 -->
@@ -58,13 +58,40 @@
         <view class="filter-expand" v-if="filterActive">
           <scroll-view scroll-y="true" style="height: 160px;">
             <view class="filter-list">
-              <view v-for="(item,index) in filterConten" :key="index" class="filter-item">{{item}}</view>
+              <view 
+              v-for="(item,index) in showfiltercontent" 
+              :key="index" class="filter-item" 
+              v-if="activeindex !== 3" 
+              @click="clickTypeItem(item)" 
+              :class="{filteritemActive:filterCollegeObject.province.includes(item) || filterCollegeObject.grade.includes(item)}" >{{item}}</view>
+             <view class="banxueleixing" v-show="activeindex === 3">
+                <view class="type">
+                  办学类型
+                </view>
+                <view class="filter-list">
+                  <view 
+                  v-for="(item,index) in categoryList" 
+                  :key="index" class="filter-item" 
+                  @click="clickBanxuetypeitem(item)" 
+                  :class="{filteritemActive:filterCollegeObject.category.includes(item)}">{{item}}</view>
+                </view>  
+                <view class="type">
+                  学校类型
+                </view>
+                 <view class="filter-list">
+                  <view 
+                  v-for="(item,index) in allTypeList" 
+                  :key="index" class="filter-item" 
+                  @click="clickCollegeTypeItem(item)" 
+                  :class="{filteritemActive:filterCollegeObject.type.includes(item)}">{{item}}</view>
+                 </view> 
+              </view>
             </view>
           </scroll-view>
           <!-- 重置和确认按钮 -->
           <view class="btn-reset-confirm">
-            <button>重置</button>
-            <button class="confirm-btn">确定</button>
+            <button @click="resetfilterData">重置</button>
+            <button class="confirm-btn" @click="confirmFilter">确定</button>
           </view>
         </view>
         <!-- 大学列表标题区域 -->
@@ -91,6 +118,8 @@
   export default {
     data() {
       return {
+        //防抖动延时器
+        timer:null,
         activeindex:null,
         filterActive:false,
         filterTitle:[
@@ -99,24 +128,58 @@
           {name:'高校级别'},
           {name:'类型'},
         ],
-        filterConten:['澳门','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港'],
         provinceList:[],
-        cologeLevel:['本科','高职(专科)'],
+        cologeLevel:['本科','专科'],
         queryObj:{
           page:1,
           infScore:10,
         },
         total:0,
         collegeListT:[],
+        gradeList:[],
+        categoryList:[],
+        allTypeList:[],
+        filterCollegeObject:{
+          schoolName:'',
+          category:[],//民办、公办
+          grade:[],//985,211
+          province:[],
+          type:[],//理工类
+          batch:''
+        },
+        
       };
+    },
+    computed:{
+      //展示过滤的数据项的数组
+      showfiltercontent(){
+        if(this.activeindex == 0){
+          return this.provinceList
+        }else if(this.activeindex == 1){
+          return this.cologeLevel
+        }else if(this.activeindex == 2){
+          return this.gradeList
+        }
+      },
     },
     onReady() {
       this.getCollegeList()
     },
     onLoad() {
       this.getProvinceData()
+      this.getGradLisstData()
+      this.getCategoryListData()
+      this.getAllTypeData()
     },
     methods:{
+      inputColllegeName(e){
+        clearTimeout(this.timer)
+        this.timer = setTimeout(()=>{
+          this.filterCollegeObject.schoolName = e
+          this.collegeListT = []
+          this.getCollegeList()
+        },500)
+      },
       activeFilterTitle(index){
         this.activeindex = index
         this.filterActive = !this.filterActive
@@ -124,9 +187,9 @@
       //获取大学列表
       getCollegeList(){
         uni.request({
-          url:`https://www.zytb.top/NEMT/gk/schoolApp/findSchool2?page=${this.queryObj.page}&infScore${this.queryObj.infScore}`,
+          url:`https://www.zytb.top/NEMT/gk/schoolApp/findSchool2?page=${this.queryObj.page}&infScore=${this.queryObj.infScore}`,
           method:'POST',
-          data:{},
+          data:this.filterCollegeObject,
           success: (res)=>{
             this.collegeListT = [...this.collegeListT,...res.data.data.list]
             this.total = res.data.data.total
@@ -139,12 +202,73 @@
           url:'https://www.zytb.top/NEMT/gk/school/findAllProvince',
           method:'GET',
           success: (res) => {
-            console.log(res)
             this.provinceList = res.data.data
           }
         })
       },
-      //获取
+      //获取高校级别信息
+      getGradLisstData(){
+        uni.request({
+          url:'https://www.zytb.top/NEMT/gk/school/findAllGrade',
+          method:'GET',
+          success: (res) => {
+            this.gradeList = res.data.data
+          }
+        })
+      },
+      //获取办学类型数据
+      getCategoryListData(){
+        uni.request({
+          url:'https://www.zytb.top/NEMT/gk/school/findAllCategory',
+          method:'GET',
+          success: (res) => {
+            this.categoryList = res.data.data
+          }
+        })
+      },
+      //获取院校特色数据
+      getAllTypeData(){
+        uni.request({
+          url:'https://www.zytb.top/NEMT/gk/school/findAllType',
+          method:'GET',
+          success: (res) => {
+            this.allTypeList = res.data.data
+          }
+        })
+      },
+      //点击了筛选项中的某一项filterCollegeObject
+      clickTypeItem(itemname){
+        if(this.activeindex == 0){
+          this.filterCollegeObject.province.push(itemname)
+        }else if(this.activeindex == 1){
+          this.filterCollegeObject.batch = itemname
+        }else if(this.activeindex == 2){
+          this.filterCollegeObject.grade.push(itemname)
+        }
+      },
+      //点击了类型里面办学类型的中的某一项
+      clickBanxuetypeitem(itemname){
+        this.filterCollegeObject.category.push(itemname)
+      },
+      //点击了类型里面学校类型中某一项
+      clickCollegeTypeItem(itemname){
+        this.filterCollegeObject.type.push(itemname)
+      },
+      //筛选条件选择完毕之后，点击确认按钮
+      confirmFilter(){
+        this.filterActive = !this.filterActive
+        //点击确认之前先清空原来的数据
+        this.collegeListT = []
+        this.getCollegeList()
+      },
+      //重置筛选的条件
+      resetfilterData(){
+        this.filterCollegeObject.province = []
+        this.filterCollegeObject.category = []
+        this.filterCollegeObject.type = []
+        this.filterCollegeObject.batch = ''
+        this.filterCollegeObject.grade = []
+      }
     },
     //触底的事件
     onReachBottom() {
@@ -156,7 +280,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .stick-box{
   position: sticky;
   top: 0;
@@ -239,22 +363,34 @@
   }
   .filter-expand{
     position: absolute;
-    top: 326px;
+    top: 300px;
     z-index: 2;
+    width: 100%;
     background-color: #fff;
     .filter-list{
       display: flex;
       flex-wrap: wrap;
       .filter-item{
-      width: 21%;
-      height: 36px;
+      // width: 23%;
+      padding: 5px 20px;
+      height: 33px;
       border: 1px solid #edeeef;
       margin: 10px 5px;
       text-align: center;
       line-height: 36px;
       border-radius: 3px;
     }
+    .filteritemActive{
+      background: #fcf0ec;
+      border-color: #ef845e;
     }
+    .banxueleixing{
+      .type{
+        padding: 10px;
+        font-weight: bold;
+      }
+    }
+  }
     
   }
   .btn-reset-confirm{

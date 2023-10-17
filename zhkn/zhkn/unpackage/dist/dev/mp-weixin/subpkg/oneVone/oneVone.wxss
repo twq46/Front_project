@@ -24,21 +24,21 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.filter-box {
+.filter-box.data-v-502953e8 {
   padding: 3px;
   margin-top: 5px;
   font-size: 13px;
   display: flex;
   justify-content: space-around;
 }
-.filter-box .flex-t {
+.filter-box .flex-t.data-v-502953e8 {
   display: flex;
   align-items: center;
 }
-.filter-box .select {
+.filter-box .select.data-v-502953e8 {
   margin-left: 3px;
 }
-.filter-box .queryButton {
+.filter-box .queryButton.data-v-502953e8 {
   background-color: #ef8867;
   padding: 0 5px;
   display: flex;
@@ -48,11 +48,11 @@
   text-align: center;
   color: white;
 }
-.table-box {
+.table-box.data-v-502953e8 {
   margin-top: 20px;
   padding: 5px;
 }
-.pagination {
+.pagination.data-v-502953e8 {
   margin-top: 10px;
 }
 

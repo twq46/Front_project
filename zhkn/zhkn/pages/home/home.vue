@@ -35,7 +35,10 @@
     <view class="dtBox">
       <!-- 登录、智能填报 -->
       <view class="dztBox">
-        <view @click="gotoLogin">登录 / 注册</view>
+        <!-- 如果用户未登录 -->
+        <view v-if="!token" @click="gotoLogin">登录 / 注册</view>
+        <!-- 用户登录之后 -->
+        <view v-if="token" @click="editScoreHandle" class="">{{userinfo.score ? userinfo.score : 0}}分  {{userinfo.rank ? userinfo.rank : 0}}名<uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
         <view>
           <button class="zntb" @click="gotozntb">智能填报</button>
         </view>
@@ -95,6 +98,9 @@
 <script>
   import {mapState} from 'vuex'
   export default {
+    computed:{
+      ...mapState('m_user',['token','userinfo'])
+    },
     data() {
       return {
         navList:[
@@ -133,20 +139,33 @@
       this.getTeacherList()
     },
     methods:{
+      //跳转到编辑成绩界面
+      editScoreHandle(){
+        let currentinfo = JSON.stringify(this.userInfo)
+        uni.navigateTo({
+          url:'/subpkg/editScore/editScore?userinfo=' + currentinfo
+        })
+      },
       async getTeacherList(){
         const res = await uni.$http.get('/testExpert/listExpert',this.query)
         this.teacherList = res.data.data
       },
-      async gotoLogin(){
-        const res = await uni.$http.post('https://api.weixin.qq.com/wxa/business/getuserphonenumber?access_token=ACCESS_TOKEN')
-        // uni.navigateTo({
-        //   url:'/subpkg/my-login/my-login'
-        // })
+      gotoLogin(){
+        uni.switchTab({
+          url:'/pages/mine/mine'
+        })
       },
       gotozntb(){
-        uni.navigateTo({
-          url:'/subpkg/intellingent_filling/intellingent_filling'
-        })
+        if(this.token){
+          uni.navigateTo({
+            url:'/subpkg/intellingent_filling/intellingent_filling'
+          })
+        }else{
+          uni.switchTab({
+            url:'/pages/mine/mine'
+          })
+        }
+        
       },
       gotoFindExpert(){
         uni.switchTab({

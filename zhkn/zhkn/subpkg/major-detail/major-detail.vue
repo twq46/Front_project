@@ -58,7 +58,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .introduce-box{
   margin-top: 5px;
   box-shadow: 1px 5px 5px #eee;

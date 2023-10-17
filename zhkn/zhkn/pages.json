@@ -152,6 +152,60 @@
                 }
                 
                 }
+                ,{
+                    "path" : "my-collect/my-collect",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "my-order/my-order",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "help-center/help-center",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "about-my/about-my",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "关于我们",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "my-message/my-message",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "消息",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "teacher-detail/teacher-detail",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
             ]
     }
   ],

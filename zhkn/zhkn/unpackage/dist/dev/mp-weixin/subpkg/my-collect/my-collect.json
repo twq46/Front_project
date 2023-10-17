@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "collect-college": "/components/collect-college/collect-college",
+    "collect-major": "/components/collect-major/collect-major"
+  }
+}

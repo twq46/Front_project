@@ -57,7 +57,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .list-item{
   display: flex;
   margin-top: 10px;

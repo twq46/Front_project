@@ -42,7 +42,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .major-box{
   .majorname-card{
     display: flex;

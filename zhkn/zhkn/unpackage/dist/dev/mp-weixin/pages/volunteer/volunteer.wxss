@@ -24,10 +24,10 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.imageTop image {
+.imageTop image.data-v-1fcf3ddc {
   width: 100%;
 }
-.dztBox {
+.dztBox.data-v-1fcf3ddc {
   display: flex;
   justify-content: space-between;
   padding: 15px;
@@ -42,13 +42,13 @@
   height: 48px;
   font-weight: bold;
 }
-.edit-icon {
+.edit-icon.data-v-1fcf3ddc {
   margin-left: 5px;
 }
-.monianlyse {
+.monianlyse.data-v-1fcf3ddc {
   padding: 0 20px;
 }
-.monianlyse .mntb {
+.monianlyse .mntb.data-v-1fcf3ddc {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #eee;
@@ -56,24 +56,24 @@
   margin-bottom: 20px;
   justify-content: space-between;
 }
-.monianlyse .mntb .mnlogo {
+.monianlyse .mntb .mnlogo.data-v-1fcf3ddc {
   display: flex;
 }
-.monianlyse .mntb .mnlogo image {
+.monianlyse .mntb .mnlogo image.data-v-1fcf3ddc {
   width: 35px;
   height: 40px;
 }
-.monianlyse .mntb .mnlogo .mninfo {
+.monianlyse .mntb .mnlogo .mninfo.data-v-1fcf3ddc {
   margin-left: 15px;
 }
-.monianlyse .mntb .mnlogo .mninfo .title {
+.monianlyse .mntb .mnlogo .mninfo .title.data-v-1fcf3ddc {
   font-size: 18px;
 }
-.monianlyse .mntb .mnlogo .mninfo .detailinfo {
+.monianlyse .mntb .mnlogo .mninfo .detailinfo.data-v-1fcf3ddc {
   color: #9a9a9a;
   font-size: 14px;
 }
-.monianlyse .mntb .zntbutton {
+.monianlyse .mntb .zntbutton.data-v-1fcf3ddc {
   width: 100px;
   height: 30px;
   line-height: 30px;

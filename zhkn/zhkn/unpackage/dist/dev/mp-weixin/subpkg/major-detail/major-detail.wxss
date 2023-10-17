@@ -24,33 +24,33 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.introduce-box {
+.introduce-box.data-v-12d55a9a {
   margin-top: 5px;
   box-shadow: 1px 5px 5px #eee;
 }
-.introduce-box .introduce-title {
+.introduce-box .introduce-title.data-v-12d55a9a {
   font-weight: bold;
   padding: 10px;
 }
-.introduce-box .introduce-text {
+.introduce-box .introduce-text.data-v-12d55a9a {
   padding: 0 10px;
   height: 180px;
   overflow: hidden;
 }
-.introduce-box .overflowActive {
+.introduce-box .overflowActive.data-v-12d55a9a {
   height: auto;
   overflow: visible;
 }
-.introduce-box .more {
+.introduce-box .more.data-v-12d55a9a {
   text-align: center;
   font-size: 15px;
   color: #ed6c4a;
 }
-.major-class {
+.major-class.data-v-12d55a9a {
   padding: 10px;
   margin-top: 10px;
 }
-.major-class .title {
+.major-class .title.data-v-12d55a9a {
   font-weight: bold;
 }
 

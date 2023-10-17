@@ -12,13 +12,13 @@
       <view class="filter-expand" v-if="filterActive">
         <scroll-view scroll-y="true" style="height: 160px;">
           <view class="filter-list" >
-            <view v-for="(item,index) in filterConten" :key="index"  class="filter-item">{{item}}</view>
+            <view v-for="(item,index) in showFilterList" :key="index"  class="filter-item" :class="{filteritemActive:currentBatchActiveIndex === index && batchSelected || currentSubjectActiveIndex === index && subjectClassSelected}" @click="clickFilterItem(item,index)">{{item}}</view>
           </view>
         </scroll-view>
         <!-- 重置和确认按钮 -->
         <view class="btn-reset-confirm">
           <button>重置</button>
-          <button class="confirm-btn">确定</button>
+          <button class="confirm-btn" @click="confirmFilter">确定</button>
         </view>
       </view>
     </view>
@@ -32,6 +32,16 @@
     props:{
       filterTitle:{
         type:Array,
+        default:[]
+      },
+      cologeLevel:{
+        type:Array,
+        default:[]
+      },
+      
+      subjectClassTitle:{
+        type:Array,
+        default:[]
       },
       marginTop:{
         type:String,
@@ -46,26 +56,74 @@
       return {
         activeindex:null,
         filterActive:false,
+        currentBatchActiveIndex:null,
+        currentSubjectActiveIndex:null,
         filterConten:['澳门','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港'],
+        subjectClassItemIsSelected:false,
       };
     },
+    computed:{
+      batchSelected(){
+        return this.activeindex == 0 && this.filterTitle[this.activeindex].name == '院校批次'
+      },
+      subjectClassSelected(){
+        return this.activeindex == 1 && this.filterTitle[this.activeindex].name == '学科门类'
+      },
+      showmajorBigClass(){
+        return this.activeindex == 1 && this.filterTitle[this.activeindex].name == '学科门类' && this.subjectClassItemIsSelected
+      },
+      showFilterList(){
+        if(this.batchSelected){
+          return this.cologeLevel
+        }else if(this.subjectClassSelected){
+          return this.subjectClassTitle
+        }else if(this.showmajorBigClass){
+          return this.majorBigClassList
+        }else{
+          return []
+        }
+      },
+      
+    },
     methods:{
+      //点击过滤的标题
       activeFilterTitle(index){
         this.activeindex = index
         this.filterActive = !this.filterActive
       },
+      //点击了过滤列表中的某一项
+      clickFilterItem(itemname,index){
+       
+        //如果是院校批次里的某一项
+        if(this.batchSelected){
+          this.currentBatchActiveIndex = index
+          //点击院校批次之后清空上一次选中的学科门类的值
+          this.currentSubjectActiveIndex = null
+          this.$emit('batchFilterItem',itemname)
+        }else if(this.subjectClassSelected){//如果是学科门类中的某一项
+          this.currentSubjectActiveIndex = index
+          this.subjectClassItemIsSelected = true
+          this.$emit('subjuectFilterItem',itemname)
+        }
+      },
+      //点击了确认按钮
+      confirmFilter(){
+        if(this.batchSelected || this.subjectClassSelected){
+          this.filterActive =!this.filterActive
+          this.$emit('confirm')
+        }
+      }
     }
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .filter-data{
   position: relative;
   .filter-box{
     display: flex;
     justify-content: space-around;
     padding-top: 5px;
-    
     .filter-text{
       width: 20%;
       height: 25px;
@@ -84,17 +142,22 @@
     position: absolute;
     z-index: 2;
     background-color: #fff;
+    width: 100%;
     .filter-list{
       display: flex;
       flex-wrap: wrap;
       .filter-item{
-      width: 21%;
+      padding: 5px 20px;
       height: 36px;
       border: 1px solid #edeeef;
       margin: 10px 5px;
       text-align: center;
       line-height: 36px;
       border-radius: 3px;
+    }
+    .filteritemActive{
+      background: #fcf0ec;
+      border-color: #ef845e;
     }
     }
     

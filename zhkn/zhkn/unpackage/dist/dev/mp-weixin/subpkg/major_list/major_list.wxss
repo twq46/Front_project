@@ -24,39 +24,39 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.stick-box {
+.stick-box.data-v-195a4d8c {
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
   left: 0px;
 }
-.stick-box .nav-box {
+.stick-box .nav-box.data-v-195a4d8c {
   background-color: #ed7064;
   height: 100px;
   display: flex;
   align-items: center;
 }
-.stick-box .nav-box .search-box {
+.stick-box .nav-box .search-box.data-v-195a4d8c {
   width: 100%;
 }
-.stick-box .filter-box {
+.stick-box .filter-box.data-v-195a4d8c {
   background-color: #f7f7f7;
 }
-.stick-box .title {
+.stick-box .title.data-v-195a4d8c {
   padding-left: 8px;
   margin: 6px 0;
 }
-.major-box .major-list {
+.major-box .major-list.data-v-195a4d8c {
   padding: 10px 20px;
 }
-.major-box .major-list .major-item .major-title {
+.major-box .major-list .major-item .major-title.data-v-195a4d8c {
   display: flex;
   justify-content: space-between;
 }
-.major-box .major-list .major-item .major-title .major-name {
+.major-box .major-list .major-item .major-title .major-name.data-v-195a4d8c {
   font-weight: bold;
 }
-.major-box .major-list .major-item .major-title .major-number {
+.major-box .major-list .major-item .major-title .major-number.data-v-195a4d8c {
   font-size: 13px;
   color: #b3b3b3;
 }

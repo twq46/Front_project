@@ -256,6 +256,11 @@ var _default = {
     });
   },
   methods: {
+    // 点击立即支付
+    payCurrent: function payCurrent() {
+      console.log('zhifu');
+      uni.requestPayment({});
+    },
     scroll: function scroll(e) {
       var screenHeight = uni.getSystemInfoSync().screenHeight;
       var scrollTop = e.detail.scrollTop;
