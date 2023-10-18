@@ -99,10 +99,10 @@ var components
 try {
   components = {
     myLogin: function () {
-      return Promise.all(/*! import() | components/my-login/my-login */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/my-login/my-login")]).then(__webpack_require__.bind(null, /*! @/components/my-login/my-login.vue */ 212))
+      return Promise.all(/*! import() | components/my-login/my-login */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/my-login/my-login")]).then(__webpack_require__.bind(null, /*! @/components/my-login/my-login.vue */ 208))
     },
     myUserinfo: function () {
-      return __webpack_require__.e(/*! import() | components/my-userinfo/my-userinfo */ "components/my-userinfo/my-userinfo").then(__webpack_require__.bind(null, /*! @/components/my-userinfo/my-userinfo.vue */ 219))
+      return __webpack_require__.e(/*! import() | components/my-userinfo/my-userinfo */ "components/my-userinfo/my-userinfo").then(__webpack_require__.bind(null, /*! @/components/my-userinfo/my-userinfo.vue */ 215))
     },
   }
 } catch (e) {

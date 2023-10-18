@@ -101,7 +101,7 @@ var components
 try {
   components = {
     uniIcons: function () {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 197))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 193))
     },
   }
 } catch (e) {
@@ -169,10 +169,9 @@ var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 46));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _vuex = __webpack_require__(/*! vuex */ 36);
-var _computed$data$comput;
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-var _default = (_computed$data$comput = {
+var _default = {
   computed: _objectSpread({}, (0, _vuex.mapState)('m_user', ['token', 'userinfo'])),
   data: function data() {
     return {
@@ -202,60 +201,62 @@ var _default = (_computed$data$comput = {
         pageSize: 10
       }
     };
-  }
-}, (0, _defineProperty2.default)(_computed$data$comput, "computed", _objectSpread({}, (0, _vuex.mapState)('m_user', ['token']))), (0, _defineProperty2.default)(_computed$data$comput, "onLoad", function onLoad() {
-  this.getTeacherList();
-}), (0, _defineProperty2.default)(_computed$data$comput, "methods", {
-  //跳转到编辑成绩界面
-  editScoreHandle: function editScoreHandle() {
-    var currentinfo = JSON.stringify(this.userInfo);
-    uni.navigateTo({
-      url: '/subpkg/editScore/editScore?userinfo=' + currentinfo
-    });
   },
-  getTeacherList: function getTeacherList() {
-    var _this = this;
-    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      var res;
-      return _regenerator.default.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return uni.$http.get('/testExpert/listExpert', _this.query);
-            case 2:
-              res = _context.sent;
-              _this.teacherList = res.data.data;
-            case 4:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
+  onLoad: function onLoad() {
+    this.getTeacherList();
   },
-  gotoLogin: function gotoLogin() {
-    uni.switchTab({
-      url: '/pages/mine/mine'
-    });
-  },
-  gotozntb: function gotozntb() {
-    if (this.token) {
+  methods: {
+    //跳转到编辑成绩界面
+    editScoreHandle: function editScoreHandle() {
+      var currentinfo = JSON.stringify(this.userInfo);
       uni.navigateTo({
-        url: '/subpkg/intellingent_filling/intellingent_filling'
+        url: '/subpkg/editScore/editScore?userinfo=' + currentinfo
       });
-    } else {
+    },
+    getTeacherList: function getTeacherList() {
+      var _this = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var res;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return uni.$http.get('/testExpert/listExpert', _this.query);
+              case 2:
+                res = _context.sent;
+                _this.teacherList = res.data.data;
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    gotoLogin: function gotoLogin() {
       uni.switchTab({
         url: '/pages/mine/mine'
       });
+    },
+    gotozntb: function gotozntb() {
+      if (this.token) {
+        uni.navigateTo({
+          url: '/subpkg/intellingent_filling/intellingent_filling'
+        });
+      } else {
+        uni.switchTab({
+          url: '/pages/mine/mine'
+        });
+      }
+    },
+    gotoFindExpert: function gotoFindExpert() {
+      uni.switchTab({
+        url: '/pages/expert/expert'
+      });
     }
-  },
-  gotoFindExpert: function gotoFindExpert() {
-    uni.switchTab({
-      url: '/pages/expert/expert'
-    });
   }
-}), _computed$data$comput);
+};
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 

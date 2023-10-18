@@ -62,15 +62,6 @@
           
         }
           ,{
-                    "path" : "my-login/my-login",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
-                ,{
                     "path" : "intellingent_filling/intellingent_filling",
                     "style" :                                                                                    
                 {

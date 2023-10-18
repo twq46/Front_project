@@ -10,7 +10,6 @@
     {
       "root": "subpkg",
       "pages": [
-        "my-login/my-login",
         "intellingent_filling/intellingent_filling",
         "college_list/college_list",
         "major_list/major_list",

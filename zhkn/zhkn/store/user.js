@@ -6,23 +6,20 @@ export default {
     userinfo:JSON.parse(uni.getStorageSync('userinfo') || '{}')
   }),
   mutations:{
+    //修改用户省份
+    updateUserProvince(state,province){
+      state.userinfo.examProvince = province
+      this.commit('m_user/saveUserInfoToStorge')
+    },
     //修改用户排名
     updateUserRank(state,rank){
       state.userinfo.rank = rank
-      this.commit('m_user/saveUserRankToStorege')
-    },
-    //将修改后的用户排名信息保存到store中
-    saveUserRankToStorege(state){
-      uni.setStorageSync('userinfo',JSON.stringify(state.userinfo))
+      this.commit('m_user/saveUserInfoToStorge')
     },
     //修改用户分数
     updateUserScore(state,score){
       state.userinfo.score = score
-      this.commit('m_user/saveUserScore')
-    },
-    //将修改后的分数持久化储存
-    saveUserScore(state){
-      uni.setStorageSync('userinfo',JSON.stringify(state.userinfo))
+      this.commit('m_user/saveUserInfoToStorge')
     },
     //更新token字符串
     updateToken(state,token){

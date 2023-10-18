@@ -14,18 +14,28 @@
           <view class="left-info">
             高考省份
           </view>
-          <view class="right-info" @click="provinceOpen">
+          <view class="right-info" @click="provinceOpen" v-if="!userinfo.examProvince">
             {{currentSelectProvince ? currentSelectProvince:'请选择'}}
             <uni-icons type="arrowright" size="15" color="#5f5f5f"></uni-icons>
           </view>
-         
+         <view class="right-info" v-else>
+           {{userinfo.examProvince}}
+         </view>
         </view>
         <!-- 高考科目 -->
         <view class="info-item">
           <view class="left-info">
             高考科目
           </view>
-          <view class="right-info" @click="majorOpen">
+          <view class="right-info" v-if="userinfo.physics || userinfo.chemistry || userinfo.biology || userinfo.politics || userinfo.history || userinfo.geography">
+            {{userinfo.physics == 1 ? '物':''}}
+            {{userinfo.chemistry == 1 ? '化':''}}
+            {{userinfo.biology == 1 ? '生':''}}
+            {{userinfo.politics == 1 ? '政':''}}
+            {{userinfo.history == 1 ? '历':''}}
+            {{userinfo.geography == 1 ? '地':''}}
+          </view>
+          <view class="right-info" @click="majorOpen" v-else>
             <view class="subjectlist" v-if="selectsubjectList.length > 0">
               <view class="" v-for="(item,index) in selectsubjectList" :key="index" >
                 {{ item + (index < (selectsubjectList.length - 1) ? ',' : '') }}
@@ -36,14 +46,18 @@
             </view>
             <uni-icons type="arrowright" size="15" color="#5f5f5f"></uni-icons>
           </view>
+          
         </view>
         <!-- 高考成绩 -->
         <view class="info-item">
           <view class="left-info">
             高考分数
           </view>
-          <view class="right-info">
-            <input type="text" placeholder="请输入你的成绩" @input="inputScore">
+          <view class="right-info" v-if="!userinfo.score">
+            <input type="number" v-model="score" placeholder="请输入你的成绩" @input="inputScore">
+          </view>
+          <view class="right-info" v-else>
+            <input type="number" v-model="score" placeholder="请输入你的成绩" @input="inputScore">
           </view>
         </view>
         <!-- 高考位次 -->
@@ -51,8 +65,11 @@
           <view class="left-info">
             高考位次
           </view>
-          <view class="right-info">
-            <input type="text" placeholder="请输入你的省排名" @input="rankInput">
+          <view class="right-info" v-if="!userinfo.rank">
+            <input type="number" v-model="rank" placeholder="请输入你的省排名" @input="rankInput">
+          </view>
+          <view class="right-info" v-else>
+            <input type="number" v-model="rank" placeholder="请输入你的省排名" @input="rankInput">
           </view>
         </view>
         <!-- 可输入的位次范围 -->
@@ -114,8 +131,15 @@
         scoreInputTimer:null,
         currentIndex:null,
         physics:null,
-        highRank:3000000,
-        lowRank:0,
+        chemistry:null,
+        biology:null,
+        politics:null,
+        history:null,
+        geography:null,
+        highRank:0,
+        score:null,
+        rank:null,
+        lowRank:3000000,
         currentSelectProvince:'',
         labelinfo:[],
         provinceList:[],
@@ -124,14 +148,22 @@
       };
     },
     computed:{
-      ...mapState('m_user',['userinfo'])
+      ...mapState('m_user',['userinfo']),
     },
     onLoad() {
       //获取省份信息
       this.getProvinceData()
+      this.score = this.userinfo.score
+      this.rank = this.userinfo.rank
+      this.physics = this.userinfo.physics
+      this.chemistry = this.userinfo.chemistry
+      this.biology = this.userinfo.biology
+      this.politics = this.userinfo.politics
+      this.history = this.userinfo.history
+      this.geography = this.userinfo.geography
     },
     methods:{
-      ...mapMutations('m_user',['updateUserScore','updateUserRank']),
+      ...mapMutations('m_user',['updateUserScore','updateUserRank','updateUserProvince','updateUserInfo']),
       //获取高考的省份
       getProvinceData(){
         uni.request({
@@ -156,6 +188,7 @@
       clickProvinceItem(index){
         this.currentIndex = index
         this.currentSelectProvince = this.provinceList[index]
+        this.updateUserProvince(this.currentSelectProvince)
         //关闭弹出窗
         this.$refs.provincePopup.close()
       },
@@ -163,18 +196,24 @@
       clickSubjectItem(index){
         this.selectsubjectList.push(this.subjectList[index])
         this.physics = this.selectsubjectList.find((item) => item === '物') ? 1 : 0;
+        this.chemistry = this.selectsubjectList.find((item) => item === '化') ? 1 : 0;
+        this.biology = this.selectsubjectList.find((item) => item === '生') ? 1 : 0;
+        this.politics = this.selectsubjectList.find((item) => item === '政') ? 1 : 0;
+        this.history = this.selectsubjectList.find((item) => item === '历') ? 1 : 0;
+        this.geography = this.selectsubjectList.find((item) => item === '地') ? 1 : 0;
         // console.log(this.physics);
       },
       
       //处理输入分数事件
       inputScore(e){
         if(e.detail.value == ''){
-          this.lowRank = 0 
-          this.highRank = 3000000
+          this.lowRank = 3000000 
+          this.highRank = 0
         }
         clearTimeout(this.scoreInputTimer)
         this.scoreInputTimer = setTimeout(()=>{
           // console.log(e.detail.value)
+          
           this.updateUserScore(e.detail.value)
           this.getRankScopeData()
         },500)
@@ -183,8 +222,8 @@
       async getRankScopeData(){
         ////https://www.zytb.top/agent_gk_new/userWX/rankByScore?physics=1&province=山东&score=600
         const query = {
-          physics:this.physics,
-          province:this.currentSelectProvince,
+          physics:this.userinfo.physics,
+          province:this.userinfo.examProvince,
           score:this.userinfo.score
         }
         const res = await uni.$http.get('/userWX/rankByScore',query)
@@ -198,15 +237,23 @@
       //点击确认提交
       async confirmSubmitClick(){
         // 如果省份没有选择
-        if(this.currentSelectProvince == '') return uni.$showMsg('请选择省份')
+        if(this.userinfo.examProvince == '') return uni.$showMsg('请选择省份')
         //如果高考科目没有选择
-        if(this.selectsubjectList.length == 0) return uni.$showMsg('请选择科目')
+        if(this.userinfo.physics == 0 && this.userinfo.chemistry == 0 && this.userinfo.biology == 0&& this.userinfo.politics == 0&& this.userinfo.history == 0&& this.userinfo.geography == 0) return uni.$showMsg('请选择科目')
         //如果成绩没有输入
         if(this.userinfo.score == null) return uni.$showMsg('请输入高考分数')
         //如果位次没有输入
         if(this.userinfo.rank == null) return uni.$showMsg('请输入高考位次')
-         const res = uni.$http.post('/userApp/wxxAddUserInfo',this.userinfo)
-         console.log(res)
+        const res =await uni.$http.post(`/userApp/wxxAddUserInfo?openId=${this.userinfo.openId}&score=${this.userinfo.score}&examProvince=${this.userinfo.examProvince}&physics=${this.physics}&chemistry=${this.chemistry}&biology=${this.biology}&politics=${this.politics}&history=${this.history}&geography=${this.geography}&rank=${this.userinfo.rank}&nickName=${this.userinfo.nickName}&avatarUrl=${this.userinfo.avatarUrl}`)
+        
+        if(res.data.code === 200){
+          this.updateUserInfo(res.data.data)
+          uni.$showMsg('用户信息填写成功')
+          uni.navigateBack({
+              delta: 1
+          });
+        } 
+        
       },
     }
   }

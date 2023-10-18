@@ -38,7 +38,7 @@
         <!-- 如果用户未登录 -->
         <view v-if="!token" @click="gotoLogin">登录 / 注册</view>
         <!-- 用户登录之后 -->
-        <view v-if="token" @click="editScoreHandle" class="">{{userinfo.score ? userinfo.score : 0}}分  {{userinfo.rank ? userinfo.rank : 0}}名<uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
+        <view v-if="token" @click="editScoreHandle" class="">{{userinfo.score!==null ? userinfo.score : 0}}分  {{userinfo.rank !==null ? userinfo.rank : 0}}名<uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
         <view>
           <button class="zntb" @click="gotozntb">智能填报</button>
         </view>
@@ -131,9 +131,6 @@
           pageSize:10,
         }
       };
-    },
-    computed:{
-      ...mapState('m_user',['token']),
     },
     onLoad() {
       this.getTeacherList()

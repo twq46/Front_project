@@ -45,17 +45,9 @@
           return uni.$showMsg('登录失败!')
         }
         this.updateToken(loginResult.token)
-        //将登录用户的信息和返回的用户信息合成一个对象
-        let caijianinfo = {
-          nickName:info.userInfo.nickName,
-          avatarUrl:info.userInfo.avatarUrl
-        }
-        // console.log(caijianinfo,'裁剪后的字段')
-        let mergeUserInfo = {...caijianinfo,...loginResult.wxxUser}
-        this.updateUserInfo(mergeUserInfo)
-        // loginResult.wxxUser.nickName = info.userInfo.nickName
-        // loginResult.wxxUser.avatarUrl = info.userInfo.avatarUrl
-        // this.updateUserInfo(loginResult.wxxUser)
+        loginResult.wxxUser.nickName = info.userInfo.nickName
+        loginResult.wxxUser.avatarUrl = info.userInfo.avatarUrl
+        this.updateUserInfo(loginResult.wxxUser)
         uni.$showMsg('登录成功!')
         // this.navigateBack()
       },

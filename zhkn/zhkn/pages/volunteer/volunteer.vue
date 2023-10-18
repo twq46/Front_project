@@ -5,7 +5,7 @@
     </view>
     
     <view class="dztBox">
-      <view v-if="userinfo.score" @click="editScoreHandle">{{userInfo.province}} {{userInfo.score}}分 {{userInfo.type}} {{userInfo.rank}}名 <uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
+      <view v-if="userinfo.score" @click="editScoreHandle">{{userinfo.examProvince}} {{userinfo.score}}分 {{userinfo.physics == 1 ? '物':''}} {{userinfo.chemistry == 1 ? '化':''}} {{userinfo.biology == 1 ? '生':''}} {{userinfo.politics == 1 ? '政':''}} {{userinfo.history == 1 ? '历':''}} {{userinfo.geography == 1 ? '地':''}} {{userinfo.rank}}名 <uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
       <view v-else @click="editScoreHandle">成绩：添加成绩信息<uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
     </view>
     
@@ -63,12 +63,7 @@
   export default {
     data() {
       return {
-        userInfo:{
-          province:'河北',
-          score:600,
-          type:'理科',
-          rank:59981
-        }
+        
       };
     },
     computed:{
@@ -111,6 +106,7 @@
     top: -21px;
     height: 48px;
     font-weight: bold;
+    font-size: 13px;
   }
 .edit-icon{
   margin-left: 5px;
