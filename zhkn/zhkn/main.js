@@ -4,11 +4,11 @@ import{$http} from '@escook/request-miniprogram'
 uni.$http = $http
 //请求的根路径
 $http.baseUrl = 'https://www.zytb.top/agent_gk_new'
-// $http.baseUrl = 'https://www.zytb.top/NEMT/gk'
+// $http.baseUrl = 'https://4aab-221-217-161-116.ngrok-free.app'
 //请求拦截器
 $http.beforeRequest = function(options){
   uni.showLoading({
-    title:"数据加载中",
+    title:"数据加载中...",
   }),
   options.header = {
     Authorization:store.state.m_user.token

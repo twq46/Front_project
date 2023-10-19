@@ -12,7 +12,7 @@
         
       </view>
       <!-- vip服务 & 1v1尊享卡 -->
-      <view class="vip-1v1">
+      <view class="vip-1v1" v-if="userinfo.vip === 0">
         <!-- vip服务 -->
         <view class="vipservet" :style="{background:vipbgc,'border-color':vipbordercolor}" @click="vipchangebgc">
           <view class="title">
@@ -33,7 +33,7 @@
           </view>
         </view>       
         <!-- 1v1尊享卡 -->
-        <view class="vipservet" :style="{background:onevonebgc,'border-color':onebordercolor}" @click="onechangebgc">
+        <!-- <view class="vipservet" :style="{background:onevonebgc,'border-color':onebordercolor}" @click="onechangebgc">
           <view class="title">
             1v1尊享卡
           </view>
@@ -51,21 +51,27 @@
             </view>
           </view>
         </view>
-        
+        -->
       </view>
-      <view class="vipright">
+      <view class="vipright" v-if="userinfo.vip === 0">
         <image src="../../static/images/vipnineright.png" mode="widthFix"></image>
         <image src="../../static/images/usevipserve.png" mode="widthFix"></image>
       </view>
+      <!-- 会员服务界面 -->
+      <view class="isvip" v-if="userinfo.vip === 1">
+        <view class="">
+          恭喜你成为vip用户
+        </view>
+      </view>
     </scroll-view>
     
-   <view class="pay">
+   <view class="pay" @click="payCurrent" v-if="userinfo.vip === 0">
      <view class="paynumber">
        <text class="number">¥{{payValue.payprice}} </text>
        <text class="originnumber linethrough">¥{{payValue.payoriginprice}}</text>
        <text class="originnumber">限时优惠</text>
      </view>
-     <view class="paybutton" @click="payCurrent">
+     <view class="paybutton">
        立即支付
      </view>
    </view>
@@ -73,7 +79,11 @@
 </template>
 
 <script>
+  import {mapState,mapMutations} from 'vuex'
   export default {
+    computed:{
+      ...mapState('m_user',['userinfo'])
+    },
     data() {
       return {
         bgColor:'rgba(255,255,255,0)',//初始背景颜色透明度为0
@@ -114,12 +124,36 @@
       
     },
     methods:{
+      ...mapMutations('m_user',['updateUserIsVip']),
       // 点击立即支付
-      payCurrent(){
-        console.log('zhifu')
-        uni.requestPayment({
-          
-        })
+      async payCurrent(){
+        // console.log('zhifu')
+        //1.创建订单->服务器返回订单编号
+        //1.1组织订单的信息对象
+        const orderInfo = {
+          // money:this.priceValue.vipvalue
+          money:0.01,
+          openid:this.userinfo.openId
+        }
+        //1.2发起请求创建订单
+        const {data:res} = await uni.$http.post('/api/wxx-pay/jsapiPay',orderInfo)
+        if(res.code !== 200) return uni.$showMsg('创建订单失败！')
+        console.log(res)
+        //2.订单预支付 将订单编号发给服务器->返回订单支付相关参数:上一步已经返回结果了
+        //3.发起微信支付
+        let payinfo={
+          timeStamp:res.data.timeStamp,
+          nonceStr:res.data.nonceStr,
+          package:res.data.package,
+          signType:res.data.signType,
+          paySign:res.data.paySign
+        }
+        const succ = await uni.requestPayment(payinfo)
+        if(succ.errMsg === "requestPayment:ok"){
+          this.updateUserIsVip(1)
+          return uni.$showMsg('支付成功!')
+        } 
+        
       },
       scroll: function(e){
         const screenHeight = uni.getSystemInfoSync().screenHeight;

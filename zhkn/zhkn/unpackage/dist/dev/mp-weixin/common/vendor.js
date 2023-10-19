@@ -18072,7 +18072,13 @@ var _default = {
     }, {
       "path": "teacher-detail/teacher-detail",
       "style": {
-        "navigationBarTitleText": "",
+        "navigationBarTitleText": "专家详情",
+        "enablePullDownRefresh": false
+      }
+    }, {
+      "path": "expert-booked/expert-booked",
+      "style": {
+        "navigationBarTitleText": "专家预约",
         "enablePullDownRefresh": false
       }
     }]
@@ -19970,6 +19976,11 @@ var _default = {
     };
   },
   mutations: {
+    //修改是否为vip
+    updateUserIsVip: function updateUserIsVip(state, vipValue) {
+      state.userinfo.vip = vipValue;
+      this.commit('m_user/saveUserInfoToStorge');
+    },
     //修改用户省份
     updateUserProvince: function updateUserProvince(state, province) {
       state.userinfo.examProvince = province;

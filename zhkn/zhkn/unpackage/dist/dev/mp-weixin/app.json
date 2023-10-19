@@ -24,7 +24,8 @@
         "help-center/help-center",
         "about-my/about-my",
         "my-message/my-message",
-        "teacher-detail/teacher-detail"
+        "teacher-detail/teacher-detail",
+        "expert-booked/expert-booked"
       ]
     }
   ],

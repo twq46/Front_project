@@ -64,7 +64,7 @@
       <!-- 教师列表 -->
       <view class="teacherBox">
         <scroll-view scroll-x="true" class="scrollviewT">
-          <view class="classBox" v-for="(item,i) in teacherList" :key="i">
+          <view class="classBox" v-for="(item,i) in teacherList" :key="i" @click="gotoTeacherDetail(item)">
             <view class="classlist">
               <view class="teacherview">
                 <image class="teacherImg" :src="item.avatar"></image>
@@ -136,6 +136,13 @@
       this.getTeacherList()
     },
     methods:{
+      //跳转到教师详情也
+      gotoTeacherDetail(teacherInfo){
+        let teacherObject = JSON.stringify(teacherInfo)
+        uni.navigateTo({
+          url:'/subpkg/teacher-detail/teacher-detail?teacherInfo='+teacherObject
+        })
+      },
       //跳转到编辑成绩界面
       editScoreHandle(){
         let currentinfo = JSON.stringify(this.userInfo)

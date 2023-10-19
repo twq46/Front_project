@@ -50,7 +50,8 @@
     },
     methods:{
       async getExpertTag(){
-        const res = await uni.$http.get(`/system/user/${this.expertDetail.userId}`)
+        const res = await uni.$http.get(`/system/user/getMaster/${this.expertDetail.userId}`)
+        console.log(res)
         this.labelInfo = res.data.labelInfo
       }
     }
@@ -64,6 +65,7 @@
   border-bottom: 1px solid #f4f4f4;
   padding-bottom: 10px;
   align-items: center;
+  padding-left: 5px;
   .logo{
     image{
       width: 50px;
@@ -93,6 +95,7 @@
       font-size: 13px;
     }
   }
+
 }
 
 </style>

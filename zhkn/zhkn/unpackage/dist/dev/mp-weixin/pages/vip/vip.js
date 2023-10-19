@@ -137,85 +137,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 44));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 46));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
+var _vuex = __webpack_require__(/*! vuex */ 36);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var _default = {
+  computed: _objectSpread({}, (0, _vuex.mapState)('m_user', ['userinfo'])),
   data: function data() {
     return {
       bgColor: 'rgba(255,255,255,0)',
@@ -255,11 +189,62 @@ var _default = {
       }
     });
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, (0, _vuex.mapMutations)('m_user', ['updateUserIsVip'])), {}, {
     // 点击立即支付
     payCurrent: function payCurrent() {
-      console.log('zhifu');
-      uni.requestPayment({});
+      var _this = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var orderInfo, _yield$uni$$http$post, res, payinfo, succ;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                // console.log('zhifu')
+                //1.创建订单->服务器返回订单编号
+                //1.1组织订单的信息对象
+                orderInfo = {
+                  // money:this.priceValue.vipvalue
+                  money: 0.01,
+                  openid: _this.userinfo.openId
+                }; //1.2发起请求创建订单
+                _context.next = 3;
+                return uni.$http.post('/api/wxx-pay/jsapiPay', orderInfo);
+              case 3:
+                _yield$uni$$http$post = _context.sent;
+                res = _yield$uni$$http$post.data;
+                if (!(res.code !== 200)) {
+                  _context.next = 7;
+                  break;
+                }
+                return _context.abrupt("return", uni.$showMsg('创建订单失败！'));
+              case 7:
+                console.log(res);
+                //2.订单预支付 将订单编号发给服务器->返回订单支付相关参数:上一步已经返回结果了
+                //3.发起微信支付
+                payinfo = {
+                  timeStamp: res.data.timeStamp,
+                  nonceStr: res.data.nonceStr,
+                  package: res.data.package,
+                  signType: res.data.signType,
+                  paySign: res.data.paySign
+                };
+                _context.next = 11;
+                return uni.requestPayment(payinfo);
+              case 11:
+                succ = _context.sent;
+                if (!(succ.errMsg === "requestPayment:ok")) {
+                  _context.next = 15;
+                  break;
+                }
+                _this.updateUserIsVip(1);
+                return _context.abrupt("return", uni.$showMsg('支付成功!'));
+              case 15:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     scroll: function scroll(e) {
       var screenHeight = uni.getSystemInfoSync().screenHeight;
@@ -287,7 +272,7 @@ var _default = {
       this.payValue.payprice = this.priceValue.onevalue;
       this.payValue.payoriginprice = this.priceValue.oneoriginvalue;
     }
-  }
+  })
 };
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))

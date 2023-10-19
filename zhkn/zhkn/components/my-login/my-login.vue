@@ -40,7 +40,8 @@
           code:res.code,
         }
         const {data:loginResult} = await uni.$http.post('/wxxlogin',query)
-        // console.log(loginResult)
+        // const {data:loginResult} = await uni.$http.post('https://4aab-221-217-161-116.ngrok-free.app/wxxlogin',query)
+        console.log(loginResult)
         if(loginResult.code !== 200) {
           return uni.$showMsg('登录失败!')
         }

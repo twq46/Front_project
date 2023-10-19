@@ -9,6 +9,20 @@
       "list": [
         {
           "name": "",
+          "pathName": "subpkg/expert-booked/expert-booked",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpkg/teacher-detail/teacher-detail",
+          "query": "teacherInfo={\"tianbaoshiId\":11,\"avatar\":\"/profile/avatar/2023/08/15/blob_20230815201557A001.png\",\"tianbaoshiName\":\"李老师\",\"tianbaoshiStatus\":\"0\",\"userId\":1101,\"postId\":6,\"labelId\":1101,\"produce\":\"升学规划师企业管理咨询师企业高级人力资源管理师理学学士、工商管理硕士多年高校教师和企业管理工作经验11年高考报考咨询工作经验\",\"xiangqing\":\"从事教育事业已有19年，期间在高考报考咨询领域深耕细作已达11年之久，每年报考季都为数十名高考生亲手制作高考志愿填报方案，其中不乏被清华大学、北京大学、北京航空航天大学、浙江大学、香港科技大学、香港理工大学等国内顶级名校录取的学生。在报考环节，李老师非常注重对数据与新机会点的研究与把握，录取结果满意率达到95%以上。\",\"success\":\"xiugai\",\"note\":null,\"labelIds\":null}",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "pages/expert/expert",
           "query": "",
           "launchMode": "default",

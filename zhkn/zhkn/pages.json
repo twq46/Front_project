@@ -192,7 +192,16 @@
                     "path" : "teacher-detail/teacher-detail",
                     "style" :                                                                                    
                 {
-                    "navigationBarTitleText": "",
+                    "navigationBarTitleText": "专家详情",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "expert-booked/expert-booked",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "专家预约",
                     "enablePullDownRefresh": false
                 }
                 

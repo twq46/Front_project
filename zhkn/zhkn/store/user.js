@@ -6,6 +6,11 @@ export default {
     userinfo:JSON.parse(uni.getStorageSync('userinfo') || '{}')
   }),
   mutations:{
+    //修改是否为vip
+    updateUserIsVip(state,vipValue){
+      state.userinfo.vip = vipValue
+      this.commit('m_user/saveUserInfoToStorge')
+    },
     //修改用户省份
     updateUserProvince(state,province){
       state.userinfo.examProvince = province

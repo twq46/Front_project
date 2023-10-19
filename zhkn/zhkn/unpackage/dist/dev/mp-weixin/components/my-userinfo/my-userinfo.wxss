@@ -45,7 +45,16 @@
   color: white;
 }
 .user-box .user-box-info .user-info .phone-number .number.data-v-14c4a57a {
+  display: flex;
+  align-items: center;
   margin-bottom: 6px;
+}
+.user-box .user-box-info .user-info .phone-number .number .showisviplog.data-v-14c4a57a {
+  margin-left: 10px;
+}
+.user-box .user-box-info .user-info .phone-number .number .showisviplog image.data-v-14c4a57a {
+  width: 25px;
+  height: 25px;
 }
 .user-box .user-box-info .user-info .phone-number .text.data-v-14c4a57a {
   font-size: 14px;

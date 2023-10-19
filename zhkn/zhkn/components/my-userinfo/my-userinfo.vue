@@ -8,14 +8,24 @@
           <view class="user-logo">
             <image :src="userinfo.avatarUrl" mode="widthFix"></image>
           </view>
+          <!-- 用户昵称和用户类别 -->
           <view class="phone-number">
             <view class="number">
               {{userinfo.nickName}}
+              <!-- 是否是vip图标 -->
+              <view class="showisviplog">
+                <image src="../../static/images/vip0.png" mode="widthFix" v-if="userinfo.vip == 0"></image>
+                <image src="../../static/images/vip1.png" mode="widthFix" v-if="userinfo.vip == 1"></image>
+              </view>
             </view>
-            <view class="text">
+            <view class="text" v-if="userinfo.vip == 0">
               升级为VIP，准确查大学录取率
             </view>
+            <view class="text" v-else>
+              vip用户
+            </view>
           </view>
+          
         </view>
         <!-- 用户的分数，能上的大学，志愿表 -->
         <view class="sore-infoDetail">
@@ -166,12 +176,22 @@
         margin-left: 8px;
         color: white;
         .number{
+          display: flex;
+          align-items: center;
           margin-bottom: 6px;
+          .showisviplog{
+            margin-left: 10px;
+            image{
+              width: 25px;
+              height: 25px;
+            }
+          }
         }
         .text{
           font-size: 14px;
         }
       }
+      
     }
     
     .sore-infoDetail{

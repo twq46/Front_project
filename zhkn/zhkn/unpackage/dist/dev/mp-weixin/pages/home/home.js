@@ -206,6 +206,13 @@ var _default = {
     this.getTeacherList();
   },
   methods: {
+    //跳转到教师详情也
+    gotoTeacherDetail: function gotoTeacherDetail(teacherInfo) {
+      var teacherObject = JSON.stringify(teacherInfo);
+      uni.navigateTo({
+        url: '/subpkg/teacher-detail/teacher-detail?teacherInfo=' + teacherObject
+      });
+    },
     //跳转到编辑成绩界面
     editScoreHandle: function editScoreHandle() {
       var currentinfo = JSON.stringify(this.userInfo);

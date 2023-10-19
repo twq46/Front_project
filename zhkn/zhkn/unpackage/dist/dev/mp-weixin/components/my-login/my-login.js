@@ -220,19 +220,21 @@ var _default = {
               case 9:
                 _yield$uni$$http$post = _context2.sent;
                 loginResult = _yield$uni$$http$post.data;
+                // const {data:loginResult} = await uni.$http.post('https://4aab-221-217-161-116.ngrok-free.app/wxxlogin',query)
+                console.log(loginResult);
                 if (!(loginResult.code !== 200)) {
-                  _context2.next = 13;
+                  _context2.next = 14;
                   break;
                 }
                 return _context2.abrupt("return", uni.$showMsg('登录失败!'));
-              case 13:
+              case 14:
                 _this2.updateToken(loginResult.token);
                 loginResult.wxxUser.nickName = info.userInfo.nickName;
                 loginResult.wxxUser.avatarUrl = info.userInfo.avatarUrl;
                 _this2.updateUserInfo(loginResult.wxxUser);
                 uni.$showMsg('登录成功!');
                 // this.navigateBack()
-              case 18:
+              case 19:
               case "end":
                 return _context2.stop();
             }

@@ -215,7 +215,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 44));
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 46));
 //
 //
 //
@@ -410,15 +412,41 @@ var _default = {
     //获取大学列表
     getCollegeList: function getCollegeList() {
       var _this2 = this;
-      uni.request({
-        url: "https://www.zytb.top/NEMT/gk/schoolApp/findSchool2?page=".concat(this.queryObj.page, "&infScore=").concat(this.queryObj.infScore),
-        method: 'POST',
-        data: this.filterCollegeObject,
-        success: function success(res) {
-          _this2.collegeListT = [].concat((0, _toConsumableArray2.default)(_this2.collegeListT), (0, _toConsumableArray2.default)(res.data.data.list));
-          _this2.total = res.data.data.total;
-        }
-      });
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var res;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return uni.$http.post("/schoolApp/findSchool2?page=".concat(_this2.queryObj.page, "&infScore=").concat(_this2.queryObj.infScore), _this2.filterCollegeObject);
+              case 2:
+                res = _context.sent;
+                console.log(res);
+                if (!(res.statusCode !== 200)) {
+                  _context.next = 6;
+                  break;
+                }
+                return _context.abrupt("return", uni.$showMsg('数据请求失败'));
+              case 6:
+                _this2.collegeListT = [].concat((0, _toConsumableArray2.default)(_this2.collegeListT), (0, _toConsumableArray2.default)(res.data.data.list));
+                _this2.total = res.data.data.total;
+                //   uni.request({
+                //     url:`https://www.zytb.top/NEMT/gk/schoolApp/findSchool2?page=${this.queryObj.page}&infScore=${this.queryObj.infScore}`,
+                //     method:'POST',
+                //     data:this.filterCollegeObject,
+                //     success: (res)=>{
+                //       this.collegeListT = [...this.collegeListT,...res.data.data.list]
+                //       this.total = res.data.data.total
+                //     }
+                //   })
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     //获取省份数据
     getProvinceData: function getProvinceData() {

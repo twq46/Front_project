@@ -24,33 +24,31 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.list-item.data-v-45e656a4 {
-  display: flex;
+.booked-box.data-v-a9caecdc {
+  padding: 20px;
+}
+.booked-box .name.data-v-a9caecdc {
+  margin-bottom: 30px;
+}
+.booked-box .name .name-input.data-v-a9caecdc {
+  background-color: #f6f6f6;
+  border-radius: 10px;
   margin-top: 10px;
-  border-bottom: 1px solid #f4f4f4;
-  padding-bottom: 10px;
-  align-items: center;
-  padding-left: 5px;
 }
-.list-item .logo image.data-v-45e656a4 {
-  width: 50px;
-  height: 50px;
+.booked-box .name .name-input input.data-v-a9caecdc {
+  padding: 20px 10px;
 }
-.list-item .expert-info .name-tag.data-v-45e656a4 {
-  display: flex;
+.booked-box .name .name-input .zx-box.data-v-a9caecdc {
+  padding-bottom: 100px;
 }
-.list-item .expert-info .name-tag .tag.data-v-45e656a4 {
-  display: flex;
-  font-size: 13px;
+.booked-box .submit-btn.data-v-a9caecdc {
+  text-align: center;
+  padding: 15px 0;
+  border-radius: 50px;
+  color: #fff;
+  background-color: #f5c2ae;
 }
-.list-item .expert-info .name-tag .tag .tag-item.data-v-45e656a4 {
-  margin-left: 5px;
-  color: #ff6668;
-  padding: 2px 5px;
-  background-color: #ffeedf;
-}
-.list-item .expert-info .introduce.data-v-45e656a4 {
-  margin-top: 5px;
-  font-size: 13px;
+.booked-box .active.data-v-a9caecdc {
+  background-color: #ee8055;
 }
 

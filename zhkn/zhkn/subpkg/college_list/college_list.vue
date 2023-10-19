@@ -185,16 +185,22 @@
         this.filterActive = !this.filterActive
       },
       //获取大学列表
-      getCollegeList(){
-        uni.request({
-          url:`https://www.zytb.top/NEMT/gk/schoolApp/findSchool2?page=${this.queryObj.page}&infScore=${this.queryObj.infScore}`,
-          method:'POST',
-          data:this.filterCollegeObject,
-          success: (res)=>{
-            this.collegeListT = [...this.collegeListT,...res.data.data.list]
-            this.total = res.data.data.total
-          }
-        })
+      async getCollegeList(){
+        const res = await uni.$http.post(`/schoolApp/findSchool2?page=${this.queryObj.page}&infScore=${this.queryObj.infScore}`,this.filterCollegeObject)
+        console.log(res)
+        if(res.statusCode !== 200) return uni.$showMsg('数据请求失败')
+        this.collegeListT = [...this.collegeListT,...res.data.data.list]
+        this.total = res.data.data.total
+      //   uni.request({
+      //     url:`https://www.zytb.top/NEMT/gk/schoolApp/findSchool2?page=${this.queryObj.page}&infScore=${this.queryObj.infScore}`,
+      //     method:'POST',
+      //     data:this.filterCollegeObject,
+      //     success: (res)=>{
+      //       this.collegeListT = [...this.collegeListT,...res.data.data.list]
+      //       this.total = res.data.data.total
+      //     }
+      //   })
+      
       },
       //获取省份数据
       getProvinceData(){
