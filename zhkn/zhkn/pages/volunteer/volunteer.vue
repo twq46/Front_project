@@ -34,25 +34,25 @@
       </view>
       
       <!-- 分析志愿表 -->
-      <view class="mntb">
+      <!-- <view class="mntb"> -->
         <!-- 图标 -->
-        <view class="mnlogo">
-          <image src="../../static/images/anylsevolunteer.png" mode=""></image>
+        <!-- <view class="mnlogo"> -->
+          <!-- <image src="../../static/images/anylsevolunteer.png" mode=""></image> -->
           <!-- 上下标题和具体信息 -->
-          <view class="mninfo">
-            <view class="title">
+          <!-- <view class="mninfo"> -->
+           <!-- <view class="title">
               一键分析志愿表
             </view>
             <view class="detailinfo">
               志愿风险先知道
             </view>
           </view>
-        </view>
+        </view> -->
         <!-- 按钮区 -->
-        <view class="zntbutton">
+       <!-- <view class="zntbutton">
           分析志愿表
         </view>
-      </view>
+      </view> -->
       
     </view>
   </view>
@@ -78,9 +78,14 @@
       },
       
       gotozntian(){
-        uni.navigateTo({
-          url:'/subpkg/intellingent_filling/intellingent_filling'
-        })
+        if(this.userinfo.score){
+          uni.navigateTo({
+            url:'/subpkg/intellingent_filling/intellingent_filling'
+          })
+        }else{
+          uni.$showMsg('请先填写分数')
+        }
+        
       }
     }
   }

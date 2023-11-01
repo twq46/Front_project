@@ -26,6 +26,7 @@
 /* 文章场景相关 */
 .college-box .college-info.data-v-8be8d178 {
   display: flex;
+  justify-content: space-around;
 }
 .college-box .college-info .college-logo image.data-v-8be8d178 {
   width: 50px;
@@ -43,7 +44,7 @@
   font-weight: 800;
 }
 .college-box .college-info .info-text .info-type.data-v-8be8d178 {
-  font-size: 11px;
+  font-size: 10px;
 }
 .college-box .college-info .info-text .zsnumber-box.data-v-8be8d178 {
   display: flex;
@@ -66,7 +67,7 @@
   border: 1px solid #ff5639;
   color: #ff5639;
   border-radius: 15px;
-  padding: 3px 0;
+  padding: 3px 5px;
 }
 .college-box .college-info .info-text .accord-adjust .adjust .radio-size.data-v-8be8d178 {
   -webkit-transform: scale(0.7);
@@ -89,59 +90,12 @@
 .college-box .college-info .sprint-probability .probability.data-v-8be8d178 {
   font-size: 12px;
 }
-.college-box .college_major.data-v-8be8d178 {
-  background-color: #fffbfc;
-  border: 1px solid #ffdbd5;
-  margin-top: 10px;
-  border-radius: 12px;
-  position: relative;
-  padding: 10px 5px;
-}
-.college-box .college_major .admission-rate.data-v-8be8d178 {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  background-color: #fbe9e7;
-  color: #e84a3b;
-  padding: 5px;
-  font-size: 11px;
-  border-radius: 0 12px 0 12px;
-}
-.college-box .college_major .major-name.data-v-8be8d178 {
+.table-box .major-infoT.data-v-8be8d178 {
+  padding: 10px;
   font-size: 15px;
-  font-weight: bold;
+  color: #5f5f5f;
 }
-.college-box .college_major .major-info.data-v-8be8d178 {
-  margin-top: 10px;
-  font-size: 12px;
-}
-.college-box .college_major .zsnumber-add.data-v-8be8d178 {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-}
-.college-box .college_major .zsnumber-add .zsnumber.data-v-8be8d178 {
-  margin-top: 10px;
-}
-.college-box .college_major .zsnumber-add .zsnumber text.data-v-8be8d178 {
-  margin-left: 3px;
-  font-weight: bold;
-}
-.college-box .college_major .zsnumber-add .addvolunteer.data-v-8be8d178 {
-  border: 1px solid #ff5639;
-  border-radius: 20px;
-  padding: 5px;
-  color: #ff5639;
-  font-weight: bold;
-  font-size: 13px;
-}
-.college-box .college_major .chooseMajor.data-v-8be8d178 {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-}
-.college-box .college_major .chooseMajor .text-info.data-v-8be8d178 {
-  margin-left: 5px;
-  font-weight: bold;
+.table-box .major-infoT .collegeNameT.data-v-8be8d178 {
+  margin-bottom: 5px;
 }
 

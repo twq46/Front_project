@@ -94,7 +94,7 @@
         onevonebgc:'white',
         onebordercolor:'#eee',
         priceValue:{
-          vipvalue:159,
+          vipvalue:480,
           originvipvlue:999,
           onevalue:4980,
           oneoriginvalue:5980,
@@ -131,8 +131,8 @@
         //1.创建订单->服务器返回订单编号
         //1.1组织订单的信息对象
         const orderInfo = {
-          // money:this.priceValue.vipvalue
-          money:0.01,
+          money:this.priceValue.vipvalue,
+          // money:0.01,
           openid:this.userinfo.openId
         }
         //1.2发起请求创建订单
@@ -248,6 +248,10 @@
   image{
     width: 100%;
   }
+}
+.isvip{
+  text-align: center;
+  line-height: 80px;
 }
 .pay{
   background-color: #fff;

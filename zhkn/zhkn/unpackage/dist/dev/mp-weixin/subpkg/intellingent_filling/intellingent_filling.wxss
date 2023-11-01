@@ -24,6 +24,9 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.tb-box.data-v-46588ada {
+  position: relative;
+}
 .stick-box.data-v-46588ada {
   position: -webkit-sticky;
   position: sticky;
@@ -33,5 +36,21 @@
 }
 .content.data-v-46588ada {
   background-color: #f8f8f8;
+}
+.viplm.data-v-46588ada {
+  background-color: #fff;
+  padding: 5px 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+}
+.viplm .vipbtn.data-v-46588ada {
+  padding: 10px;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 20px;
+  color: #fff;
+  background-color: #f07251;
 }
 

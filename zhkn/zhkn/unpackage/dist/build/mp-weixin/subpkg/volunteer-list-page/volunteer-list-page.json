@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "志愿表单",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "volunteer-item": "/components/volunteer-item/volunteer-item"
+  }
+}

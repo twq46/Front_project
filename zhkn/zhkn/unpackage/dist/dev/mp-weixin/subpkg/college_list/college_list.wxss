@@ -35,10 +35,10 @@
   position: relative;
 }
 .college_list-box .my-search-box.data-v-115c5f8c {
-  height: 200px;
+  height: 110px;
   background-color: #ef8467;
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 .college_list-box .my-search-box .search.data-v-115c5f8c {
   width: 100%;
@@ -50,7 +50,7 @@
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   box-shadow: 1px 5px 10px #f7f7f7;
-  height: 100px;
+  height: 75px;
 }
 .college_list-box .college_major .canCollege-box.data-v-115c5f8c {
   display: flex;
@@ -58,7 +58,7 @@
   background-color: #fff;
   border-radius: 10px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 10px;
 }
 .college_list-box .college_major .canCollege-box .canCollege.data-v-115c5f8c {
@@ -77,10 +77,11 @@
   flex-direction: column;
 }
 .college_list-box .college_major .canCollege-box .canCollege .cancollege-text .cancollege-text-top.data-v-115c5f8c {
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
 }
 .college_list-box .college_major .canCollege-box .canCollege .cancollege-text .cancollege-text-bottom.data-v-115c5f8c {
+  font-size: 14px;
   color: #999999;
 }
 .college_list-box .filter-box.data-v-115c5f8c {
@@ -98,6 +99,7 @@
 .college_list-box .filter-box .filter-text text.data-v-115c5f8c {
   display: block;
   color: #666666;
+  font-size: 14px;
   margin-right: 5px;
 }
 .college_list-box .filter-box .filter-text .active.data-v-115c5f8c {
@@ -105,7 +107,7 @@
 }
 .college_list-box .filter-expand.data-v-115c5f8c {
   position: absolute;
-  top: 300px;
+  top: 190px;
   z-index: 2;
   width: 100%;
   background-color: #fff;
@@ -146,9 +148,11 @@
   position: relative;
   top: -50px;
   padding: 10px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 15px;
   justify-content: space-between;
+}
+.college_list-box .collegeName-title .collegename.data-v-115c5f8c {
+  font-weight: bold;
 }
 .scroll-college.data-v-115c5f8c {
   position: relative;

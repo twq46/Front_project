@@ -4,7 +4,7 @@ import{$http} from '@escook/request-miniprogram'
 uni.$http = $http
 //请求的根路径
 $http.baseUrl = 'https://www.zytb.top/agent_gk_new'
-// $http.baseUrl = 'https://4aab-221-217-161-116.ngrok-free.app'
+// $http.baseUrl = 'https://b585-114-240-62-164.ngrok-free.app'
 //请求拦截器
 $http.beforeRequest = function(options){
   uni.showLoading({

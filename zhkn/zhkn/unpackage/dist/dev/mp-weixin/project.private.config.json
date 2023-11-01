@@ -9,6 +9,13 @@
       "list": [
         {
           "name": "",
+          "pathName": "subpkg/activeMembershipCard/activeMembershipCard",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "subpkg/expert-booked/expert-booked",
           "query": "",
           "launchMode": "default",

@@ -1,11 +1,33 @@
 export default {
   namespaced:true,
   state:()=>({
-    token:'',
+    token:uni.getStorageSync('token') || '',
+    uesrId:uni.getStorageSync('userId') || null,
     //用户信息兑现
     userinfo:JSON.parse(uni.getStorageSync('userinfo') || '{}')
   }),
   mutations:{
+    updateSubject(state,physics){
+      state.userinfo.physics = physics
+      this.commit('m_user/saveUserInfoToStorge')
+    },
+    updateUserId(state,userId){
+      state.userId = userId
+      this.commit('m_user/saveToUserIdToStorge')
+    },
+    saveToUserIdToStorge(state){
+      uni.setStorageSync('userId',JSON.stringify(state.userId))
+    },
+    //修改冲稳保数量
+    updateCwbNum(state,csbNumObject){
+      state.userinfo.rushNum = csbNumObject
+      this.commit('m_user/saveUserInfoToStorge')
+    },
+    //修改冲稳保总数
+    updateCubTotal(state,total){
+      state.userinfo.rushTotalNum = total
+      this.commit('m_user/saveUserInfoToStorge')
+    },
     //修改是否为vip
     updateUserIsVip(state,vipValue){
       state.userinfo.vip = vipValue

@@ -45,6 +45,9 @@
   font-size: 13px;
   color: #5b5b5b;
 }
+.college-item .item-text .college-type .tag-item.data-v-4d7e71cc {
+  margin-right: 3px;
+}
 .college-item .item-text .college-type .mar-left.data-v-4d7e71cc {
   margin-left: 5px;
 }

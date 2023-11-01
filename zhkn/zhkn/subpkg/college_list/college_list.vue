@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view class="stick-box" style="height: 360px;">
+    <view class="stick-box" style="height: 240px;">
       <view class="college_list-box">
         <!-- 搜索框区域 -->
         <view class="my-search-box">
@@ -19,7 +19,7 @@
                 <image src="/static/images/canCollege.png" mode="widthFix"></image>
               </view>
               <!-- 文字 -->
-              <view class="cancollege-text">
+              <view class="cancollege-text" @click="gotozntb">
                 <view class="cancollege-text-top">
                   <text>能上的大学</text>
                 </view>
@@ -29,21 +29,21 @@
               </view>
             </view> 
             <!-- 适合的专业 -->
-            <view class="canCollege">
+            <!-- <view class="canCollege"> -->
               <!-- 图标 -->
-              <view class="cancollege-img">
+              <!-- <view class="cancollege-img">
                 <image src="/static/images/fitMajor.png" mode="widthFix"></image>
-              </view>
+              </view> -->
               <!-- 文字 -->
-              <view class="cancollege-text">
+              <!-- <view class="cancollege-text">
                 <view class="cancollege-text-top">
                   <text>适合的专业</text>
                 </view>
                 <view class="cancollege-text-bottom">
                   <text>权威评测一键知悉</text>
                 </view>
-              </view>
-            </view> 
+              </view> -->
+            <!-- </view> -->
           </view>
              
         </view>
@@ -63,7 +63,7 @@
               :key="index" class="filter-item" 
               v-if="activeindex !== 3" 
               @click="clickTypeItem(item)" 
-              :class="{filteritemActive:filterCollegeObject.province.includes(item) || filterCollegeObject.grade.includes(item)}" >{{item}}</view>
+              :class="{filteritemActive:filterCollegeObject.province.includes(item) || filterCollegeObject.grade.includes(item) || filterCollegeObject.batch == item}" >{{item}}</view>
              <view class="banxueleixing" v-show="activeindex === 3">
                 <view class="type">
                   办学类型
@@ -96,7 +96,7 @@
         </view>
         <!-- 大学列表标题区域 -->
         <view class="collegeName-title">
-          <view class="">
+          <view class="collegename">
             院校名称
           </view>
           <view class="">
@@ -115,6 +115,7 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
   export default {
     data() {
       return {
@@ -151,6 +152,7 @@
       };
     },
     computed:{
+      ...mapState('m_user',['userinfo']),
       //展示过滤的数据项的数组
       showfiltercontent(){
         if(this.activeindex == 0){
@@ -172,6 +174,15 @@
       this.getAllTypeData()
     },
     methods:{
+      gotozntb(){
+        if(this.userinfo.score){
+          uni.navigateTo({
+            url:'/subpkg/intellingent_filling/intellingent_filling'
+          })
+        }else{
+          uni.$showMsg('请先填写分数信息！')
+        }
+      },
       inputColllegeName(e){
         clearTimeout(this.timer)
         this.timer = setTimeout(()=>{
@@ -297,13 +308,12 @@
 .college_list-box{
   position: relative;
   .my-search-box{
-    height: 200px;
+    height: 110px;
     background-color: #ef8467;
     display: flex;
-    align-items: center;
+    justify-content: center;
     .search{
       width: 100%;
-      
     }
   }
   .college_major{
@@ -312,17 +322,18 @@
     position: relative;
     transform: translateY(-50%);
     box-shadow: 1px 5px 10px #f7f7f7;
-    height: 100px;
+    height: 75px;
     .canCollege-box{
       display: flex;
       width: 90%;
       background-color: #fff;
       border-radius: 10px;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       padding: 0 10px;
       .canCollege{
         display: flex;
+        
         align-items: center;
         .cancollege-img{
           margin-right: 10px;
@@ -335,10 +346,11 @@
           display: flex;
           flex-direction: column;
           .cancollege-text-top{
-            font-size: 20px;
+            font-size: 18px;
             text-align: center;
           }
           .cancollege-text-bottom{
+            font-size: 14px;
             color: #999999;
           }
         }
@@ -360,6 +372,7 @@
       text{
         display: block;
         color: #666666;
+        font-size: 14px;
         margin-right: 5px;
       }
       .active{
@@ -369,7 +382,7 @@
   }
   .filter-expand{
     position: absolute;
-    top: 300px;
+    top: 190px;
     z-index: 2;
     width: 100%;
     background-color: #fff;
@@ -415,9 +428,11 @@
     position: relative;
     top: -50px;
     padding: 10px;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 15px;
     justify-content: space-between;
+    .collegename{
+      font-weight: bold;
+    }
   }
 }
 .scroll-college{

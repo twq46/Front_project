@@ -31,12 +31,18 @@
 }
 .Fcontent .Cbox.data-v-92bb8f34 {
   position: relative;
-  left: 140px;
+  width: 100px;
+  left: 34%;
   top: 56px;
+  border: 10px solid #80bbfa;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  padding: 20px 20px 0 20px;
+  border-radius: 50% 50% 0 0;
 }
 .Fcontent .CtextSize.data-v-92bb8f34 {
   text-align: center;
-  width: 90px;
   font-size: 15px;
 }
 .Fcontent .Cnumber.data-v-92bb8f34 {
@@ -46,8 +52,7 @@
   display: flex;
   justify-content: space-around;
   position: relative;
-  left: -6px;
-  top: 75px;
+  top: 25%;
 }
 .cwbox .flexT.data-v-92bb8f34 {
   display: flex;
@@ -58,6 +63,7 @@
 }
 .dtBox.data-v-92bb8f34 {
   box-shadow: 0px 5px 15px #ddd;
+  position: relative;
 }
 .dtBox .dztBox.data-v-92bb8f34 {
   display: flex;
@@ -69,8 +75,8 @@
   box-shadow: 0px 5px 15rpx #ddd;
   box-sizing: border-box;
   position: relative;
-  left: 21px;
-  top: -21px;
+  left: 5%;
+  top: -14px;
   height: 48px;
 }
 .dtBox .dztBox .zntb.data-v-92bb8f34 {
@@ -89,7 +95,7 @@
 }
 .dtBox .nav-list .nav-img.data-v-92bb8f34 {
   width: 55px;
-  height: 140rpx;
+  height: 77px;
 }
 .bkziBox.data-v-92bb8f34 {
   background-color: #fcf0ee;

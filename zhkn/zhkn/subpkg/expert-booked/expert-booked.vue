@@ -4,7 +4,7 @@
     <view class="name">
       您的姓名
       <view class="name-input">
-        <input type="text" placeholder="请输入您的称呼">
+        <input type="text" v-model="inputName" placeholder="请输入您的称呼">
       </view>
     </view>
     <!-- 联系方式 -->
@@ -18,26 +18,35 @@
     <view class="name">
       咨询内容
       <view class="name-input">
-        <input class="zx-box" type="text" placeholder="请输入您要咨询的内容">
+        <input class="zx-box" v-model="askContent" type="text" placeholder="请输入您要咨询的内容">
       </view>
     </view>
     
     <!-- 提交 -->
-    <view class="submit-btn" :class="{active:phomeNumberLengthIselev}">
+    <view class="submit-btn" :class="{active:phomeNumberLengthIselev}" @click="submitAskContent">
       提交
     </view>
   </view>
 </template>
 
 <script>
+  import {mapState} from 'vuex'
   export default {
     data() {
       return {
         phoneNumber:'',
         inputName:'',
+        askContent:'',
         inputPhoneNumberTimer:null,
         phomeNumberLengthIselev:false,
+        teacherInfo:{}
       };
+    },
+    onLoad(options) {
+      this.teacherInfo = JSON.parse(options.teacherInfo)
+    },
+    computed:{
+      ...mapState('m_user',['userinfo','userId'])
     },
     methods:{
       inputPhoneNumber(e){
@@ -50,6 +59,27 @@
           }
         },500)
         
+      },
+      async submitAskContent(){
+        if(this.phomeNumberLengthIselev){
+          let askQuery = {
+            user_id:this.userId,
+            tianbaoshi_id:this.teacherInfo.tianbaoshiId,
+            ask_name:this.inputName,
+            ask_phone:this.phoneNumber,
+            tianbaoshiName:this.teacherInfo.tianbaoshiName,
+            ask_content:this.askContent
+          }
+        const {data:res} = await uni.$http.post('/testExpert/addAskExpert',askQuery)
+        if(res.code == 200){
+          uni.$showMsg('咨询成功，等待填报师处理！')
+          uni.navigateBack({
+            delta:1
+          })
+        }
+          
+          
+        }
       }
     }
   }

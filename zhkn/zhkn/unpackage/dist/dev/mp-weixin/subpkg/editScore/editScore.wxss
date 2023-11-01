@@ -27,6 +27,10 @@
 .topimage image.data-v-4e8ee60c {
   width: 100%;
 }
+.gkprovince.data-v-4e8ee60c {
+  text-align: center;
+  padding: 5px 0 20px 0;
+}
 .scorecard.data-v-4e8ee60c {
   position: relative;
   top: -40px;

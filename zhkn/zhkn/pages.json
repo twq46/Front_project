@@ -1,6 +1,15 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+		    "path" : "pages/mine/mine",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+    ,{
             "path" : "pages/home/home",
             "style" :                                                                                    
             {
@@ -36,20 +45,10 @@
             }
             
         }
-        ,{
-            "path" : "pages/mine/mine",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "智禾考哪儿",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
@@ -202,6 +201,24 @@
                     "style" :                                                                                    
                 {
                     "navigationBarTitleText": "专家预约",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "activeMembershipCard/activeMembershipCard",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "激活VIP",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "volunteer-list-page/volunteer-list-page",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "志愿表单",
                     "enablePullDownRefresh": false
                 }
                 

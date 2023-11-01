@@ -7,7 +7,7 @@
       <!-- 适合我的大学 -->
       <view class="Cbox">
         <view class="CtextSize">
-          <text class="Cnumber">0</text>
+          <text class="Cnumber">{{userinfo.rushTotalNum || 0}}</text>
           <text>所</text>
         </view>
         <view class="CtextSize">适合我的大学</view>
@@ -16,17 +16,17 @@
       <view class="cwbox">
         <!-- 冲 -->
         <view  class="flexT">
-          <text class="centerN">-</text>
+          <text class="centerN">{{userinfo.rushNum['冲'] || '-'}}</text>
           <text> 冲击推荐</text>
         </view>
         <!-- 稳 -->
         <view class="flexT">
-          <text class="centerN">-</text>
+          <text class="centerN">{{userinfo.rushNum['稳'] || '-'}}</text>
           <text> 稳妥推荐</text>
         </view>
         <!-- 保 -->
         <view class="flexT">
-          <text class="centerN">-</text>
+          <text class="centerN">{{userinfo.rushNum['保'] || '-'}}</text>
           <text>保底推荐</text>
         </view>
       </view>
@@ -38,7 +38,7 @@
         <!-- 如果用户未登录 -->
         <view v-if="!token" @click="gotoLogin">登录 / 注册</view>
         <!-- 用户登录之后 -->
-        <view v-if="token" @click="editScoreHandle" class="">{{userinfo.score!==null ? userinfo.score : 0}}分  {{userinfo.rank !==null ? userinfo.rank : 0}}名<uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
+        <view v-if="token" @click="editScoreHandle" class="">{{userinfo.score || 0}}分  {{userinfo.rank || 0}}名<uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
         <view>
           <button class="zntb" @click="gotozntb">智能填报</button>
         </view>
@@ -161,9 +161,14 @@
       },
       gotozntb(){
         if(this.token){
-          uni.navigateTo({
-            url:'/subpkg/intellingent_filling/intellingent_filling'
-          })
+          if(this.userinfo.score){
+            uni.navigateTo({
+              url:'/subpkg/intellingent_filling/intellingent_filling'
+            })
+          }else{
+            uni.$showMsg('请先填写分数位次信息！')
+          }
+          
         }else{
           uni.switchTab({
             url:'/pages/mine/mine'
@@ -187,12 +192,18 @@
   background-color: #ee8167;
   .Cbox{
     position: relative;
-    left: 140px;
+    width: 100px;
+    left: 34%;
     top: 56px;
+    border: 10px solid #80bbfa;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    padding: 20px 20px 0 20px;
+    border-radius: 50% 50% 0 0;
   }
   .CtextSize{
     text-align: center;
-    width: 90px;
     font-size: 15px;
   }
   .Cnumber{
@@ -204,8 +215,7 @@
   display: flex;
   justify-content: space-around;
   position: relative;
-  left: -6px;
-  top: 75px;
+  top: 25%;
   .flexT{
     display: flex;
     flex-direction: column;
@@ -216,6 +226,7 @@
 }
 .dtBox{
   box-shadow: 0px 5px 15px #ddd;
+  position: relative;
   .dztBox{
     display: flex;
     justify-content: space-between;
@@ -226,8 +237,8 @@
     box-shadow: 0px 5px 15rpx #ddd;
     box-sizing: border-box;
     position: relative;
-    left: 21px;
-    top: -21px;
+    left: 5%;
+    top: -14px;
     height: 48px;
     .zntb{
      font-size: 14px;
@@ -246,7 +257,7 @@
     margin-bottom: 10px;
     .nav-img{
       width: 55px;
-      height: 140rpx;
+      height:77px;
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <view>
-    院校列表
+  <view class="collectcollege-box">
+    <image src="../../static/images/collectempty.png" mode="widthFix"></image>
   </view>
 </template>
 
@@ -15,6 +15,11 @@
   }
 </script>
 
-<style lang="scss">
-
+<style scoped lang="scss">
+.collectcollege-box{
+  image{
+    width: 100%;
+    height: 100%;
+  }
+}
 </style>

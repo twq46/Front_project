@@ -15,7 +15,8 @@
         :subject-class-title="subjectClassTitle"
         @batchFilterItem="batchFilterItem"
         @subjuectFilterItem="subjuectFilterItem"
-        @confirm="confirm"></my-filterData>
+        @confirm="confirm" 
+        @restSubtypeClick="restSubtypeClick"></my-filterData>
       </view>
       <!-- 专业名称标题 -->
      <!-- <view class="title">
@@ -65,6 +66,10 @@
     },
     
     methods:{
+      restSubtypeClick(){
+        this.category = '全部',
+        this.getsubjectClassData()
+      },
       //输入款搜索专业
       inputMajor(e){
         clearTimeout(this.timer)

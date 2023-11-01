@@ -25,7 +25,7 @@ wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
 uni.$http = _requestMiniprogram.$http;
 //请求的根路径
 _requestMiniprogram.$http.baseUrl = 'https://www.zytb.top/agent_gk_new';
-// $http.baseUrl = 'https://4aab-221-217-161-116.ngrok-free.app'
+// $http.baseUrl = 'https://b585-114-240-62-164.ngrok-free.app'
 //请求拦截器
 _requestMiniprogram.$http.beforeRequest = function (options) {
   uni.showLoading({

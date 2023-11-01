@@ -8,19 +8,9 @@
         {{college.schoolname}}
       </view>
       <view class="college-type">
-        <view class="province ">
-          {{college.province}}
+        <view class="tag-item" v-for="(item,index) in college.tags" :key="index">
+          {{item}}
         </view>
-        <view class="level mar-left">
-          {{college.level}}
-        </view>
-        <view class="type mar-left">
-          {{college.type}}
-        </view>
-        <view class="f985 mar-left" v-if="college.f985 !== 0">
-          985
-        </view>
-        
       </view>
     </view>
     
@@ -65,6 +55,9 @@
       display: flex;
       font-size: 13px;
       color: #5b5b5b;
+      .tag-item{
+        margin-right: 3px;
+      }
       .mar-left{
         margin-left: 5px;
       }

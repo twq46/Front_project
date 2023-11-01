@@ -17,7 +17,7 @@
         </scroll-view>
         <!-- 重置和确认按钮 -->
         <view class="btn-reset-confirm">
-          <button>重置</button>
+          <button @click="restBtnClick">重置</button>
           <button class="confirm-btn" @click="confirmFilter">确定</button>
         </view>
       </view>
@@ -58,8 +58,8 @@
         filterActive:false,
         currentBatchActiveIndex:null,
         currentSubjectActiveIndex:null,
-        filterConten:['澳门','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港','香港'],
         subjectClassItemIsSelected:false,
+        currentSelectedBatch:null,
       };
     },
     computed:{
@@ -86,6 +86,20 @@
       
     },
     methods:{
+      restBtnClick(){
+        if(this.batchSelected){
+          this.currentBatchActiveIndex = null
+          this.currentSelectedBatch = '本科'
+          uni.$showMsg('学科门类已更新！')
+          this.filterActive =!this.filterActive
+          this.$emit('batchFilterItem',this.currentSelectedBatch)
+        }else if (this.subjectClassSelected){
+          this.currentSubjectActiveIndex = null
+          this.filterActive =!this.filterActive
+          this.$emit('restSubtypeClick')
+        }
+        
+      },
       //点击过滤的标题
       activeFilterTitle(index){
         this.activeindex = index
@@ -93,13 +107,13 @@
       },
       //点击了过滤列表中的某一项
       clickFilterItem(itemname,index){
-       
+        
         //如果是院校批次里的某一项
         if(this.batchSelected){
+          this.currentSelectedBatch = itemname
           this.currentBatchActiveIndex = index
           //点击院校批次之后清空上一次选中的学科门类的值
           this.currentSubjectActiveIndex = null
-          this.$emit('batchFilterItem',itemname)
         }else if(this.subjectClassSelected){//如果是学科门类中的某一项
           this.currentSubjectActiveIndex = index
           this.subjectClassItemIsSelected = true
@@ -108,9 +122,13 @@
       },
       //点击了确认按钮
       confirmFilter(){
-        if(this.batchSelected || this.subjectClassSelected){
+        if(this.subjectClassSelected){
           this.filterActive =!this.filterActive
           this.$emit('confirm')
+        }else if(this.batchSelected){
+          uni.$showMsg('学科门类已更新！')
+          this.filterActive =!this.filterActive
+          this.$emit('batchFilterItem',this.currentSelectedBatch)
         }
       }
     }

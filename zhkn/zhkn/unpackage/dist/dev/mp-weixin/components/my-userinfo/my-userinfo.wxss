@@ -34,6 +34,7 @@
 }
 .user-box .user-box-info .user-info.data-v-14c4a57a {
   display: flex;
+  align-items: center;
 }
 .user-box .user-box-info .user-info image.data-v-14c4a57a {
   border-radius: 50%;

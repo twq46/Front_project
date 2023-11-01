@@ -6,12 +6,12 @@
         <!-- 用户图片信息 -->
         <view class="user-info">
           <view class="user-logo">
-            <image :src="userinfo.avatarUrl" mode="widthFix"></image>
+            <uni-icons type="contact-filled" size="70" color="#AFAFAF"></uni-icons>
           </view>
           <!-- 用户昵称和用户类别 -->
           <view class="phone-number">
             <view class="number">
-              {{userinfo.nickName}}
+              {{userinfo.phoneNum}}
               <!-- 是否是vip图标 -->
               <view class="showisviplog">
                 <image src="../../static/images/vip0.png" mode="widthFix" v-if="userinfo.vip == 0"></image>
@@ -22,7 +22,7 @@
               升级为VIP，准确查大学录取率
             </view>
             <view class="text" v-else>
-              vip用户
+              vip用户：{{endtime}}
             </view>
           </view>
           
@@ -33,7 +33,7 @@
             <!-- 我的成绩 -->
             <view class="score-info">
               <view class="score-number">
-                {{userinfo.score ? userinfo.score : 0}}分
+                {{userinfo.score || 0}}分
               </view>
               <view class="score-text">
                 我的成绩
@@ -45,7 +45,7 @@
             <!-- 能上的大虚 -->
             <view class="score-info">
               <view class="score-number">
-                0所
+                {{userinfo.rushTotalNum || 0}}所
               </view>
               <view class="score-text">
                 能上的大学
@@ -53,11 +53,11 @@
             </view>
           </view>
           
-          <view class="user-score">
+          <view class="user-score" @click="gotoVolunteerList">
             <!-- 能上的大虚 -->
             <view class="score-info">
               <view class="score-number">
-                0份
+                {{followwishnum}}份
               </view>
               <view class="score-text">
                 志愿表
@@ -79,10 +79,14 @@
        <view class="title">
          我的账户
        </view>
-       <view class="message-info">
-        <view class="message-logo" >
+       <view class="message-info more">
+        <view class="message-logo" @click="gotomymessage">
           <image src="../../static/images/my-message.png" mode="widthFix"></image>
           <text>我的消息</text>
+        </view>
+        <view class="message-logo" @click="gotoActiveMembership">
+          <image src="../../static/images/membershipcard.png" mode="widthFix"></image>
+          <text>激活志愿卡</text>
         </view>
        </view>
       </uni-card>
@@ -122,10 +126,30 @@
         
       };
     },
+    
+    props:{
+      followwishnum:{
+        type:Number,
+        default:0
+      },
+      endtime:{
+        type:String
+      }
+    },
     computed:{
       ...mapState('m_user',['userinfo'])
     },
     methods:{
+      gotoVolunteerList(){
+        uni.navigateTo({
+          url:'/subpkg/volunteer-list-page/volunteer-list-page'
+        })
+      },
+      gotoActiveMembership(){
+        uni.navigateTo({
+          url:'/subpkg/activeMembershipCard/activeMembershipCard'
+        })
+      },
       gotomymessage(){
         uni.navigateTo({
           url:'/subpkg/my-message/my-message'
@@ -167,6 +191,7 @@
     position: relative;
     .user-info{
       display: flex;
+      align-items: center;
       image{
         border-radius: 50%;
         width: 50px;

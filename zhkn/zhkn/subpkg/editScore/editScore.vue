@@ -18,7 +18,7 @@
             {{currentSelectProvince ? currentSelectProvince:'请选择'}}
             <uni-icons type="arrowright" size="15" color="#5f5f5f"></uni-icons>
           </view>
-         <view class="right-info" v-else>
+         <view class="right-info" @click="provinceOpen" v-else>
            {{userinfo.examProvince}}
          </view>
         </view>
@@ -27,13 +27,13 @@
           <view class="left-info">
             高考科目
           </view>
-          <view class="right-info" v-if="userinfo.physics || userinfo.chemistry || userinfo.biology || userinfo.politics || userinfo.history || userinfo.geography">
-            {{userinfo.physics == 1 ? '物':''}}
-            {{userinfo.chemistry == 1 ? '化':''}}
-            {{userinfo.biology == 1 ? '生':''}}
-            {{userinfo.politics == 1 ? '政':''}}
-            {{userinfo.history == 1 ? '历':''}}
-            {{userinfo.geography == 1 ? '地':''}}
+          <view class="right-info" @click="majorOpen" v-if="userinfo.physics || userinfo.chemistry || userinfo.biology || userinfo.politics || userinfo.history || userinfo.geography">
+            {{physics == 1 ? '物':''}}
+            {{chemistry == 1 ? '化':''}}
+            {{biology == 1 ? '生':''}}
+            {{politics == 1 ? '政':''}}
+            {{history == 1 ? '史':''}}
+            {{geography == 1 ? '地':''}}
           </view>
           <view class="right-info" @click="majorOpen" v-else>
             <view class="subjectlist" v-if="selectsubjectList.length > 0">
@@ -54,10 +54,10 @@
             高考分数
           </view>
           <view class="right-info" v-if="!userinfo.score">
-            <input type="number" v-model="score" placeholder="请输入你的成绩" @input="inputScore">
+            <input type="number" v-model="score" placeholder="请输入你的成绩" @input="inputScore" >
           </view>
-          <view class="right-info" v-else>
-            <input type="number" v-model="score" placeholder="请输入你的成绩" @input="inputScore">
+          <view class="right-info"  v-else>
+            <input type="number" :disabled="iscontinueUpdateScore" v-model="score" placeholder="请输入你的成绩" @input="inputScore" @click="scoreInputClick">
           </view>
         </view>
         <!-- 高考位次 -->
@@ -66,10 +66,10 @@
             高考位次
           </view>
           <view class="right-info" v-if="!userinfo.rank">
-            <input type="number" v-model="rank" placeholder="请输入你的省排名" @input="rankInput">
+            <input type="number" v-model="rank" placeholder="请输入你的省排名" @input="rankInput" >
           </view>
           <view class="right-info" v-else>
-            <input type="number" v-model="rank" placeholder="请输入你的省排名" @input="rankInput">
+            <input type="number" v-model="rank" placeholder="请输入你的省排名" @click="scoreInputClick" :disabled="iscontinueUpdateScore" @input="rankInput">
           </view>
         </view>
         <!-- 可输入的位次范围 -->
@@ -79,11 +79,14 @@
       </view>
       <!-- 省份弹出框 -->
        <uni-popup ref="provincePopup" type="bottom" background-color="#fff">
+         <view class="gkprovince">
+           高考省份
+         </view>
          <!-- 省份列表 -->
          <view class="province-list">
            <scroll-view scroll-y="true" >
              <view class="list">
-                <view class="province-item" v-for="(item,index) in provinceList" v-if="index > 0" :key="index" :class="{activeProvince:currentIndex === index}" @click="clickProvinceItem(index)">
+                <view class="province-item" v-for="(item,index) in provinceList" :key="index" :class="{activeProvince:currentIndex === index}" @click="clickProvinceItem(index)">
                  {{item}}
                </view>
              </view>
@@ -107,7 +110,7 @@
       </uni-popup>
       <!-- 提示信息 -->
       <view class="tip">
-        <view>*高考成绩和位次只有1次修改机会，</view>
+        <view>*高考出分前，每天可修改一次成绩，高考出分后，高三用户只能设置一次高考成绩。(非高三用户，高考出分后至填志愿期间，暂停使用填志愿功能)</view>
         <view>
           其准确性决定推荐结果和录取概率，请认真填写
         </view>
@@ -129,6 +132,7 @@
     data() {
       return {
         scoreInputTimer:null,
+        iscontinueUpdateScore:null,
         currentIndex:null,
         physics:null,
         chemistry:null,
@@ -142,7 +146,7 @@
         lowRank:3000000,
         currentSelectProvince:'',
         labelinfo:[],
-        provinceList:[],
+        provinceList:['辽宁','山东','河北'],
         subjectList:['物','化','生','政','史','地'],
         selectsubjectList:[],
       };
@@ -152,7 +156,7 @@
     },
     onLoad() {
       //获取省份信息
-      this.getProvinceData()
+      // this.getProvinceData()
       this.score = this.userinfo.score
       this.rank = this.userinfo.rank
       this.physics = this.userinfo.physics
@@ -161,28 +165,49 @@
       this.politics = this.userinfo.politics
       this.history = this.userinfo.history
       this.geography = this.userinfo.geography
+      if(this.userinfo.score){
+        this.getRankScopeData()
+        this.isUpdateScore()
+      }
     },
     methods:{
-      ...mapMutations('m_user',['updateUserScore','updateUserRank','updateUserProvince','updateUserInfo']),
-      //获取高考的省份
-      getProvinceData(){
-        uni.request({
-          url:'https://www.zytb.top/NEMT/gk/school/findAllProvince',
-          method:'GET',
-          success: (res) => {
-            // console.log(res)
-            this.provinceList = res.data.data
-          }
-        })
+      ...mapMutations('m_user',['updateUserScore','updateUserRank','updateUserProvince','updateUserInfo','updateCwbNum','updateCubTotal','updateSubject']),
+      scoreInputClick(){
+        if(this.iscontinueUpdateScore){
+          uni.$showMsg('每天仅有一次修改机会呦！')
+        }
       },
+      async isUpdateScore(){
+        const {data:res} = await uni.$http.post(`/getIsRevisable?openId=${this.userinfo.openId}`)
+        this.iscontinueUpdateScore = !res.data.flag
+      },
+      //获取高考的省份
+      // getProvinceData(){
+      //   uni.request({
+      //     url:'https://www.zytb.top/NEMT/gk/school/findAllProvince',
+      //     method:'GET',
+      //     success: (res) => {
+      //       // console.log(res)
+      //       this.provinceList = res.data.data
+      //     }
+      //   })
+      // },
       //省份弹出效果
       provinceOpen(){
         // 通过组件定义的ref调用uni-popup方法 ,如果传入参数 ，type 属性将失效 ，仅支持 ['top','left','bottom','right','center']
-        this.$refs.provincePopup.open('bottom')
+        if(this.iscontinueUpdateScore){
+          uni.$showMsg('每天仅有一次修改机会呦！')
+        }else{
+          this.$refs.provincePopup.open('bottom')
+        }
       },
       //高考科目弹出效果
       majorOpen(){
-        this.$refs.subjectPopup.open('bottom')
+        if(this.iscontinueUpdateScore){
+          uni.$showMsg('每天仅有一次修改机会呦！')
+        }else{
+          this.$refs.subjectPopup.open('bottom')
+        }
       },
       //点击了省份中的某一个
       clickProvinceItem(index){
@@ -199,8 +224,9 @@
         this.chemistry = this.selectsubjectList.find((item) => item === '化') ? 1 : 0;
         this.biology = this.selectsubjectList.find((item) => item === '生') ? 1 : 0;
         this.politics = this.selectsubjectList.find((item) => item === '政') ? 1 : 0;
-        this.history = this.selectsubjectList.find((item) => item === '历') ? 1 : 0;
+        this.history = this.selectsubjectList.find((item) => item === '史') ? 1 : 0;
         this.geography = this.selectsubjectList.find((item) => item === '地') ? 1 : 0;
+        this.updateSubject(this.physics)
         // console.log(this.physics);
       },
       
@@ -213,7 +239,6 @@
         clearTimeout(this.scoreInputTimer)
         this.scoreInputTimer = setTimeout(()=>{
           // console.log(e.detail.value)
-          
           this.updateUserScore(e.detail.value)
           this.getRankScopeData()
         },500)
@@ -245,15 +270,22 @@
         //如果位次没有输入
         if(this.userinfo.rank == null) return uni.$showMsg('请输入高考位次')
         const res =await uni.$http.post(`/userApp/wxxAddUserInfo?openId=${this.userinfo.openId}&score=${this.userinfo.score}&examProvince=${this.userinfo.examProvince}&physics=${this.physics}&chemistry=${this.chemistry}&biology=${this.biology}&politics=${this.politics}&history=${this.history}&geography=${this.geography}&rank=${this.userinfo.rank}&nickName=${this.userinfo.nickName}&avatarUrl=${this.userinfo.avatarUrl}`)
-        
         if(res.data.code === 200){
+          res.data.data.rushNum = null
+          res.data.data.rushTotalNum = null
           this.updateUserInfo(res.data.data)
+        } 
+        //获取考生冲稳保的数量
+        const {data:cwbnumberRes} = await uni.$http.get(`/extendApp/getSchoolFirstNum?openId=${this.userinfo.openId}&examProvince=${this.userinfo.examProvince}&score=${this.userinfo.score}&rank=${this.userinfo.rank}&batch=本科`)
+        // console.log(cwbnumberRes,'twq')
+        if(cwbnumberRes.code === 200){
+          this.updateCwbNum(cwbnumberRes.data)
+          this.updateCubTotal(cwbnumberRes.total)
           uni.$showMsg('用户信息填写成功')
           uni.navigateBack({
               delta: 1
           });
-        } 
-        
+        }
       },
     }
   }
@@ -264,6 +296,10 @@
   image{
     width: 100%;
   }
+}
+.gkprovince{
+  text-align: center;
+  padding:5px 0 20px 0;
 }
 .scorecard{
   position: relative;

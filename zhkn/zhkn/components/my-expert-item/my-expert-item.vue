@@ -51,7 +51,6 @@
     methods:{
       async getExpertTag(){
         const res = await uni.$http.get(`/system/user/getMaster/${this.expertDetail.userId}`)
-        console.log(res)
         this.labelInfo = res.data.labelInfo
       }
     }

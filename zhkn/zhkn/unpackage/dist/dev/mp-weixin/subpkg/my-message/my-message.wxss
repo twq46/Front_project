@@ -32,6 +32,7 @@
   background-color: #fff;
   height: 200px;
   width: 95%;
+  padding: 10px;
   position: relative;
   top: -80px;
   left: 50%;
@@ -40,20 +41,6 @@
           transform: translateX(-50%);
   /* 将元素的中心对齐到父容器的中心 */
   border-radius: 10px 10px 0 0;
-}
-.card-box .itemlist.data-v-6e8453fa {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.card-box .itemlist .item.data-v-6e8453fa {
-  display: flex;
-  width: 18%;
-  flex-direction: column;
-}
-.card-box .itemlist .item image.data-v-6e8453fa {
-  width: 50px;
-  height: 50px;
 }
 .card-box .bottom-box.data-v-6e8453fa {
   padding: 0 10px;

@@ -1,6 +1,6 @@
 <template>
-  <view>
-    专业列表
+  <view class="collectmajor-box">
+     <image src="../../static/images/collectempty.png" mode="widthFix"></image>
   </view>
 </template>
 
@@ -15,6 +15,11 @@
   }
 </script>
 
-<style lang="scss">
-
+<style scoped lang="scss">
+.collectmajor-box{
+  image{
+    width: 100%;
+    height: 100%;
+  }
+}
 </style>

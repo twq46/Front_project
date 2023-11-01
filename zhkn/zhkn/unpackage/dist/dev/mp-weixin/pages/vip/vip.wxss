@@ -78,6 +78,10 @@
 .vipright image.data-v-5972bd7c {
   width: 100%;
 }
+.isvip.data-v-5972bd7c {
+  text-align: center;
+  line-height: 80px;
+}
 .pay.data-v-5972bd7c {
   background-color: #fff;
   height: 60px;

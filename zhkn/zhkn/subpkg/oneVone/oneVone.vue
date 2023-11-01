@@ -75,7 +75,11 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
   export default {
+    computed:{
+      ...mapState('m_user',['userinfo'])
+    },
     data() {
       return {
         query:{
@@ -98,7 +102,24 @@
     },
     onLoad() {
       this.getProvinceData()
+      if(this.userinfo.examProvince == '山东'){
+        this.provinceValue = 0
+        this.query.province = this.userinfo.examProvince
+        this.provinceSelected = false
+        this.getYearData()
+      }else if(this.userinfo.examProvince == '河北'){
+        this.provinceValue = 1
+       this.query.province = this.userinfo.examProvince
+       this.provinceSelected = false
+       this.getYearData()
+      }else if(this.userinfo.examProvince == '辽宁'){
+        this.provinceValue = 2
+        this.query.province = this.userinfo.examProvince
+        this.provinceSelected = false
+        this.getYearData()
+      }
     },
+    
     methods:{
       getProvinceData(){
         uni.request({
@@ -111,7 +132,6 @@
                 text:item
               }
             })
-            console.log(this.province)
           }
         })
       },

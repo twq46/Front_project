@@ -71,8 +71,9 @@
         console.log(this.labelInfo)
       },
       gotoExpertBook(){
+        let teacherObject = JSON.stringify(this.teacherInfo)
         uni.navigateTo({
-          url:'/subpkg/expert-booked/expert-booked'
+          url:'/subpkg/expert-booked/expert-booked?teacherInfo='+teacherObject
         })
       }
     }
