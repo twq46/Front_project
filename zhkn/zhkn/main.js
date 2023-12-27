@@ -7,6 +7,7 @@ $http.baseUrl = 'https://www.zytb.top/agent_gk_new'
 // $http.baseUrl = 'https://b585-114-240-62-164.ngrok-free.app'
 //请求拦截器
 $http.beforeRequest = function(options){
+  // console.log(options,'请求拦截')
   uni.showLoading({
     title:"数据加载中...",
   }),
@@ -15,7 +16,16 @@ $http.beforeRequest = function(options){
   }
 }
 //响应拦截器
-$http.afterRequest = function(){
+let tag = 1
+$http.afterRequest = function(response){
+  // console.log(response,'响应拦截')
+  if(response.data.code === 401 && tag === 1){
+    tag = 0
+    uni.removeStorageSync('token');
+    uni.switchTab({
+      url:'/pages/mine/mine'
+    })
+  }
   uni.hideLoading()
 }
 

@@ -237,12 +237,21 @@ var _default = {
       geography: null,
       highRank: 0,
       score: null,
+      realName: null,
+      gender: null,
+      foreignType: null,
+      foreignScore: null,
       rank: null,
+      currenForienTypeIndex: null,
       lowRank: 3000000,
       currentSelectProvince: '',
+      currentSelectFroeignType: '',
+      activeGenderIndex: null,
       labelinfo: [],
+      genderList: ['男', '女'],
       provinceList: ['辽宁', '山东', '河北'],
       subjectList: ['物', '化', '生', '政', '史', '地'],
+      foreignTypeList: ['英语', '法语', '日语', '德语', '俄语', '其他'],
       selectsubjectList: []
     };
   },
@@ -250,7 +259,11 @@ var _default = {
   onLoad: function onLoad() {
     //获取省份信息
     // this.getProvinceData()
+    this.realName = this.userinfo.realName;
+    this.gender = this.userinfo.gender;
     this.score = this.userinfo.score;
+    this.foreignType = this.userinfo.foreignType;
+    this.foreignScore = this.userinfo.foreignScore;
     this.rank = this.userinfo.rank;
     this.physics = this.userinfo.physics;
     this.chemistry = this.userinfo.chemistry;
@@ -263,7 +276,35 @@ var _default = {
       this.isUpdateScore();
     }
   },
-  methods: _objectSpread(_objectSpread({}, (0, _vuex.mapMutations)('m_user', ['updateUserScore', 'updateUserRank', 'updateUserProvince', 'updateUserInfo', 'updateCwbNum', 'updateCubTotal', 'updateSubject'])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0, _vuex.mapMutations)('m_user', ['updateUserScore', 'updateUserRank', 'updateUserProvince', 'updateUserInfo', 'updateCwbNum', 'updateCubTotal', 'updateSubject', 'updateRealName', 'updateSex', 'updateForeignType', 'updateFroeignScore'])), {}, {
+    inputRealName: function inputRealName(e) {
+      this.updateRealName(e.detail.value);
+    },
+    foreignTypeOpen: function foreignTypeOpen() {
+      if (this.iscontinueUpdateScore) {
+        uni.$showMsg('每天仅有一次修改机会呦！');
+      } else {
+        this.$refs.foreignTypePopup.open('bottom');
+      }
+    },
+    genderOpen: function genderOpen() {
+      this.$refs.genderPopup.open('bottom');
+    },
+    clickGenderItem: function clickGenderItem(index) {
+      this.activeGenderIndex = index;
+      this.gender = this.genderList[index];
+      this.updateSex(this.gender);
+      this.$refs.genderPopup.close();
+    },
+    clickForienType: function clickForienType(index) {
+      this.currenForienTypeIndex = index;
+      this.currentSelectFroeignType = this.foreignTypeList[index];
+      this.updateForeignType(this.currentSelectFroeignType);
+      this.$refs.foreignTypePopup.close();
+    },
+    inputForeignScore: function inputForeignScore(e) {
+      this.updateFroeignScore(e.detail.value);
+    },
     scoreInputClick: function scoreInputClick() {
       if (this.iscontinueUpdateScore) {
         uni.$showMsg('每天仅有一次修改机会呦！');
@@ -407,43 +448,68 @@ var _default = {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                if (!(_this4.userinfo.examProvince == '')) {
+                if (_this4.userinfo.realName) {
                   _context3.next = 2;
                   break;
                 }
-                return _context3.abrupt("return", uni.$showMsg('请选择省份'));
+                return _context3.abrupt("return", uni.$showMsg('请输入姓名'));
               case 2:
-                if (!(_this4.userinfo.physics == 0 && _this4.userinfo.chemistry == 0 && _this4.userinfo.biology == 0 && _this4.userinfo.politics == 0 && _this4.userinfo.history == 0 && _this4.userinfo.geography == 0)) {
+                if (_this4.userinfo.gender) {
                   _context3.next = 4;
                   break;
                 }
-                return _context3.abrupt("return", uni.$showMsg('请选择科目'));
+                return _context3.abrupt("return", uni.$showMsg('请输入性别'));
               case 4:
-                if (!(_this4.userinfo.score == null)) {
+                if (_this4.userinfo.examProvince) {
                   _context3.next = 6;
                   break;
                 }
-                return _context3.abrupt("return", uni.$showMsg('请输入高考分数'));
+                return _context3.abrupt("return", uni.$showMsg('请选择省份'));
               case 6:
-                if (!(_this4.userinfo.rank == null)) {
+                if (!(_this4.userinfo.physics == 0 && _this4.userinfo.chemistry == 0 && _this4.userinfo.biology == 0 && _this4.userinfo.politics == 0 && _this4.userinfo.history == 0 && _this4.userinfo.geography == 0)) {
                   _context3.next = 8;
                   break;
                 }
-                return _context3.abrupt("return", uni.$showMsg('请输入高考位次'));
+                return _context3.abrupt("return", uni.$showMsg('请选择科目'));
               case 8:
-                _context3.next = 10;
-                return uni.$http.post("/userApp/wxxAddUserInfo?openId=".concat(_this4.userinfo.openId, "&score=").concat(_this4.userinfo.score, "&examProvince=").concat(_this4.userinfo.examProvince, "&physics=").concat(_this4.physics, "&chemistry=").concat(_this4.chemistry, "&biology=").concat(_this4.biology, "&politics=").concat(_this4.politics, "&history=").concat(_this4.history, "&geography=").concat(_this4.geography, "&rank=").concat(_this4.userinfo.rank, "&nickName=").concat(_this4.userinfo.nickName, "&avatarUrl=").concat(_this4.userinfo.avatarUrl));
+                if (_this4.userinfo.foreignType) {
+                  _context3.next = 10;
+                  break;
+                }
+                return _context3.abrupt("return", uni.$showMsg('请选择外语类型'));
               case 10:
+                if (_this4.userinfo.foreignScore) {
+                  _context3.next = 12;
+                  break;
+                }
+                return _context3.abrupt("return", uni.$showMsg('请输入外语分数'));
+              case 12:
+                if (_this4.userinfo.score) {
+                  _context3.next = 14;
+                  break;
+                }
+                return _context3.abrupt("return", uni.$showMsg('请输入高考分数'));
+              case 14:
+                if (_this4.userinfo.rank) {
+                  _context3.next = 16;
+                  break;
+                }
+                return _context3.abrupt("return", uni.$showMsg('请输入高考位次'));
+              case 16:
+                _context3.next = 18;
+                return uni.$http.post("/wxxAddUserInfo?openId=".concat(_this4.userinfo.openId, "&score=").concat(_this4.userinfo.score, "&examProvince=").concat(_this4.userinfo.examProvince, "&physics=").concat(_this4.physics, "&chemistry=").concat(_this4.chemistry, "&biology=").concat(_this4.biology, "&politics=").concat(_this4.politics, "&history=").concat(_this4.history, "&geography=").concat(_this4.geography, "&rank=").concat(_this4.userinfo.rank, "&nickName=").concat(_this4.userinfo.nickName, "&avatarUrl=").concat(_this4.userinfo.avatarUrl, "&realName=").concat(_this4.userinfo.realName, "&gender=").concat(_this4.userinfo.gender, "&foreignType=").concat(_this4.userinfo.foreignType, "&foreignScore=").concat(_this4.userinfo.foreignScore));
+              case 18:
                 res = _context3.sent;
+                console.log(res);
                 if (res.data.code === 200) {
                   res.data.data.rushNum = null;
                   res.data.data.rushTotalNum = null;
                   _this4.updateUserInfo(res.data.data);
                 }
                 //获取考生冲稳保的数量
-                _context3.next = 14;
+                _context3.next = 23;
                 return uni.$http.get("/extendApp/getSchoolFirstNum?openId=".concat(_this4.userinfo.openId, "&examProvince=").concat(_this4.userinfo.examProvince, "&score=").concat(_this4.userinfo.score, "&rank=").concat(_this4.userinfo.rank, "&batch=\u672C\u79D1"));
-              case 14:
+              case 23:
                 _yield$uni$$http$get = _context3.sent;
                 cwbnumberRes = _yield$uni$$http$get.data;
                 // console.log(cwbnumberRes,'twq')
@@ -455,7 +521,7 @@ var _default = {
                     delta: 1
                   });
                 }
-              case 17:
+              case 26:
               case "end":
                 return _context3.stop();
             }

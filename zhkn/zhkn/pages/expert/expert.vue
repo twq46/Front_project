@@ -52,6 +52,7 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
   export default {
     data() {
       return {
@@ -65,9 +66,24 @@
         lablesid:null,
       };
     },
+    computed:{
+      ...mapState('m_user',['token'])
+    },
     onLoad() {
       this.getTeacherList()
       this.getExpertFilterTag()
+    },
+    onShow() {
+      // if(!this.token){
+      //   uni.$showMsg('请先登录')
+      //   uni.switchTab({
+      //     url:'/pages/mine/mine'
+      //   })
+      // }else{
+        
+      // }
+      this.getTeacherList()
+        this.getExpertFilterTag()
     },
     methods:{
       serverTypeClick(index){

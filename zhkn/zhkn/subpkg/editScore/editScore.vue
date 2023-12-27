@@ -9,6 +9,31 @@
     	</view>
       <!-- 学生成绩等的信息信息 -->
       <view class="detail-info">
+        <!-- 姓名 -->
+        <view class="info-item">
+          <view class="left-info">
+            姓名
+          </view>
+          <view class="right-info">
+            <input type="text" v-model="realName" placeholder="请输入你的姓名" @input="inputRealName" >
+          </view>
+        </view>
+        <!-- 性别 -->
+        <view class="info-item">
+          <view class="left-info">
+            性别
+          </view>
+          <!-- <view class="right-info">
+            <input type="text" v-model="gender" placeholder="请输入你的性别" @input="inputGender" >
+          </view> -->
+          <view class="right-info" @click="genderOpen" v-if="!gender">
+             {{gender ? gender:'请选择'}}
+             <uni-icons type="arrowright" size="15" color="#5f5f5f"></uni-icons>
+           </view>
+          <view class="right-info" @click="genderOpen" v-else>
+            {{gender}}
+          </view>
+        </view>
         <!-- 高考省份 -->
         <view class="info-item">
           <view class="left-info">
@@ -48,6 +73,30 @@
           </view>
           
         </view>
+        
+        <!-- 外语类型 -->
+        <view class="info-item">
+          <view class="left-info">
+            外语类型
+          </view>
+          <view class="right-info" @click="foreignTypeOpen" v-if="!userinfo.foreignType">
+             {{currentSelectFroeignType ? currentSelectFroeignType : '请选择'}}
+             <uni-icons type="arrowright" size="15" color="#5f5f5f"></uni-icons>
+           </view>
+          <view class="right-info" @click="foreignTypeOpen" v-else>
+            {{userinfo.foreignType}}
+          </view>
+        </view>
+        <!-- 外语分数 -->
+        <view class="info-item">
+          <view class="left-info">
+            外语分数
+          </view>
+          <view class="right-info">
+            <input type="number" v-model="foreignScore" placeholder="请输入你的外语分数" @input="inputForeignScore" >
+          </view>
+        </view>
+        
         <!-- 高考成绩 -->
         <view class="info-item">
           <view class="left-info">
@@ -77,6 +126,21 @@
           可输入的位次范围：{{highRank}}～{{lowRank}}
         </view>
       </view>
+      <!-- 性别弹出框 -->
+      <uni-popup ref="genderPopup" background-color="#fff" type="bottom">
+        <!-- 高考科目 -->
+        <view class="province-list">
+          <scroll-view scroll-y="true" >
+            <view class="list kemu">
+               <view class="province-item" v-for="(item,index) in genderList"  :key="index" :class="{activeProvince:activeGenderIndex == index}" @click="clickGenderItem(index)">
+                {{item}}
+              </view>
+            </view>
+            
+          </scroll-view>
+        </view>
+      </uni-popup>
+      
       <!-- 省份弹出框 -->
        <uni-popup ref="provincePopup" type="bottom" background-color="#fff">
          <view class="gkprovince">
@@ -99,8 +163,23 @@
         <!-- 高考科目 -->
         <view class="province-list">
           <scroll-view scroll-y="true" >
-            <view class="list">
+            <view class="list kemu">
                <view class="province-item" v-for="(item,index) in subjectList"  :key="index" :class="{activeProvince:selectsubjectList.includes(item)}" @click="clickSubjectItem(index)">
+                {{item}}
+              </view>
+            </view>
+            
+          </scroll-view>
+        </view>
+      </uni-popup>
+      
+      <!-- 外语类型弹出窗 -->
+      <uni-popup ref="foreignTypePopup" background-color="#fff" type="bottom">
+        <!--  -->
+        <view class="province-list">
+          <scroll-view scroll-y="true" >
+            <view class="list kemu">
+               <view class="province-item" v-for="(item,index) in foreignTypeList"  :key="index" :class="{activeProvince:currenForienTypeIndex == index}" @click="clickForienType(index)">
                 {{item}}
               </view>
             </view>
@@ -142,12 +221,21 @@
         geography:null,
         highRank:0,
         score:null,
+        realName:null,
+        gender:null,
+        foreignType:null,
+        foreignScore:null,
         rank:null,
+        currenForienTypeIndex:null,
         lowRank:3000000,
         currentSelectProvince:'',
+        currentSelectFroeignType:'',
+        activeGenderIndex:null,
         labelinfo:[],
+        genderList:['男','女'],
         provinceList:['辽宁','山东','河北'],
         subjectList:['物','化','生','政','史','地'],
+        foreignTypeList:['英语','法语','日语','德语','俄语','其他'],
         selectsubjectList:[],
       };
     },
@@ -157,7 +245,11 @@
     onLoad() {
       //获取省份信息
       // this.getProvinceData()
+      this.realName = this.userinfo.realName
+      this.gender = this.userinfo.gender
       this.score = this.userinfo.score
+      this.foreignType = this.userinfo.foreignType
+      this.foreignScore = this.userinfo.foreignScore
       this.rank = this.userinfo.rank
       this.physics = this.userinfo.physics
       this.chemistry = this.userinfo.chemistry
@@ -171,7 +263,36 @@
       }
     },
     methods:{
-      ...mapMutations('m_user',['updateUserScore','updateUserRank','updateUserProvince','updateUserInfo','updateCwbNum','updateCubTotal','updateSubject']),
+      ...mapMutations('m_user',['updateUserScore','updateUserRank','updateUserProvince','updateUserInfo','updateCwbNum','updateCubTotal','updateSubject','updateRealName','updateSex','updateForeignType','updateFroeignScore']),
+      inputRealName(e){
+        this.updateRealName(e.detail.value)
+      },
+      
+      foreignTypeOpen(){
+        if(this.iscontinueUpdateScore){
+          uni.$showMsg('每天仅有一次修改机会呦！')
+        }else{
+          this.$refs.foreignTypePopup.open('bottom')
+        }
+      },
+      genderOpen(){
+        this.$refs.genderPopup.open('bottom')
+      },
+      clickGenderItem(index){
+        this.activeGenderIndex = index
+        this.gender = this.genderList[index]
+        this.updateSex(this.gender)
+        this.$refs.genderPopup.close()
+      },
+      clickForienType(index){
+        this.currenForienTypeIndex = index
+        this.currentSelectFroeignType = this.foreignTypeList[index]
+        this.updateForeignType(this.currentSelectFroeignType)
+        this.$refs.foreignTypePopup.close()
+      },
+      inputForeignScore(e){
+        this.updateFroeignScore(e.detail.value)
+      },
       scoreInputClick(){
         if(this.iscontinueUpdateScore){
           uni.$showMsg('每天仅有一次修改机会呦！')
@@ -261,15 +382,20 @@
       },
       //点击确认提交
       async confirmSubmitClick(){
+        if(!this.userinfo.realName) return uni.$showMsg('请输入姓名')
+        if(!this.userinfo.gender) return uni.$showMsg('请输入性别')
         // 如果省份没有选择
-        if(this.userinfo.examProvince == '') return uni.$showMsg('请选择省份')
+        if(!this.userinfo.examProvince) return uni.$showMsg('请选择省份')
         //如果高考科目没有选择
         if(this.userinfo.physics == 0 && this.userinfo.chemistry == 0 && this.userinfo.biology == 0&& this.userinfo.politics == 0&& this.userinfo.history == 0&& this.userinfo.geography == 0) return uni.$showMsg('请选择科目')
+        if(!this.userinfo.foreignType) return uni.$showMsg('请选择外语类型')
+        if(!this.userinfo.foreignScore) return uni.$showMsg('请输入外语分数')
         //如果成绩没有输入
-        if(this.userinfo.score == null) return uni.$showMsg('请输入高考分数')
+        if(!this.userinfo.score) return uni.$showMsg('请输入高考分数')
         //如果位次没有输入
-        if(this.userinfo.rank == null) return uni.$showMsg('请输入高考位次')
-        const res =await uni.$http.post(`/userApp/wxxAddUserInfo?openId=${this.userinfo.openId}&score=${this.userinfo.score}&examProvince=${this.userinfo.examProvince}&physics=${this.physics}&chemistry=${this.chemistry}&biology=${this.biology}&politics=${this.politics}&history=${this.history}&geography=${this.geography}&rank=${this.userinfo.rank}&nickName=${this.userinfo.nickName}&avatarUrl=${this.userinfo.avatarUrl}`)
+        if(!this.userinfo.rank) return uni.$showMsg('请输入高考位次')
+        const res =await uni.$http.post(`/wxxAddUserInfo?openId=${this.userinfo.openId}&score=${this.userinfo.score}&examProvince=${this.userinfo.examProvince}&physics=${this.physics}&chemistry=${this.chemistry}&biology=${this.biology}&politics=${this.politics}&history=${this.history}&geography=${this.geography}&rank=${this.userinfo.rank}&nickName=${this.userinfo.nickName}&avatarUrl=${this.userinfo.avatarUrl}&realName=${this.userinfo.realName}&gender=${this.userinfo.gender}&foreignType=${this.userinfo.foreignType}&foreignScore=${this.userinfo.foreignScore}`)
+        console.log(res)
         if(res.data.code === 200){
           res.data.data.rushNum = null
           res.data.data.rushTotalNum = null
@@ -355,6 +481,9 @@
     
   }
   
+}
+.kemu{
+  padding-top: 10px;
 }
 
 .list{

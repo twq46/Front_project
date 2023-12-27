@@ -33,7 +33,7 @@
           </view>
         </view>       
         <!-- 1v1尊享卡 -->
-        <!-- <view class="vipservet" :style="{background:onevonebgc,'border-color':onebordercolor}" @click="onechangebgc">
+        <view class="vipservet" :style="{background:onevonebgc,'border-color':onebordercolor}" @click="onechangebgc">
           <view class="title">
             1v1尊享卡
           </view>
@@ -51,7 +51,7 @@
             </view>
           </view>
         </view>
-        -->
+       
       </view>
       <view class="vipright" v-if="userinfo.vip === 0">
         <image src="../../static/images/vipnineright.png" mode="widthFix"></image>
@@ -82,7 +82,7 @@
   import {mapState,mapMutations} from 'vuex'
   export default {
     computed:{
-      ...mapState('m_user',['userinfo'])
+      ...mapState('m_user',['userinfo','token'])
     },
     data() {
       return {
@@ -94,16 +94,24 @@
         onevonebgc:'white',
         onebordercolor:'#eee',
         priceValue:{
-          vipvalue:480,
+          vipvalue:298,
           originvipvlue:999,
-          onevalue:4980,
-          oneoriginvalue:5980,
+          onevalue:3800,
+          oneoriginvalue:4900,
         },
         payValue:{
           payprice:0,
           payoriginprice:0
         }
       };
+    },
+    onShow() {
+      // if(!this.token){
+      //   uni.$showMsg('请先登录')
+      //   uni.switchTab({
+      //     url:'/pages/mine/mine'
+      //   })
+      // }
     },
     onLoad() {
       this.payValue.payprice = this.priceValue.vipvalue
@@ -130,11 +138,13 @@
         // console.log('zhifu')
         //1.创建订单->服务器返回订单编号
         //1.1组织订单的信息对象
+        console.log(this.payValue.payprice)
         const orderInfo = {
-          money:this.priceValue.vipvalue,
+          money:this.payValue.payprice,
           // money:0.01,
           openid:this.userinfo.openId
         }
+        
         //1.2发起请求创建订单
         const {data:res} = await uni.$http.post('/api/wxx-pay/jsapiPay',orderInfo)
         if(res.code !== 200) return uni.$showMsg('创建订单失败！')

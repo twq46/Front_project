@@ -91,17 +91,25 @@
 }
 .user-box .my-count .message-info.data-v-14c4a57a {
   display: flex;
+  justify-content: flex-end;
   margin-top: 20px;
 }
 .user-box .my-count .message-info .message-logo.data-v-14c4a57a {
+  width: 70px;
+  height: 62px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 5px;
 }
 .user-box .my-count .message-info .message-logo image.data-v-14c4a57a {
   width: 30px;
   height: 34px;
+}
+.user-box .my-count .message-info .message-logo .settingimage.data-v-14c4a57a {
+  width: 35px;
+}
+.user-box .my-count .message-info .message-logo .activek.data-v-14c4a57a {
+  margin-bottom: 5px;
 }
 .user-box .my-count .more.data-v-14c4a57a {
   display: flex;

@@ -183,12 +183,13 @@ var _default = {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                console.log(111);
+                _context.next = 3;
                 return uni.$http.get("/system/user/getMaster/".concat(_this.expertDetail.userId));
-              case 2:
+              case 3:
                 res = _context.sent;
                 _this.labelInfo = res.data.labelInfo;
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }

@@ -202,8 +202,9 @@ var _default = {
               case 8:
                 _yield$uni$$http$post = _context.sent;
                 loginResult = _yield$uni$$http$post.data;
-                _this.updateToken(loginResult.token);
+                // this.updateToken(loginResult.token)
                 //二次发送请求获取手机号
+                console.log(loginResult);
                 secondQuery = {
                   code: _this.secondCode,
                   openId: loginResult.wxxUser.openId
@@ -213,10 +214,10 @@ var _default = {
               case 14:
                 _yield$uni$$http$post2 = _context.sent;
                 getPhoneResult = _yield$uni$$http$post2.data;
+                _this.updateToken(getPhoneResult.token);
                 getPhoneResult.wxxUser.rushNum = null;
                 getPhoneResult.wxxUser.rushTotalNum = null;
                 _this.updateUserId(getPhoneResult.ruoyiUser.userId);
-                console.log(getPhoneResult);
                 _this.updateUserInfo(getPhoneResult.wxxUser);
                 //获取考生冲稳保的数量
                 if (!(getPhoneResult.wxxUser.score !== null)) {

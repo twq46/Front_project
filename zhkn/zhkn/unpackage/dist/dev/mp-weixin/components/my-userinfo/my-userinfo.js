@@ -165,11 +165,16 @@ var _default = {
       type: String
     }
   },
-  computed: _objectSpread({}, (0, _vuex.mapState)('m_user', ['userinfo'])),
+  computed: _objectSpread({}, (0, _vuex.mapState)('m_user', ['userinfo', 'token'])),
   methods: {
     gotoVolunteerList: function gotoVolunteerList() {
       uni.navigateTo({
         url: '/subpkg/volunteer-list-page/volunteer-list-page'
+      });
+    },
+    gotosetting: function gotosetting() {
+      uni.navigateTo({
+        url: '/subpkg/editScore/editScore'
       });
     },
     gotoActiveMembership: function gotoActiveMembership() {

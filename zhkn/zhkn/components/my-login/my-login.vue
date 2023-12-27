@@ -46,17 +46,20 @@
           // avatarUrl:info.userInfo.avatarUrl
         }
         const {data:loginResult} = await uni.$http.post('/wxxlogin',query)
-        this.updateToken(loginResult.token)
+        // this.updateToken(loginResult.token)
         //二次发送请求获取手机号
+        console.log(loginResult)
         const secondQuery={
           code:this.secondCode,
           openId:loginResult.wxxUser.openId
         }
         const {data:getPhoneResult} = await uni.$http.post('/wxxgetPhone',secondQuery)
+        this.updateToken(getPhoneResult.token)
+        
         getPhoneResult.wxxUser.rushNum = null
         getPhoneResult.wxxUser.rushTotalNum = null
         this.updateUserId(getPhoneResult.ruoyiUser.userId)
-        console.log(getPhoneResult)
+        
         
         this.updateUserInfo(getPhoneResult.wxxUser)
         //获取考生冲稳保的数量

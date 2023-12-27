@@ -202,6 +202,17 @@ var _default = {
       }
     };
   },
+  onShow: function onShow() {
+    // if(!this.token){
+    //   uni.$showMsg('请先登录')
+    //   uni.switchTab({
+    //     url:'/pages/mine/mine'
+    //   })
+    // }else{
+
+    // }
+    this.getTeacherList();
+  },
   onLoad: function onLoad() {
     this.getTeacherList();
   },

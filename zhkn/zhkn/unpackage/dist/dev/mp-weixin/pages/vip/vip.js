@@ -149,7 +149,7 @@ var _vuex = __webpack_require__(/*! vuex */ 36);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var _default = {
-  computed: _objectSpread({}, (0, _vuex.mapState)('m_user', ['userinfo'])),
+  computed: _objectSpread({}, (0, _vuex.mapState)('m_user', ['userinfo', 'token'])),
   data: function data() {
     return {
       bgColor: 'rgba(255,255,255,0)',
@@ -161,16 +161,24 @@ var _default = {
       onevonebgc: 'white',
       onebordercolor: '#eee',
       priceValue: {
-        vipvalue: 480,
+        vipvalue: 298,
         originvipvlue: 999,
-        onevalue: 4980,
-        oneoriginvalue: 5980
+        onevalue: 3800,
+        oneoriginvalue: 4900
       },
       payValue: {
         payprice: 0,
         payoriginprice: 0
       }
     };
+  },
+  onShow: function onShow() {
+    // if(!this.token){
+    //   uni.$showMsg('请先登录')
+    //   uni.switchTab({
+    //     url:'/pages/mine/mine'
+    //   })
+    // }
   },
   onLoad: function onLoad() {
     this.payValue.payprice = this.priceValue.vipvalue;
@@ -202,22 +210,23 @@ var _default = {
                 // console.log('zhifu')
                 //1.创建订单->服务器返回订单编号
                 //1.1组织订单的信息对象
+                console.log(_this.payValue.payprice);
                 orderInfo = {
-                  money: _this.priceValue.vipvalue,
+                  money: _this.payValue.payprice,
                   // money:0.01,
                   openid: _this.userinfo.openId
                 }; //1.2发起请求创建订单
-                _context.next = 3;
+                _context.next = 4;
                 return uni.$http.post('/api/wxx-pay/jsapiPay', orderInfo);
-              case 3:
+              case 4:
                 _yield$uni$$http$post = _context.sent;
                 res = _yield$uni$$http$post.data;
                 if (!(res.code !== 200)) {
-                  _context.next = 7;
+                  _context.next = 8;
                   break;
                 }
                 return _context.abrupt("return", uni.$showMsg('创建订单失败！'));
-              case 7:
+              case 8:
                 console.log(res);
                 //2.订单预支付 将订单编号发给服务器->返回订单支付相关参数:上一步已经返回结果了
                 //3.发起微信支付
@@ -228,17 +237,17 @@ var _default = {
                   signType: res.data.signType,
                   paySign: res.data.paySign
                 };
-                _context.next = 11;
+                _context.next = 12;
                 return uni.requestPayment(payinfo);
-              case 11:
+              case 12:
                 succ = _context.sent;
                 if (!(succ.errMsg === "requestPayment:ok")) {
-                  _context.next = 15;
+                  _context.next = 16;
                   break;
                 }
                 _this.updateUserIsVip(1);
                 return _context.abrupt("return", uni.$showMsg('支付成功!'));
-              case 15:
+              case 16:
               case "end":
                 return _context.stop();
             }

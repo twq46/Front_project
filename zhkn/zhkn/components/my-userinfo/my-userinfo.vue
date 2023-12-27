@@ -84,8 +84,12 @@
           <image src="../../static/images/my-message.png" mode="widthFix"></image>
           <text>我的消息</text>
         </view>
+        <view class="message-logo " @click="gotosetting">
+          <image  class="settingimage" src="../../static/images/setting.png" mode="widthFix"></image>
+          <text>修改信息</text>
+        </view>
         <view class="message-logo" @click="gotoActiveMembership">
-          <image src="../../static/images/membershipcard.png" mode="widthFix"></image>
+          <image class="activek" src="../../static/images/membershipcard.png" mode="widthFix"></image>
           <text>激活志愿卡</text>
         </view>
        </view>
@@ -126,7 +130,6 @@
         
       };
     },
-    
     props:{
       followwishnum:{
         type:Number,
@@ -137,12 +140,17 @@
       }
     },
     computed:{
-      ...mapState('m_user',['userinfo'])
+      ...mapState('m_user',['userinfo','token'])
     },
     methods:{
       gotoVolunteerList(){
         uni.navigateTo({
           url:'/subpkg/volunteer-list-page/volunteer-list-page'
+        })
+      },
+      gotosetting(){
+        uni.navigateTo({
+          url:'/subpkg/editScore/editScore'
         })
       },
       gotoActiveMembership(){
@@ -256,15 +264,23 @@
     }
     .message-info{
       display: flex;
+      justify-content: flex-end;
       margin-top: 20px;
       .message-logo{
+        width: 70px;
+        height: 62px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 5px;
         image{
           width: 30px;
           height: 34px;
+        }
+        .settingimage{
+          width: 35px;
+        }
+        .activek{
+          margin-bottom: 5px;
         }
         .aboutimage{
           

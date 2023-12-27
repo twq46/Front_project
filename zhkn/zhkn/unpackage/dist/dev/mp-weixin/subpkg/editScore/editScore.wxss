@@ -83,6 +83,9 @@
   border-radius: 30px;
   background-color: #ee8358;
 }
+.kemu.data-v-4e8ee60c {
+  padding-top: 10px;
+}
 .list.data-v-4e8ee60c {
   display: flex;
   flex-wrap: wrap;

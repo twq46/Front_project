@@ -50,6 +50,7 @@
     },
     methods:{
       async getExpertTag(){
+        console.log(111)
         const res = await uni.$http.get(`/system/user/getMaster/${this.expertDetail.userId}`)
         this.labelInfo = res.data.labelInfo
       }
@@ -66,7 +67,9 @@
   align-items: center;
   padding-left: 5px;
   .logo{
+    margin-right: 10px;
     image{
+      border-radius: 5px;
       width: 50px;
       height: 50px;
     }
@@ -82,6 +85,7 @@
         font-size: 13px;
         
         .tag-item{
+          border-radius: 4px;
           margin-left: 5px;
           color:#ff6668;
           padding: 2px 5px;
@@ -92,6 +96,12 @@
     .introduce{
       margin-top: 5px;
       font-size: 13px;
+      overflow: hidden;//多出的隐藏
+      text-overflow: ellipsis;//多出部分用...代替
+      display: -webkit-box;//定义为盒子模型显示
+      -webkit-line-clamp: 2;//用来限制在一个块元素显示的文本的行数
+      -webkit-box-orient: vertical;
+
     }
   }
 

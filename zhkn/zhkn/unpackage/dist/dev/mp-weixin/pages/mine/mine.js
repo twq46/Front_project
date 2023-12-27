@@ -194,7 +194,7 @@ var _default = {
       this.getVipDeadLine();
     }
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, (0, _vuex.mapMutations)('m_user', ['updateToken'])), {}, {
     getVolunteerNum: function getVolunteerNum() {
       var _this = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -208,8 +208,12 @@ var _default = {
               case 2:
                 _yield$uni$$http$get = _context.sent;
                 res = _yield$uni$$http$get.data;
+                if (res.code === 401) {
+                  uni.$showMsg('登录失效，请重新登录！');
+                  _this.updateToken('');
+                }
                 _this.followwishnum = res.data.followedWishNum;
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -240,7 +244,7 @@ var _default = {
         }, _callee2);
       }))();
     }
-  }
+  })
 };
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))

@@ -19856,6 +19856,22 @@ var _default = {
     };
   },
   mutations: {
+    updateRealName: function updateRealName(state, name) {
+      state.userinfo.realName = name;
+      this.commit('m_user/saveUserInfoToStorge');
+    },
+    updateSex: function updateSex(state, sex) {
+      state.userinfo.gender = sex;
+      this.commit('m_user/saveUserInfoToStorge');
+    },
+    updateForeignType: function updateForeignType(state, foreignType) {
+      state.userinfo.foreignType = foreignType;
+      this.commit('m_user/saveUserInfoToStorge');
+    },
+    updateFroeignScore: function updateFroeignScore(state, score) {
+      state.userinfo.foreignScore = score;
+      this.commit('m_user/saveUserInfoToStorge');
+    },
     updateSubject: function updateSubject(state, physics) {
       state.userinfo.physics = physics;
       this.commit('m_user/saveUserInfoToStorge');

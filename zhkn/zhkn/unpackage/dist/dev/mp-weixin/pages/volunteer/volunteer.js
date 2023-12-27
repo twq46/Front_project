@@ -173,7 +173,15 @@ var _default = {
   data: function data() {
     return {};
   },
-  computed: _objectSpread({}, (0, _vuex.mapState)('m_user', ['userinfo'])),
+  computed: _objectSpread({}, (0, _vuex.mapState)('m_user', ['userinfo', 'token'])),
+  onShow: function onShow() {
+    // if(!this.token){
+    //   uni.$showMsg('请先登录')
+    //   uni.switchTab({
+    //     url:'/pages/mine/mine'
+    //   })
+    // }
+  },
   methods: {
     editScoreHandle: function editScoreHandle() {
       var currentinfo = JSON.stringify(this.userInfo);

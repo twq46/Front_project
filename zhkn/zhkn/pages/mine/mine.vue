@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+  import {mapState,mapMutations} from 'vuex'
   export default {
     data() {
       return {
@@ -35,8 +35,13 @@
      }
    },
    methods:{
+     ...mapMutations('m_user',['updateToken']),
      async getVolunteerNum(){
        const {data : res} = await uni.$http.get(`/wishWX/getFollowedWishNum?openId=${this.userinfo.openId}`)
+       if(res.code === 401){
+         uni.$showMsg('登录失效，请重新登录！')
+         this.updateToken('')
+       }
        this.followwishnum = res.data.followedWishNum
      },
      async getVipDeadLine(){

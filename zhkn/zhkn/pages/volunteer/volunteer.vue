@@ -5,7 +5,7 @@
     </view>
     
     <view class="dztBox">
-      <view v-if="userinfo.score" @click="editScoreHandle">{{userinfo.examProvince}} {{userinfo.score}}分 {{userinfo.physics == 1 ? '物':''}} {{userinfo.chemistry == 1 ? '化':''}} {{userinfo.biology == 1 ? '生':''}} {{userinfo.politics == 1 ? '政':''}} {{userinfo.history == 1 ? '历':''}} {{userinfo.geography == 1 ? '地':''}} {{userinfo.rank}}名 <uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
+      <view v-if="userinfo.score" @click="editScoreHandle" class="infoedit">{{userinfo.examProvince}} {{userinfo.score}}分 {{userinfo.physics == 1 ? '物':''}} {{userinfo.chemistry == 1 ? '化':''}} {{userinfo.biology == 1 ? '生':''}} {{userinfo.politics == 1 ? '政':''}} {{userinfo.history == 1 ? '历':''}} {{userinfo.geography == 1 ? '地':''}} {{userinfo.rank}}名 <uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
       <view v-else @click="editScoreHandle">成绩：添加成绩信息<uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
     </view>
     
@@ -67,7 +67,15 @@
       };
     },
     computed:{
-      ...mapState('m_user',['userinfo'])
+      ...mapState('m_user',['userinfo','token'])
+    },
+    onShow() {
+      // if(!this.token){
+      //   uni.$showMsg('请先登录')
+      //   uni.switchTab({
+      //     url:'/pages/mine/mine'
+      //   })
+      // }
     },
     methods:{
       editScoreHandle(){
@@ -111,7 +119,11 @@
     top: -21px;
     height: 48px;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 15px;
+    .infoedit{
+      display: flex;
+      align-items: center;
+    }
   }
 .edit-icon{
   margin-left: 5px;

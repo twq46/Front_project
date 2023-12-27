@@ -78,6 +78,12 @@
   left: 5%;
   top: -14px;
   height: 48px;
+  font-size: 15px;
+}
+.dtBox .dztBox .infoedit.data-v-92bb8f34 {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
 }
 .dtBox .dztBox .zntb.data-v-92bb8f34 {
   font-size: 14px;
@@ -151,13 +157,17 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  position: relative;
 }
 .bkziBox .teacherBox .classBox .classlist .teacherImg.data-v-92bb8f34 {
   width: 69px;
   height: 64px;
   position: relative;
-  top: 0px;
-  left: 7px;
+  margin-bottom: 5px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+  border-radius: 5px;
 }
 .bkziBox .teacherBox .classBox .classlist .zitianbao.data-v-92bb8f34 {
   width: 84px;

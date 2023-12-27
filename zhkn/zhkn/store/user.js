@@ -7,6 +7,22 @@ export default {
     userinfo:JSON.parse(uni.getStorageSync('userinfo') || '{}')
   }),
   mutations:{
+    updateRealName(state,name){
+      state.userinfo.realName = name
+      this.commit('m_user/saveUserInfoToStorge')
+    },
+    updateSex(state,sex){
+      state.userinfo.gender = sex
+      this.commit('m_user/saveUserInfoToStorge')
+    },
+    updateForeignType(state,foreignType){
+      state.userinfo.foreignType = foreignType
+      this.commit('m_user/saveUserInfoToStorge')
+    },
+    updateFroeignScore(state,score){
+      state.userinfo.foreignScore = score
+      this.commit('m_user/saveUserInfoToStorge')
+    },
     updateSubject(state,physics){
       state.userinfo.physics = physics
       this.commit('m_user/saveUserInfoToStorge')

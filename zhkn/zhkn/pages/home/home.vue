@@ -38,7 +38,7 @@
         <!-- 如果用户未登录 -->
         <view v-if="!token" @click="gotoLogin">登录 / 注册</view>
         <!-- 用户登录之后 -->
-        <view v-if="token" @click="editScoreHandle" class="">{{userinfo.score || 0}}分  {{userinfo.rank || 0}}名<uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
+        <view v-if="token" @click="editScoreHandle" class="infoedit">{{userinfo.score || 0}}分  {{userinfo.rank || 0}}名<uni-icons type="compose" size="20" class="edit-icon" color="#f09162"></uni-icons></view>
         <view>
           <button class="zntb" @click="gotozntb">智能填报</button>
         </view>
@@ -67,7 +67,7 @@
           <view class="classBox" v-for="(item,i) in teacherList" :key="i" @click="gotoTeacherDetail(item)">
             <view class="classlist">
               <view class="teacherview">
-                <image class="teacherImg" :src="item.avatar"></image>
+                <image class="teacherImg" :src="item.avatar" mode="widthFix"></image>
                 <text>{{item.tianbaoshiName}}</text>
                 <image class="zitianbao" src="../../static/images/teacherbottomzytb.png"></image>
               </view>
@@ -131,6 +131,17 @@
           pageSize:10,
         }
       };
+    },
+    onShow() {
+      // if(!this.token){
+      //   uni.$showMsg('请先登录')
+      //   uni.switchTab({
+      //     url:'/pages/mine/mine'
+      //   })
+      // }else{
+        
+      // }
+      this.getTeacherList()
     },
     onLoad() {
       this.getTeacherList()
@@ -240,6 +251,12 @@
     left: 5%;
     top: -14px;
     height: 48px;
+    font-size: 15px;
+    .infoedit{
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+    }
     .zntb{
      font-size: 14px;
      width: 90px;
@@ -311,13 +328,16 @@
           display: flex;
           flex-direction: column;
           text-align: center;
+          position: relative;
         }
         .teacherImg{
           width: 69px;
           height: 64px;
           position: relative;
-          top: 0px;
-          left:7px;
+          margin-bottom: 5px;
+          left: 50%;
+          transform: translate(-50%, 0%);
+          border-radius: 5px;
         }
         .zitianbao{
           width: 84px;

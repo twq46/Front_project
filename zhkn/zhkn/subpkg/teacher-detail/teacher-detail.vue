@@ -1,24 +1,28 @@
 <template>
   <view class="expert-detail" :style="{height:contentHeight + 'px'}">
     <view class="list-item">
-      <!-- 老师图标 -->
-      <view class="logo">
-        <image :src="teacherInfo.avatar" mode="widthFix"></image>
-      </view>
-      <!-- 右侧专家的信息 -->
-      <view class="expert-info">
-        <!-- 姓名和标签 -->
-        <view class="name-tag">
-          <view class="name">
-            {{teacherInfo.tianbaoshiName}}
-          </view>
-          <view class="tag">
-            <view class="tag-item" v-for="(item,index) in labelInfo" :key="index">
-              {{item.labelName}}
+      <view class="list-itemT">
+        <!-- 老师图标 -->
+        <view class="logo">
+          <image :src="teacherInfo.avatar" mode="widthFix"></image>
+        </view>
+        <!-- 右侧专家的信息 -->
+        <view class="expert-info">
+          <!-- 姓名和标签 -->
+          <view class="name-tag">
+            <view class="name">
+              {{teacherInfo.tianbaoshiName}}
+            </view>
+            <view class="tag">
+              <view class="tag-item" v-for="(item,index) in labelInfo" :key="index">
+                {{item.labelName}}
+              </view>
             </view>
           </view>
         </view>
+            
       </view>
+   
     </view>
     <view class="introduce-detail">
       <!-- 专家简介 -->
@@ -93,8 +97,15 @@
   background-color: #ee7e67;
   align-items: center;
   padding-left: 5px;
+  .list-itemT{
+    display: flex;
+    align-items: center;
+  }
   .logo{
+    margin-right: 10px;
+    padding-top: 9px;
     image{
+      border-radius: 5px;
       width: 50px;
       height: 50px;
     }
@@ -104,13 +115,14 @@
       .name{
         color: #fff;
         font-size: 22px;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
       }
       .tag{
         display: flex;
         font-size: 13px;
         .tag-item{
-          margin-left: 5px;
+          border-radius: 5px;
+          margin-right: 5px;
           color:#ff6668;
           padding: 2px 5px;
           background-color: #ffeedf;
